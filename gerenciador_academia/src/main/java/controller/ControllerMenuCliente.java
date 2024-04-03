@@ -1,0 +1,279 @@
+
+package controller;
+
+import DB.Banco;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import models.Cliente;
+import models.Plano;
+import models.Treino;
+
+public class ControllerMenuCliente {
+    Banco banco = new Banco();
+    String idEndereco;
+    
+    public void criaNovoCliente(String nome, String cpf){
+        
+        if(insertClienteSql(nome, cpf)){
+            System.out.println("Dados cadastrados com sucesso");
+        }
+    }
+    
+    public void criaNovoEnderecoCliente(String cep, String rua, String bairro, String numero){
+         if(insertEnderecoClienteSql(cep, rua, bairro, numero)){
+             System.out.println("Dados cadastrados com sucesso");
+         }
+    }
+    
+    public List mostraClientes(){
+        Connection conexao = this.banco.getConexao();
+        List<Cliente> lista = new ArrayList();
+        
+        String sql = "SELECT * FROM cliente";
+        ResultSet resultados;
+        
+        try {
+            resultados = conexao.createStatement().executeQuery(sql);
+        
+            Cliente objeto;
+            while(resultados.next()){
+                int idCliente = Integer.parseInt(resultados.getString("idCliente"));
+                String nomeCliente = resultados.getString("nome");
+                String cpfCliente = resultados.getString("cpf");
+                objeto = new Cliente(nomeCliente, cpfCliente, null, null, null, null);
+                objeto.setId(idCliente);
+                lista.add(objeto);
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        return lista;
+    }
+    
+    public void alteraCliente(Cliente cliente, String cep, String rua, String bairro, String numero){
+        if(updateClienteSql(cliente.getId(), cep, rua, bairro, numero)){
+            System.out.println("Registro de "+cliente.getNome()+ " atulizado com sucesso");
+        }
+    }
+    
+    public void adicionaPlano(Cliente cliente, Plano plano){
+        if(updateClienteIdPlano(cliente.getId(), plano.getId())){
+        System.out.println("Plano de "+cliente.getNome()+ " adicionado com sucesso");
+        }
+    }
+    
+    public void adicionaTreino(Cliente cliente, Treino treino){
+        if(updateClienteIdTreino(cliente.getId(), treino.getId())){
+            System.out.println("Treino de "+cliente.getNome()+ " adicionado com sucesso");
+        }
+    }
+    
+    public void removeTreino(Cliente cliente){
+        if(deleteClienteIdTreino(cliente.getId())){
+            System.out.println("Treino removido com sucesso");
+        }
+        else{
+            System.out.println("Treino não pode ser removido");
+        }
+    }
+        
+    public void deletaCliente(Cliente cliente){
+        if(deletaClienteSql(cliente.getId())){
+            System.out.println("Cliente excluido com sucesso");
+        }
+        else{
+            System.out.println("O cliente requisitado, não foi encontrado no banco de dados");
+        }
+    }
+    
+    public boolean insertClienteSql(String nome, String cpf){
+        boolean resultado = false;
+        
+        Connection conexao = this.banco.getConexao();
+        if(this.idEndereco != null){
+            String sql = "INSERT INTO cliente(nome, cpf, idEndereco) VALUES(?, ?, ?)";
+            PreparedStatement consulta;
+
+            try {
+                consulta = conexao.prepareStatement(sql);
+                consulta.setString(1, nome);
+                consulta.setString(2, cpf);
+                consulta.setString(3, this.idEndereco);
+                consulta.execute();
+                resultado = true;
+
+            } catch (SQLException ex) {
+                System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
+                resultado = false;
+            }
+        }
+        else{
+            String sql = "INSERT INTO cliente(nome, cpf) VALUES(?, ?)";
+            PreparedStatement consulta;
+
+            try {
+                consulta = conexao.prepareStatement(sql);
+                consulta.setString(1, nome);
+                consulta.setString(2, cpf);
+                consulta.execute();
+                resultado = true;
+
+            } catch (SQLException ex) {
+                System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
+                resultado = false;
+            }
+        }
+        
+        return resultado;
+    }
+    
+    public boolean insertEnderecoClienteSql(String cep, String rua, String bairro, String numero){
+        boolean resultado = false;
+        
+        Connection conexao = this.banco.getConexao();
+        String sql = "INSERT INTO enderecoCliente(cep, rua, bairro, numero) VALUES(?, ?, ?, ?)";
+        PreparedStatement consulta;
+        
+        try {
+            consulta = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            consulta.setString(1, cep);
+            consulta.setString(2, rua);
+            consulta.setString(3, bairro);
+            consulta.setString(4, numero);
+            consulta.execute();
+            ResultSet key = consulta.getGeneratedKeys();
+            if (key.next()) { // Mova o cursor para a primeira linha do ResultSet
+                this.idEndereco = key.getString(1);
+                resultado = true;
+            } 
+            else {
+                System.out.println("Nenhuma chave gerada após a execução da consulta.");
+                resultado = false;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
+            resultado = false;
+        }
+        
+        return resultado;
+    }
+    
+    public boolean updateClienteSql(int idCliente, String cep, String rua, String bairro, String numero){
+        Connection conexao = this.banco.getConexao();
+        String sql = "UPDATE enderecoCliente SET cep = ?, rua = ?, bairro = ?, numero = ? WHERE idEnderecoCliente= (SELECT idEndereco FROM cliente WHERE idCliente = ?)";
+        PreparedStatement consulta;
+        boolean atualizado = false;
+        
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setString(1, cep);
+            consulta.setString(2, rua);
+            consulta.setString(3, bairro);
+            consulta.setString(4, numero);
+            consulta.setInt(5, idCliente);
+            
+            int linhasAtualizadas = consulta.executeUpdate();
+            if(linhasAtualizadas > 0) atualizado = true;
+        } catch (SQLException ex) {
+            atualizado = false;
+            System.out.println("Não foi possivel fazer a atualização dos dados" + ex.getMessage());
+        }
+        return atualizado;
+    }
+    
+    public boolean updateClienteIdPlano(int idCliente, int idPlano){
+        Connection conexao = this.banco.getConexao();
+        String sql = "UPDATE Cliente SET idPlano = ?, dataInicioPlano = ? WHERE idCliente = ?";
+        PreparedStatement consulta;
+        boolean atualizado = false;
+        LocalDate dataHoje = LocalDate.now();
+        
+        
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setInt(1, idPlano);
+            consulta.setDate(2, Date.valueOf(dataHoje));
+            consulta.setInt(3, idCliente);
+ 
+            
+            int linhasAtualizadas = consulta.executeUpdate();
+            if(linhasAtualizadas > 0) atualizado = true;
+        } catch (SQLException ex) {
+            atualizado = false;
+            System.out.println("Não foi possivel adicionar o plano ao cliente" + ex.getMessage());
+        }
+        return atualizado;
+    }
+    
+    public boolean updateClienteIdTreino(int idCliente, int idTreino){
+        Connection conexao = this.banco.getConexao();
+        String sql = "UPDATE Cliente SET idTreino = ? WHERE idCliente = ?";
+        PreparedStatement consulta;
+        boolean atualizado = false;
+        
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setInt(1, idTreino);
+            consulta.setInt(2, idCliente);
+ 
+            
+            int linhasAtualizadas = consulta.executeUpdate();
+            if(linhasAtualizadas > 0) atualizado = true;
+        } catch (SQLException ex) {
+            atualizado = false;
+            System.out.println("Não foi possivel adicionar o treino ao cliente" + ex.getMessage());
+        }
+        return atualizado;
+    }
+    
+    public boolean deleteClienteIdTreino(int idCliente){
+        Connection conexao = this.banco.getConexao();
+        String sql = "UPDATE Cliente SET idTreino = ? WHERE idCliente = ?";
+        PreparedStatement consulta;
+        boolean atualizado = false;
+        
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setString(1, null);
+            consulta.setInt(2, idCliente);
+ 
+            
+            int linhasAtualizadas = consulta.executeUpdate();
+            if(linhasAtualizadas > 0) atualizado = true;
+        } catch (SQLException ex) {
+            atualizado = false;
+            System.out.println("Não foi possivel remover o treino do cliente" + ex.getMessage());
+        }
+        return atualizado;
+    }
+    
+    public boolean deletaClienteSql(int idCliente){
+                Connection conexao = this.banco.getConexao();
+        String sql = "DELETE FROM cliente WHERE idCliente = ?";
+        PreparedStatement consulta;
+        boolean excluido = false;
+        
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setInt(1, idCliente);
+ 
+            
+            int linhasAtualizadas = consulta.executeUpdate();
+            if(linhasAtualizadas > 0) excluido = true;
+        } catch (SQLException ex) {
+            excluido = false;
+            System.out.println("Não foi possivel remover o treino do cliente" + ex.getMessage());
+        }
+        return excluido;
+    }
+}
+    

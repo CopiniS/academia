@@ -1,0 +1,77 @@
+<<<<<<< HEAD
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaClienteAlterar.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\Treino.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuPlano.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaPlano.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\InstrutorDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\ModalidadeDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuInstrutor.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerManager.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\ExercicioDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInstrutorAdicionar.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\Janela.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\Plano.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaModalidade.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\Modalidade.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\PlanoDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInstrutor.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaTreino.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuModalidade.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\ApplicationView.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuCliente.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaCliente.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInicial.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuExercicio.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\Gerenciador_academia.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\Cliente.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaClienteAdicionar.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaPlanoAdicionar.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\Pedido.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\TreinoDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\Instrutor.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\DB\Banco.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\Exercicio.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInstrutorAlterar.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\PedidoDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\models\ClienteDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuTreino.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github(main)\gerenciador_academia\gerenciador_academia\src\main\java\controller\Main.java
+=======
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\InstrutorDAO.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\Exercicio.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInstrutorAlterar.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaClienteAdicionar.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\controller\Main.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\Modalidade.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuPlano.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInstrutorAdicionar.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\Treino.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaModalidade.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuExercicio.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuInstrutor.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerManager.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\ExercicioDAO.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\Cliente.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\TreinoDAO.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\Instrutor.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaClienteAlterar.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\ModalidadeDAO.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInstrutor.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuCliente.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\Pedido.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\PlanoDAO.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuModalidade.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\PedidoDAO.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInicial.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaCliente.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\ClienteDAO.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaTreino.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\Janela.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\models\Plano.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaPlanoAdicionar.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\ApplicationView.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaPlano.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\DB\Banco.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerMenuTreino.java
+G:\IFSC\LPG ACADEMIEA\gerenciador_academia\gerenciador_academia\src\main\java\Gerenciador_academia.java
+>>>>>>> 0f845652af21a2e733a5e98954dd0962e77e8d1c
