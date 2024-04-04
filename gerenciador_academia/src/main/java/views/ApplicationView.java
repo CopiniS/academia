@@ -67,11 +67,11 @@ public class ApplicationView {
         this.telaClienteAlterar = telaClienteAlterar;
     }
 
-    public TelaLogin getTelaInicial() {
+    public TelaLogin getTelaLogin() {
         return telaInicial;
     }
 
-    public void setTelaInicial(TelaLogin telaInicial) {
+    public void setTelaLogin(TelaLogin telaInicial) {
         this.telaInicial = telaInicial;
     }
 

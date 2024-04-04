@@ -3,6 +3,8 @@ package controller;
 
 import models.ApplicationModel;
 import views.ApplicationView;
+import views.TelaClienteAdicionar;
+import views.TelaLogin;
 
 public class ControllerManager {
     private ApplicationModel applicationModel;
@@ -26,9 +28,13 @@ public class ControllerManager {
         this.controllerMenuModalidade = new ModalidadeController();
         this.controllerMenuPlano = new PlanoController();
         this.controllerMenuTreino = new TreinoController();
-        this.loginController = new LoginController();
+        this.loginController = new LoginController(null, null);
     }
-
+    
+    public void start(){
+        this.applicationView.setTelaClienteAdicionar(new TelaClienteAdicionar());
+        this.applicationView.mostraTela(this.applicationView.getTelaClienteAdicionar());      //Mostra a tela de cadastro.
+    }
     public ApplicationModel getApplicationModel() {
         return applicationModel;
     }

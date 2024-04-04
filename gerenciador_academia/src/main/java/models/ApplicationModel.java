@@ -16,6 +16,7 @@ public class ApplicationModel {
     private PlanoDAO planoDAO;
     private Treino treino;
     private TreinoDAO treinoDAO;
+    private LoginDAO loginDAO;
 
     public ApplicationModel() {
         startDAOModels();
@@ -29,5 +30,6 @@ public class ApplicationModel {
         pedidoDAO = new PedidoDAO();
         planoDAO = new PlanoDAO();
         treinoDAO = new TreinoDAO();
+        loginDAO = new LoginDAO();
     }
 }
