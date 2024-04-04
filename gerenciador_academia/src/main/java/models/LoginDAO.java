@@ -16,7 +16,7 @@ public class LoginDAO {
         boolean senhaCorreta = false;
         
         Connection conexao = this.banco.getConexao();
-        String sql = "SELECT senha WHERE usuario = ?";
+        String sql = "SELECT senha FROM login WHERE usuario = ?";
         PreparedStatement consulta;
         ResultSet resultado;
         
@@ -24,12 +24,15 @@ public class LoginDAO {
         try {
             consulta = conexao.prepareStatement(sql);
             consulta.setString(1, usuario);
-            resultado = consulta.executeQuery(sql);
+            resultado = consulta.executeQuery();
             
-            String senhaBanco = resultado.getString("senha");
-            if(senha.equals(senhaBanco)){
-                senhaCorreta = true;
-            }
+            if (resultado.next()) {
+                String senhaBanco = resultado.getString("senha");
+                if (senha.equals(senhaBanco)) {
+                    senhaCorreta = true;
+        }
+    }
+
             
         } catch (SQLException ex) {
             System.out.println("Erro na conexão, tente novamente mais tarde" + ex.getMessage());

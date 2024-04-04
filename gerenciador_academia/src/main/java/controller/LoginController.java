@@ -1,6 +1,7 @@
 
 package controller;
 
+import javax.swing.JOptionPane;
 import views.TelaCliente;
 
 
@@ -15,6 +16,9 @@ public class LoginController {
        if(Main.controllerManager.getApplicationModel().getLoginDAO().SelectSenhaDoUsuarioSQL(usuario, senha)){
              Main.controllerManager.getApplicationView().setTelaCliente(new TelaCliente());
              Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaCliente());
+       }
+       else{
+           JOptionPane.showMessageDialog(null, "Usuario ou senha incorretos");
        }
     }
 }
