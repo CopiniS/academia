@@ -11,23 +11,22 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 public class ClienteDAO{
     Banco banco = new Banco();
     String idEndereco;
     
-    public void criaNovoCliente(String nome, String cpf){
+    public void criaNovoCliente(String nome, String cpf, Date dataNascimento, String idPlano, String idTreino){
         
-        if(insertClienteSql(nome, cpf)){
-            System.out.println("Dados cadastrados com sucesso");
+        if(insertClienteSql(nome, cpf, dataNascimento, idPlano, idTreino)){
+            JOptionPane.showMessageDialog(null, "Dados cadastrados com sucesso");
         }
     }
     
     public void criaNovoEnderecoCliente(String cep, String rua, String bairro, String numero){
-         if(insertEnderecoClienteSql(cep, rua, bairro, numero)){
-             System.out.println("Dados cadastrados com sucesso");
-         }
+        insertEnderecoClienteSql(cep, rua, bairro, numero);
     }
     
     public List mostraClientes(){
@@ -95,45 +94,30 @@ public class ClienteDAO{
         }
     }
     
-    public boolean insertClienteSql(String nome, String cpf){
+    public boolean insertClienteSql(String nome, String cpf, Date dataNascimento, String idPlano, String idTreino){
         boolean resultado = false;
-        
         Connection conexao = this.banco.getConexao();
-        if(this.idEndereco != null){
-            String sql = "INSERT INTO cliente(nome, cpf, idEndereco) VALUES(?, ?, ?)";
-            PreparedStatement consulta;
-
-            try {
-                consulta = conexao.prepareStatement(sql);
-                consulta.setString(1, nome);
-                consulta.setString(2, cpf);
-                consulta.setString(3, this.idEndereco);
-                consulta.execute();
-                resultado = true;
-
-            } catch (SQLException ex) {
-                System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
-                resultado = false;
-            }
-        }
-        else{
-            String sql = "INSERT INTO cliente(nome, cpf) VALUES(?, ?)";
-            PreparedStatement consulta;
-
-            try {
-                consulta = conexao.prepareStatement(sql);
-                consulta.setString(1, nome);
-                consulta.setString(2, cpf);
-                consulta.execute();
-                resultado = true;
-
-            } catch (SQLException ex) {
-                System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
-                resultado = false;
-            }
-        }
         
-        return resultado;
+            String sql = "INSERT INTO cliente(nome, cpf, dataNascimento, idEndereco, idPlano, idTreino) VALUES(?, ?, ?, ?, ?, ?)";
+            PreparedStatement consulta;
+            
+            try {
+                consulta = conexao.prepareStatement(sql);
+                consulta.setString(1, nome);
+                consulta.setString(2, cpf);
+                consulta.setDate(3, dataNascimento);
+                consulta.setObject(4, this.idEndereco);
+                consulta.setObject(5, idPlano);
+                consulta.setObject(6, idTreino);
+                consulta.execute();
+                resultado = true;
+                this.idEndereco = null;
+
+            } catch (SQLException ex) {
+                System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
+                resultado = false;
+            }
+            return resultado;
     }
     
     public boolean insertEnderecoClienteSql(String cep, String rua, String bairro, String numero){
@@ -189,7 +173,6 @@ public class ClienteDAO{
         }
         return atualizado;
     }
-    
     public boolean updateClienteIdPlano(int idCliente, int idPlano){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idPlano = ?, dataInicioPlano = ? WHERE idCliente = ?";

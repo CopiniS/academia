@@ -4,6 +4,8 @@
  */
 package views;
 
+import controller.Main;
+
 /**
  *
  * @author tiovi
@@ -74,6 +76,11 @@ public class TelaCliente extends javax.swing.JPanel {
         lb_txtAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAdd.setText("ADICIONAR CLIENTE");
         lb_txtAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddMouseClicked(evt);
+            }
+        });
         add(lb_txtAdd);
         lb_txtAdd.setBounds(350, 350, 260, 30);
 
@@ -138,6 +145,10 @@ public class TelaCliente extends javax.swing.JPanel {
         add(lb_bkg);
         lb_bkg.setBounds(0, 0, 1280, 720);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lb_txtAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddMouseClicked
+        Main.controllerManager.getClienteController().btAdicionarCliente();
+    }//GEN-LAST:event_lb_txtAddMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

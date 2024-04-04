@@ -12,6 +12,7 @@ views\TelaInstrutorAlterar$1.class
 models\Treino.class
 models\PlanoDAO.class
 views\TelaPlanoAdicionar$2.class
+views\TelaClienteAdicionar$6.class
 views\TelaClienteAlterar$1.class
 views\Janela$1.class
 views\TelaAdicionarPlano.class
@@ -41,9 +42,11 @@ views\TelaTreinoAlterar$1.class
 views\ApplicationView.class
 views\TelaPlanoAdicionar.class
 models\Pedido.class
+views\TelaCliente$1.class
 models\ClienteDAO.class
 controller\ModalidadeController.class
 views\TelaClienteAlterar.class
+controller\ClienteAdicionarController.class
 views\Janela.class
 views\TelaClienteAdicionar$2.class
 views\TelaTreinoAdicionar.class

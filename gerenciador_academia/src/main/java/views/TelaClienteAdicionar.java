@@ -4,6 +4,11 @@
  */
 package views;
 
+import controller.Main;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author tiovi
@@ -64,7 +69,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         setLayout(null);
 
         lb_cliente.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        lb_cliente.setForeground(new java.awt.Color(0, 0, 0));
         lb_cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_cliente.setText("Cliente");
         lb_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -72,7 +76,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_cliente.setBounds(0, 190, 250, 40);
 
         lb_treino.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_treino.setForeground(new java.awt.Color(0, 0, 0));
         lb_treino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_treino.setText("Treino");
         lb_treino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -80,7 +83,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_treino.setBounds(0, 490, 250, 40);
 
         lb_modalidade.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_modalidade.setForeground(new java.awt.Color(0, 0, 0));
         lb_modalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_modalidade.setText("Modalidade");
         lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -88,7 +90,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_modalidade.setBounds(0, 430, 250, 40);
 
         lb_exercicio.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_exercicio.setForeground(new java.awt.Color(0, 0, 0));
         lb_exercicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_exercicio.setText("Exercício");
         lb_exercicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -96,7 +97,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_exercicio.setBounds(0, 370, 250, 40);
 
         lb_instrutor.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_instrutor.setForeground(new java.awt.Color(0, 0, 0));
         lb_instrutor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_instrutor.setText("Instrutor");
         lb_instrutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -104,7 +104,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_instrutor.setBounds(0, 250, 250, 40);
 
         lb_plano.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_plano.setForeground(new java.awt.Color(0, 0, 0));
         lb_plano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_plano.setText("Plano");
         lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -216,6 +215,11 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_txtAddCliente.setForeground(new java.awt.Color(255, 255, 255));
         lb_txtAddCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAddCliente.setText("ADICIONAR CLIENTE");
+        lb_txtAddCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddClienteMouseClicked(evt);
+            }
+        });
         add(lb_txtAddCliente);
         lb_txtAddCliente.setBounds(970, 600, 260, 30);
 
@@ -304,6 +308,16 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
     private void tf_bairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_bairroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_bairroActionPerformed
+
+    private void lb_txtAddClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddClienteMouseClicked
+        try {
+            Main.controllerManager.getClienteAdicionarController().btAddCliente(tf_Nome.getText(), ftf_cpf.getText(),
+                    ftf_dataNasc2.getText(), tf_cep.getText(), tf_rua.getText(), tf_bairro.getText(), 
+                    tf_numero.getText(),String.valueOf(cb_tipoPlano.getSelectedIndex() + 1), String.valueOf(cb_treino.getSelectedIndex() + 1));
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaClienteAdicionar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lb_txtAddClienteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

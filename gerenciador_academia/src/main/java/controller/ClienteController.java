@@ -50,17 +50,5 @@ public class ClienteController {
     public void btMostrarCliente(){
         
     }
-    
-    public void btSalvarNovoCliente(){
-        
-    }
-    
-    public void btSalvarAlteraçãoCliente(){
-        
-    }
-    
-    public void btDeletarCliente(){
-        
-    }
 }
     

@@ -10,25 +10,27 @@ public class ControllerManager {
     private ApplicationModel applicationModel;
     private ApplicationView applicationView;
     
-    private ClienteController controllerMenuCliente;
-    private ExercicioController controllerMenuExercicio;
-    private InstrutorController controllerMenuInstrutor;
-    private ModalidadeController controllerMenuModalidade;
-    private PlanoController controllerMenuPlano;
-    private TreinoController controllerMenuTreino;
+    private ClienteController clienteController;
+    private ClienteAdicionarController clienteAdicionarController;
+    private ExercicioController exercicioController;
+    private InstrutorController instrutorController;
+    private ModalidadeController modalidadeController;
+    private PlanoController planoController;
+    private TreinoController treinoController;
     private LoginController loginController;
 
     public ControllerManager(ApplicationModel applicationModel, ApplicationView applicationView) {
         this.applicationModel = applicationModel;
         this.applicationView = applicationView;
         
-        this.controllerMenuCliente = new ClienteController();
-        this.controllerMenuExercicio = new ExercicioController();
-        this.controllerMenuInstrutor = new InstrutorController();
-        this.controllerMenuModalidade = new ModalidadeController();
-        this.controllerMenuPlano = new PlanoController();
-        this.controllerMenuTreino = new TreinoController();
+        this.clienteController = new ClienteController();
+        this.exercicioController = new ExercicioController();
+        this.instrutorController = new InstrutorController();
+        this.modalidadeController = new ModalidadeController();
+        this.planoController = new PlanoController();
+        this.treinoController = new TreinoController();
         this.loginController = new LoginController();
+        this.clienteAdicionarController = new ClienteAdicionarController();
     }
     
     public void start(){
@@ -51,53 +53,54 @@ public class ControllerManager {
         this.applicationView = applicationView;
     }
 
-    public ClienteController getControllerMenuCliente() {
-        return controllerMenuCliente;
+    public ClienteController getClienteController() {
+        return clienteController;
     }
 
-    public void setControllerMenuCliente(ClienteController controllerMenuCliente) {
-        this.controllerMenuCliente = controllerMenuCliente;
+    public void setClienteController(ClienteController clienteController) {
+        this.clienteController = clienteController;
     }
 
-    public ExercicioController getControllerMenuExercicio() {
-        return controllerMenuExercicio;
+    public ExercicioController getExercicioController() {
+        return exercicioController;
     }
 
-    public void setControllerMenuExercicio(ExercicioController controllerMenuExercicio) {
-        this.controllerMenuExercicio = controllerMenuExercicio;
+    public void setExercicioController(ExercicioController exercicioController) {
+        this.exercicioController = exercicioController;
     }
 
-    public InstrutorController getControllerMenuInstrutor() {
-        return controllerMenuInstrutor;
+    public InstrutorController getInstrutorController() {
+        return instrutorController;
     }
 
-    public void setControllerMenuInstrutor(InstrutorController controllerMenuInstrutor) {
-        this.controllerMenuInstrutor = controllerMenuInstrutor;
+    public void setInstrutorController(InstrutorController instrutorController) {
+        this.instrutorController = instrutorController;
     }
 
-    public ModalidadeController getControllerMenuModalidade() {
-        return controllerMenuModalidade;
+    public ModalidadeController getModalidadeController() {
+        return modalidadeController;
     }
 
-    public void setControllerMenuModalidade(ModalidadeController controllerMenuModalidade) {
-        this.controllerMenuModalidade = controllerMenuModalidade;
+    public void setModalidadeController(ModalidadeController modalidadeController) {
+        this.modalidadeController = modalidadeController;
     }
 
-    public PlanoController getControllerMenuPlano() {
-        return controllerMenuPlano;
+    public PlanoController getPlanoController() {
+        return planoController;
     }
 
-    public void setControllerMenuPlano(PlanoController controllerMenuPlano) {
-        this.controllerMenuPlano = controllerMenuPlano;
+    public void setPlanoController(PlanoController planoController) {
+        this.planoController = planoController;
     }
 
-    public TreinoController getControllerMenuTreino() {
-        return controllerMenuTreino;
+    public TreinoController getTreinoController() {
+        return treinoController;
     }
 
-    public void setControllerMenuTreino(TreinoController controllerMenuTreino) {
-        this.controllerMenuTreino = controllerMenuTreino;
+    public void setTreinoController(TreinoController treinoController) {
+        this.treinoController = treinoController;
     }
+
 
     public LoginController getLoginController() {
         return loginController;
@@ -105,6 +108,14 @@ public class ControllerManager {
 
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
+    }
+
+    public ClienteAdicionarController getClienteAdicionarController() {
+        return clienteAdicionarController;
+    }
+
+    public void setClienteAdicionarController(ClienteAdicionarController clienteAdicionarController) {
+        this.clienteAdicionarController = clienteAdicionarController;
     }
     
     
