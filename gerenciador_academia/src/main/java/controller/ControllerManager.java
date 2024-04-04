@@ -28,12 +28,12 @@ public class ControllerManager {
         this.controllerMenuModalidade = new ModalidadeController();
         this.controllerMenuPlano = new PlanoController();
         this.controllerMenuTreino = new TreinoController();
-        this.loginController = new LoginController(null, null);
+        this.loginController = new LoginController();
     }
     
     public void start(){
-        this.applicationView.setTelaClienteAdicionar(new TelaClienteAdicionar());
-        this.applicationView.mostraTela(this.applicationView.getTelaClienteAdicionar());      //Mostra a tela de cadastro.
+        this.applicationView.setTelaLogin(new TelaLogin());
+        this.applicationView.mostraTela(this.applicationView.getTelaLogin());      //Mostra a tela de cadastro.
     }
     public ApplicationModel getApplicationModel() {
         return applicationModel;

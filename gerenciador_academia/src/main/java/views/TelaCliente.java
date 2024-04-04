@@ -37,6 +37,7 @@ public class TelaCliente extends javax.swing.JPanel {
         lb_treino = new javax.swing.JLabel();
         lb_plano = new javax.swing.JLabel();
         lb_modalidade = new javax.swing.JLabel();
+        lb_exercicio = new javax.swing.JLabel();
         lb_logo = new javax.swing.JLabel();
         lb_bkg = new javax.swing.JLabel();
 
@@ -87,7 +88,7 @@ public class TelaCliente extends javax.swing.JPanel {
         lb_cliente.setText("Cliente");
         lb_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(lb_cliente);
-        lb_cliente.setBounds(0, 220, 260, 40);
+        lb_cliente.setBounds(0, 200, 260, 40);
 
         lb_instrutor.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
         lb_instrutor.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,7 +96,7 @@ public class TelaCliente extends javax.swing.JPanel {
         lb_instrutor.setText("Instrutor");
         lb_instrutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(lb_instrutor);
-        lb_instrutor.setBounds(0, 280, 260, 40);
+        lb_instrutor.setBounds(0, 260, 260, 40);
 
         lb_treino.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
         lb_treino.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,7 +104,7 @@ public class TelaCliente extends javax.swing.JPanel {
         lb_treino.setText("Treino");
         lb_treino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(lb_treino);
-        lb_treino.setBounds(0, 460, 260, 40);
+        lb_treino.setBounds(0, 500, 260, 40);
 
         lb_plano.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
         lb_plano.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,7 +112,7 @@ public class TelaCliente extends javax.swing.JPanel {
         lb_plano.setText("Plano");
         lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(lb_plano);
-        lb_plano.setBounds(0, 340, 260, 40);
+        lb_plano.setBounds(0, 320, 260, 40);
 
         lb_modalidade.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
         lb_modalidade.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,7 +120,15 @@ public class TelaCliente extends javax.swing.JPanel {
         lb_modalidade.setText("Modalidade");
         lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(lb_modalidade);
-        lb_modalidade.setBounds(0, 400, 260, 40);
+        lb_modalidade.setBounds(0, 440, 260, 40);
+
+        lb_exercicio.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        lb_exercicio.setForeground(new java.awt.Color(255, 255, 255));
+        lb_exercicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_exercicio.setText("Exercício");
+        lb_exercicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_exercicio);
+        lb_exercicio.setBounds(0, 380, 260, 40);
 
         lb_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/branco.png"))); // NOI18N
         add(lb_logo);
@@ -137,6 +146,7 @@ public class TelaCliente extends javax.swing.JPanel {
     private javax.swing.JLabel lb_botaoAdd1;
     private javax.swing.JLabel lb_botaoAdd2;
     private javax.swing.JLabel lb_cliente;
+    private javax.swing.JLabel lb_exercicio;
     private javax.swing.JLabel lb_instrutor;
     private javax.swing.JLabel lb_logo;
     private javax.swing.JLabel lb_modalidade;

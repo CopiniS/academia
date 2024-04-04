@@ -1,3 +1,4 @@
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaTreinoAdicionar.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\controller\Main.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaInstrutorAlterar.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\models\ExercicioDAO.java
@@ -13,6 +14,8 @@ C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gere
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaCliente.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\Janela.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\models\Modalidade.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaAdicionarPlano.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaModalidadeAdicionar.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\models\Exercicio.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\controller\ControllerManager.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\controller\ExercicioController.java
@@ -20,6 +23,8 @@ C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gere
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\models\Instrutor.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\models\Pedido.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\models\TreinoDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaModalidadeAlterar.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaPlanoAlterar.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\models\Plano.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaClienteAlterar.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaTreino.java
@@ -30,9 +35,11 @@ C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gere
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaLogin.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\controller\ModalidadeController.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\models\ClienteDAO.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\lb_exercicio.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\Gerenciador_academia.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\controller\ClienteController.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaPlano.java
+C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaTreinoAlterar.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\controller\InstrutorController.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\ApplicationView.java
 C:\Users\gabri\OneDrive\Documentos\Trabalhos_ifsc\LPG\academia_github_certo\gerenciador_academia\gerenciador_academia\src\main\java\views\TelaModalidade.java

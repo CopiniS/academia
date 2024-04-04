@@ -1,5 +1,7 @@
 package views;
 
+import javax.swing.ImageIcon;
+
 public class TelaLogin extends javax.swing.JPanel {
 
 
@@ -47,14 +49,13 @@ public class TelaLogin extends javax.swing.JPanel {
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(jLabel1);
         jLabel1.setBounds(480, 510, 321, 69);
-
-        lb_bkg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bkg-inicio.png"))); // NOI18N
         add(lb_bkg);
         lb_bkg.setBounds(0, 0, 1280, 720);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nomeActionPerformed
-        // TODO add your handling code here:
+        ImageIcon bkgLogin = new ImageIcon("img/bkg-inicio.png");
+        lb_bkg.setIcon(bkgLogin);
     }//GEN-LAST:event_tf_nomeActionPerformed
 
 

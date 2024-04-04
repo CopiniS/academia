@@ -27,18 +27,19 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
     private void initComponents() {
 
         tf_Nome = new javax.swing.JTextField();
+        lb_cliente = new javax.swing.JLabel();
+        lb_treino = new javax.swing.JLabel();
+        lb_modalidade = new javax.swing.JLabel();
+        lb_exercicio = new javax.swing.JLabel();
+        lb_instrutor = new javax.swing.JLabel();
+        lb_plano = new javax.swing.JLabel();
         lb_dataNasc = new javax.swing.JLabel();
         lb_CPF = new javax.swing.JLabel();
         lb_Nome = new javax.swing.JLabel();
         lb_titPlano = new javax.swing.JLabel();
         lb_titEndereco = new javax.swing.JLabel();
         lb_titDadosPess = new javax.swing.JLabel();
-        lb_cliente = new javax.swing.JLabel();
         lb_logo = new javax.swing.JLabel();
-        lb_treino = new javax.swing.JLabel();
-        lb_modalidade = new javax.swing.JLabel();
-        lb_instrutor = new javax.swing.JLabel();
-        lb_plano = new javax.swing.JLabel();
         lb_sideBar = new javax.swing.JLabel();
         lb_tipoPlano = new javax.swing.JLabel();
         lb_txtAddCliente = new javax.swing.JLabel();
@@ -62,6 +63,54 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         });
         add(tf_Nome);
         tf_Nome.setBounds(330, 210, 320, 40);
+
+        lb_cliente.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        lb_cliente.setForeground(new java.awt.Color(0, 0, 0));
+        lb_cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_cliente.setText("Cliente");
+        lb_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_cliente);
+        lb_cliente.setBounds(0, 190, 250, 40);
+
+        lb_treino.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        lb_treino.setForeground(new java.awt.Color(0, 0, 0));
+        lb_treino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_treino.setText("Treino");
+        lb_treino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_treino);
+        lb_treino.setBounds(0, 490, 250, 40);
+
+        lb_modalidade.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        lb_modalidade.setForeground(new java.awt.Color(0, 0, 0));
+        lb_modalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_modalidade.setText("Modalidade");
+        lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_modalidade);
+        lb_modalidade.setBounds(0, 430, 250, 40);
+
+        lb_exercicio.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        lb_exercicio.setForeground(new java.awt.Color(0, 0, 0));
+        lb_exercicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_exercicio.setText("Exercício");
+        lb_exercicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_exercicio);
+        lb_exercicio.setBounds(0, 370, 250, 40);
+
+        lb_instrutor.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        lb_instrutor.setForeground(new java.awt.Color(0, 0, 0));
+        lb_instrutor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_instrutor.setText("Instrutor");
+        lb_instrutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_instrutor);
+        lb_instrutor.setBounds(0, 250, 250, 40);
+
+        lb_plano.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        lb_plano.setForeground(new java.awt.Color(0, 0, 0));
+        lb_plano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_plano.setText("Plano");
+        lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_plano);
+        lb_plano.setBounds(0, 310, 250, 40);
 
         lb_dataNasc.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
         lb_dataNasc.setText("Data de Nascimento:");
@@ -93,44 +142,9 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         add(lb_titDadosPess);
         lb_titDadosPess.setBounds(330, 160, 170, 20);
 
-        lb_cliente.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        lb_cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_cliente.setText("Cliente");
-        lb_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(lb_cliente);
-        lb_cliente.setBounds(0, 220, 250, 40);
-
         lb_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/preto.png"))); // NOI18N
         add(lb_logo);
         lb_logo.setBounds(30, 40, 190, 120);
-
-        lb_treino.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_treino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_treino.setText("Treino");
-        lb_treino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(lb_treino);
-        lb_treino.setBounds(0, 460, 250, 40);
-
-        lb_modalidade.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_modalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_modalidade.setText("Modalidade");
-        lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(lb_modalidade);
-        lb_modalidade.setBounds(0, 400, 250, 40);
-
-        lb_instrutor.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_instrutor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_instrutor.setText("Instrutor");
-        lb_instrutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(lb_instrutor);
-        lb_instrutor.setBounds(0, 280, 250, 40);
-
-        lb_plano.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_plano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_plano.setText("Plano");
-        lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(lb_plano);
-        lb_plano.setBounds(0, 340, 250, 40);
 
         lb_sideBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sidebar_verde.png"))); // NOI18N
         add(lb_sideBar);
@@ -204,6 +218,7 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
     private javax.swing.JLabel lb_botaoAddCliente;
     private javax.swing.JLabel lb_cliente;
     private javax.swing.JLabel lb_dataNasc;
+    private javax.swing.JLabel lb_exercicio;
     private javax.swing.JLabel lb_instrutor;
     private javax.swing.JLabel lb_logo;
     private javax.swing.JLabel lb_modalidade;
