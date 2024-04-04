@@ -5,6 +5,7 @@ views\TelaPlano.class
 models\PedidoDAO.class
 views\lb_exercicio.class
 models\InstrutorDAO.class
+views\TelaLogin$2.class
 controller\ControllerManager.class
 models\TreinoDAO.class
 views\TelaInstrutorAlterar$1.class

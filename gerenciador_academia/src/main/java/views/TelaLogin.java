@@ -1,5 +1,6 @@
 package views;
 
+import controller.Main;
 import javax.swing.ImageIcon;
 
 public class TelaLogin extends javax.swing.JPanel {
@@ -47,6 +48,11 @@ public class TelaLogin extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt_entrarInicio.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         add(jLabel1);
         jLabel1.setBounds(480, 510, 321, 69);
         add(lb_bkg);
@@ -57,6 +63,10 @@ public class TelaLogin extends javax.swing.JPanel {
         ImageIcon bkgLogin = new ImageIcon("img/bkg-inicio.png");
         lb_bkg.setIcon(bkgLogin);
     }//GEN-LAST:event_tf_nomeActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        Main.controllerManager.getLoginController().btEntrar(tf_nome.getText(), pf_senha.getText());
+    }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
