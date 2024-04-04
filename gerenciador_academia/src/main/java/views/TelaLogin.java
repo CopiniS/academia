@@ -1,9 +1,9 @@
 package views;
 
-public class TelaInicial extends javax.swing.JPanel {
+public class TelaLogin extends javax.swing.JPanel {
 
 
-    public TelaInicial() {
+    public TelaLogin() {
         initComponents();
     }
 
@@ -24,7 +24,6 @@ public class TelaInicial extends javax.swing.JPanel {
         add(lb_logo);
         lb_logo.setBounds(540, 140, 200, 120);
 
-        tf_nome.setBackground(new java.awt.Color(255, 255, 255));
         tf_nome.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         tf_nome.setForeground(new java.awt.Color(51, 51, 51));
         tf_nome.setText("Nome");
@@ -37,7 +36,6 @@ public class TelaInicial extends javax.swing.JPanel {
         add(tf_nome);
         tf_nome.setBounds(430, 330, 420, 60);
 
-        pf_senha.setBackground(new java.awt.Color(255, 255, 255));
         pf_senha.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         pf_senha.setForeground(new java.awt.Color(51, 51, 51));
         pf_senha.setText("Senha");
