@@ -50,12 +50,13 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         lb_txtCaixa4 = new javax.swing.JLabel();
         lb_txtCaixa5 = new javax.swing.JLabel();
         lb_Nome1 = new javax.swing.JLabel();
-        tf_Nome3 = new javax.swing.JTextField();
         cb_CPF = new javax.swing.JComboBox<>();
         lb_Nome2 = new javax.swing.JLabel();
-        tf_Nome4 = new javax.swing.JTextField();
+        cb_CPF1 = new javax.swing.JComboBox<>();
+        cb_CPF2 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setLayout(null);
 
         lb_caixaSemSelec8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
@@ -98,7 +99,6 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         lb_logo.setBounds(30, 40, 190, 120);
 
         lb_cliente.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_cliente.setForeground(new java.awt.Color(0, 0, 0));
         lb_cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_cliente.setText("Cliente");
         lb_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -106,7 +106,6 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         lb_cliente.setBounds(0, 190, 250, 40);
 
         lb_treino.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        lb_treino.setForeground(new java.awt.Color(0, 0, 0));
         lb_treino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_treino.setText("Treino");
         lb_treino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -114,7 +113,6 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         lb_treino.setBounds(0, 490, 250, 40);
 
         lb_modalidade.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_modalidade.setForeground(new java.awt.Color(0, 0, 0));
         lb_modalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_modalidade.setText("Modalidade");
         lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,7 +120,6 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         lb_modalidade.setBounds(0, 430, 250, 40);
 
         lb_exercicio.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_exercicio.setForeground(new java.awt.Color(0, 0, 0));
         lb_exercicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_exercicio.setText("Exercício");
         lb_exercicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -130,7 +127,6 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         lb_exercicio.setBounds(0, 370, 250, 40);
 
         lb_instrutor.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_instrutor.setForeground(new java.awt.Color(0, 0, 0));
         lb_instrutor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_instrutor.setText("Instrutor");
         lb_instrutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -138,7 +134,6 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         lb_instrutor.setBounds(0, 250, 250, 40);
 
         lb_plano.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_plano.setForeground(new java.awt.Color(0, 0, 0));
         lb_plano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_plano.setText("Plano");
         lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -160,32 +155,27 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         add(lb_botaoAddCliente);
         lb_botaoAddCliente.setBounds(950, 480, 260, 70);
 
-        lb_txtCaixa1.setFont(new java.awt.Font("Mongolian Baiti", 0, 12)); // NOI18N
-        lb_txtCaixa1.setForeground(new java.awt.Color(0, 0, 0));
+        lb_txtCaixa1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         lb_txtCaixa1.setText("Peito");
         add(lb_txtCaixa1);
         lb_txtCaixa1.setBounds(360, 360, 180, 30);
 
-        lb_txtCaixa2.setFont(new java.awt.Font("Mongolian Baiti", 0, 12)); // NOI18N
-        lb_txtCaixa2.setForeground(new java.awt.Color(0, 0, 0));
+        lb_txtCaixa2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         lb_txtCaixa2.setText("Costas");
         add(lb_txtCaixa2);
         lb_txtCaixa2.setBounds(360, 400, 180, 30);
 
-        lb_txtCaixa3.setFont(new java.awt.Font("Mongolian Baiti", 0, 12)); // NOI18N
-        lb_txtCaixa3.setForeground(new java.awt.Color(0, 0, 0));
+        lb_txtCaixa3.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         lb_txtCaixa3.setText("Braço");
         add(lb_txtCaixa3);
         lb_txtCaixa3.setBounds(360, 440, 180, 30);
 
-        lb_txtCaixa4.setFont(new java.awt.Font("Mongolian Baiti", 0, 12)); // NOI18N
-        lb_txtCaixa4.setForeground(new java.awt.Color(0, 0, 0));
+        lb_txtCaixa4.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         lb_txtCaixa4.setText("Perna");
         add(lb_txtCaixa4);
         lb_txtCaixa4.setBounds(360, 480, 180, 30);
 
-        lb_txtCaixa5.setFont(new java.awt.Font("Mongolian Baiti", 0, 12)); // NOI18N
-        lb_txtCaixa5.setForeground(new java.awt.Color(0, 0, 0));
+        lb_txtCaixa5.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         lb_txtCaixa5.setText("Ombro");
         add(lb_txtCaixa5);
         lb_txtCaixa5.setBounds(360, 520, 180, 30);
@@ -195,52 +185,35 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
         add(lb_Nome1);
         lb_Nome1.setBounds(330, 230, 250, 30);
 
-        tf_Nome3.setBackground(new java.awt.Color(238, 238, 238));
-        tf_Nome3.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tf_Nome3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tf_Nome3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_Nome3ActionPerformed(evt);
-            }
-        });
-        add(tf_Nome3);
-        tf_Nome3.setBounds(330, 260, 320, 40);
-
         cb_CPF.setBackground(new java.awt.Color(153, 255, 51));
         cb_CPF.setFont(new java.awt.Font("CommercialScript BT", 1, 14)); // NOI18N
-        cb_CPF.setForeground(new java.awt.Color(0, 0, 0));
         cb_CPF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cb_CPF);
-        cb_CPF.setBounds(330, 180, 320, 40);
+        cb_CPF.setBounds(700, 260, 320, 40);
 
         lb_Nome2.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
         lb_Nome2.setText("Para qual dia vai alterar:");
         add(lb_Nome2);
         lb_Nome2.setBounds(700, 230, 250, 30);
 
-        tf_Nome4.setBackground(new java.awt.Color(238, 238, 238));
-        tf_Nome4.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tf_Nome4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tf_Nome4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_Nome4ActionPerformed(evt);
-            }
-        });
-        add(tf_Nome4);
-        tf_Nome4.setBounds(700, 260, 320, 40);
+        cb_CPF1.setBackground(new java.awt.Color(153, 255, 51));
+        cb_CPF1.setFont(new java.awt.Font("CommercialScript BT", 1, 14)); // NOI18N
+        cb_CPF1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cb_CPF1);
+        cb_CPF1.setBounds(330, 180, 320, 40);
+
+        cb_CPF2.setBackground(new java.awt.Color(153, 255, 51));
+        cb_CPF2.setFont(new java.awt.Font("CommercialScript BT", 1, 14)); // NOI18N
+        cb_CPF2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cb_CPF2);
+        cb_CPF2.setBounds(330, 260, 320, 40);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tf_Nome3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_Nome3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_Nome3ActionPerformed
-
-    private void tf_Nome4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_Nome4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_Nome4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_CPF;
+    private javax.swing.JComboBox<String> cb_CPF1;
+    private javax.swing.JComboBox<String> cb_CPF2;
     private javax.swing.JLabel lb_Nome;
     private javax.swing.JLabel lb_Nome1;
     private javax.swing.JLabel lb_Nome2;
@@ -266,7 +239,5 @@ public class TelaTreinoAlterar extends javax.swing.JPanel {
     private javax.swing.JLabel lb_txtCaixa3;
     private javax.swing.JLabel lb_txtCaixa4;
     private javax.swing.JLabel lb_txtCaixa5;
-    private javax.swing.JTextField tf_Nome3;
-    private javax.swing.JTextField tf_Nome4;
     // End of variables declaration//GEN-END:variables
 }
