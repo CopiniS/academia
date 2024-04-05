@@ -31,6 +31,11 @@ public class TelaLogin extends javax.swing.JPanel {
         tf_nome.setForeground(new java.awt.Color(51, 51, 51));
         tf_nome.setText("Nome");
         tf_nome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tf_nome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_nomeMouseClicked(evt);
+            }
+        });
         tf_nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_nomeActionPerformed(evt);
@@ -42,6 +47,11 @@ public class TelaLogin extends javax.swing.JPanel {
         pf_senha.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         pf_senha.setForeground(new java.awt.Color(51, 51, 51));
         pf_senha.setText("Senha");
+        pf_senha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pf_senhaMouseClicked(evt);
+            }
+        });
         add(pf_senha);
         pf_senha.setBounds(430, 410, 420, 60);
 
@@ -55,6 +65,8 @@ public class TelaLogin extends javax.swing.JPanel {
         });
         add(jLabel1);
         jLabel1.setBounds(480, 510, 321, 69);
+
+        lb_bkg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bkg-inicio.png"))); // NOI18N
         add(lb_bkg);
         lb_bkg.setBounds(0, 0, 1280, 720);
     }// </editor-fold>//GEN-END:initComponents
@@ -67,6 +79,14 @@ public class TelaLogin extends javax.swing.JPanel {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         Main.controllerManager.getLoginController().btEntrar(tf_nome.getText(), pf_senha.getText());
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void pf_senhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pf_senhaMouseClicked
+        pf_senha.setText("");
+    }//GEN-LAST:event_pf_senhaMouseClicked
+
+    private void tf_nomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_nomeMouseClicked
+        tf_nome.setText("");
+    }//GEN-LAST:event_tf_nomeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -38,7 +38,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_instrutor = new javax.swing.JLabel();
         lb_plano = new javax.swing.JLabel();
         tf_cep = new javax.swing.JTextField();
-        ftf_dataInicioPlano = new javax.swing.JFormattedTextField();
         tf_Nome = new javax.swing.JTextField();
         lb_dataNasc = new javax.swing.JLabel();
         lb_CPF = new javax.swing.JLabel();
@@ -49,12 +48,11 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_titDadosPess = new javax.swing.JLabel();
         lb_logo = new javax.swing.JLabel();
         lb_sideBar = new javax.swing.JLabel();
-        lb_Rua1 = new javax.swing.JLabel();
+        lb_Rua = new javax.swing.JLabel();
         lb_numero = new javax.swing.JLabel();
         lb_bairro = new javax.swing.JLabel();
         lb_cep = new javax.swing.JLabel();
         lb_tipoPlano = new javax.swing.JLabel();
-        lb_dataInicioPlano = new javax.swing.JLabel();
         lb_txtAddCliente = new javax.swing.JLabel();
         lb_botaoAddCliente = new javax.swing.JLabel();
         tf_numero = new javax.swing.JTextField();
@@ -63,7 +61,7 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         tf_bairro = new javax.swing.JTextField();
         cb_tipoPlano = new javax.swing.JComboBox<>();
         ftf_cpf = new javax.swing.JFormattedTextField();
-        ftf_dataNasc2 = new javax.swing.JFormattedTextField();
+        ftf_dataNasc = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -121,12 +119,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         add(tf_cep);
         tf_cep.setBounds(620, 385, 260, 40);
 
-        ftf_dataInicioPlano.setBackground(new java.awt.Color(228, 228, 228));
-        ftf_dataInicioPlano.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ftf_dataInicioPlano.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        add(ftf_dataInicioPlano);
-        ftf_dataInicioPlano.setBounds(660, 510, 210, 40);
-
         tf_Nome.setBackground(new java.awt.Color(238, 238, 238));
         tf_Nome.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         tf_Nome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -181,10 +173,10 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         add(lb_sideBar);
         lb_sideBar.setBounds(0, 0, 254, 720);
 
-        lb_Rua1.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
-        lb_Rua1.setText("Rua:");
-        add(lb_Rua1);
-        lb_Rua1.setBounds(330, 280, 80, 30);
+        lb_Rua.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
+        lb_Rua.setText("Rua:");
+        add(lb_Rua);
+        lb_Rua.setBounds(330, 280, 80, 30);
 
         lb_numero.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
         lb_numero.setText("Número:");
@@ -205,11 +197,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_tipoPlano.setText("Tipo de Plano:");
         add(lb_tipoPlano);
         lb_tipoPlano.setBounds(330, 480, 120, 30);
-
-        lb_dataInicioPlano.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
-        lb_dataInicioPlano.setText("Data inicio plano:");
-        add(lb_dataInicioPlano);
-        lb_dataInicioPlano.setBounds(660, 480, 200, 30);
 
         lb_txtAddCliente.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 16)); // NOI18N
         lb_txtAddCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -282,11 +269,11 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         add(ftf_cpf);
         ftf_cpf.setBounds(330, 190, 320, 40);
 
-        ftf_dataNasc2.setBackground(new java.awt.Color(228, 228, 228));
-        ftf_dataNasc2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ftf_dataNasc2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        add(ftf_dataNasc2);
-        ftf_dataNasc2.setBounds(670, 120, 200, 40);
+        ftf_dataNasc.setBackground(new java.awt.Color(228, 228, 228));
+        ftf_dataNasc.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ftf_dataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        add(ftf_dataNasc);
+        ftf_dataNasc.setBounds(670, 120, 200, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_NomeActionPerformed
@@ -312,7 +299,7 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
     private void lb_txtAddClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddClienteMouseClicked
         try {
             Main.controllerManager.getClienteAdicionarController().btAddCliente(tf_Nome.getText(), ftf_cpf.getText(),
-                    ftf_dataNasc2.getText(), tf_cep.getText(), tf_rua.getText(), tf_bairro.getText(), 
+                    ftf_dataNasc.getText(), tf_cep.getText(), tf_rua.getText(), tf_bairro.getText(), 
                     tf_numero.getText(),String.valueOf(cb_tipoPlano.getSelectedIndex() + 1), String.valueOf(cb_treino.getSelectedIndex() + 1));
         } catch (ParseException ex) {
             Logger.getLogger(TelaClienteAdicionar.class.getName()).log(Level.SEVERE, null, ex);
@@ -324,16 +311,14 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cb_tipoPlano;
     private javax.swing.JComboBox<String> cb_treino;
     private javax.swing.JFormattedTextField ftf_cpf;
-    private javax.swing.JFormattedTextField ftf_dataInicioPlano;
-    private javax.swing.JFormattedTextField ftf_dataNasc2;
+    private javax.swing.JFormattedTextField ftf_dataNasc;
     private javax.swing.JLabel lb_CPF;
     private javax.swing.JLabel lb_Nome;
-    private javax.swing.JLabel lb_Rua1;
+    private javax.swing.JLabel lb_Rua;
     private javax.swing.JLabel lb_bairro;
     private javax.swing.JLabel lb_botaoAddCliente;
     private javax.swing.JLabel lb_cep;
     private javax.swing.JLabel lb_cliente;
-    private javax.swing.JLabel lb_dataInicioPlano;
     private javax.swing.JLabel lb_dataNasc;
     private javax.swing.JLabel lb_exercicio;
     private javax.swing.JLabel lb_instrutor;

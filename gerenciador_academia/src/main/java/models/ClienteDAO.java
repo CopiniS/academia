@@ -286,36 +286,64 @@ public class ClienteDAO{
         return lista;
     }
     
-    public Cliente retornaClientePeloCpf(String cpf) throws ParseException{
-        Connection conexao = this.banco.getConexao();
+public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLException {
+    Connection conexao = this.banco.getConexao();
+    PreparedStatement consulta = null;
+    ResultSet resultados = null;
+    Cliente cliente = new Cliente();
+    Plano plano = new Plano();
+    Treino treino = new Treino();
+    
+    String sql = "SELECT c.nome, c.dataNascimento, e.rua, e.cep, e.bairro, e.numero, p.idPlano, p.nome, t.idTreino, t.nome FROM cliente AS c " +
+                 "LEFT JOIN enderecoCliente AS e ON e.idEnderecoCliente = c.idendereco " +
+                 "LEFT JOIN plano AS p ON p.idPlano = c.idPlano " +
+                 "LEFT JOIN treino AS t ON t.idTreino = c.idTreino " +
+                 "WHERE c.cpf = ?";
+    
+    try {
+        consulta = conexao.prepareStatement(sql);
+        consulta.setString(1, cpf);
+        resultados = consulta.executeQuery();
         
-        String sql = "SELECT c.nome, c.dataNascimento, e.rua, e.cep, e.bairro, e.numero p.nome FROM cliente as c LEFT JOIN enderecoCliente ON e.idEnderecoCliente = c.idendereco "
-                + "LEFT JOIN plano as p ON p.idPlano = c.idPlano LEFT JOIN treino as t ON t.idTreino = c.idTreino WHERE c.cpf = ?";
-        ResultSet resultados;
-        Cliente objeto = new Cliente();
-        String dataNascimento = "";
-        try {
-            resultados = conexao.createStatement().executeQuery(sql);
-        
-            while(resultados.next()){
-                int idCliente = Integer.parseInt(resultados.getString("idCliente"));
-                String nomeCliente = resultados.getString("nome");
-                String cpfCliente = resultados.getString("cpf");
-                dataNascimento = resultados.getString("dataNascimento");
-                String cep = resultados.getString("cep");
-                String rua = resultados.getString("rua");
-                String bairro = resultados.getString("bairro");
-                String numero = resultados.getString("numero");
-                
+        if (resultados.next()) {
+            cliente.setNome(resultados.getString("c.nome"));
+            cliente.setCpf(cpf);
+            cliente.setDataNascimento(resultados.getDate("c.dataNascimento"));
+            cliente.setCep(resultados.getString("e.cep"));
+            cliente.setRua(resultados.getString("e.rua"));
+            cliente.setBairro(resultados.getString("e.bairro"));
+            cliente.setNumero(resultados.getString("e.numero"));
+            
+            plano.setId(resultados.getInt("p.idPlano"));
+            plano.setNome(resultados.getString("p.nome"));
+            cliente.setPlano(plano);
+            
+            treino.setId(resultados.getInt("t.idTreino"));
+            treino.setNome(resultados.getString("t.nome"));
+            cliente.setTreino(treino);
+        }
+    } catch (SQLException ex) {
+        System.out.println("Erro na consulta ao Banco de dados: " + ex.getMessage());
+    } finally {
+        // Fechar ResultSet e PreparedStatement
+        if (resultados != null) {
+            try {
+                resultados.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        java.util.Date utilDate = formato.parse(dataNascimento);
-        Date data = new Date(utilDate.getTime());
         }
-        catch (SQLException ex) {
-            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        if (consulta != null) {
+            try {
+                consulta.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return objeto;
     }
+    
+    return cliente;
+}
+
         
 }

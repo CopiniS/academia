@@ -202,7 +202,9 @@ public class TreinoDAO {
                 int idTreino = Integer.parseInt(resultados.getString("idTreino"));
                 String nomeTreino = resultados.getString("nome");
                 String descricaoTreino = resultados.getString("descricao");
-                objeto = new Treino(nomeTreino, descricaoTreino);
+                objeto = new Treino();
+                objeto.setNome(nomeTreino);
+                objeto.setDescricao(descricaoTreino);
                 objeto.setId(idTreino);
                 lista.add(objeto);
             }
@@ -231,7 +233,9 @@ public class TreinoDAO {
                 String diaSemana = resultados.getString("the.diaSemana");
                 String nomeExercicio = resultados.getString("exercicio.nome");
                 String musculaturaExercicio = resultados.getString("exercicio.musculaturaAfetada");
-                objeto = new Treino(nomeTreino, descricaoTreino);
+                objeto = new Treino();
+                objeto.setNome(nomeTreino);
+                objeto.setDescricao(descricaoTreino);
                 objeto.setDiaSemana(diaSemana);
                 objeto.setExercicio(new Exercicio(nomeExercicio, musculaturaExercicio));
                 lista.add(objeto);

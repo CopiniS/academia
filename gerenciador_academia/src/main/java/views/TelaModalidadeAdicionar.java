@@ -27,7 +27,7 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
     private void initComponents() {
 
         lb_Nome = new javax.swing.JLabel();
-        lb_titDadosPess = new javax.swing.JLabel();
+        lb_titModalidade = new javax.swing.JLabel();
         lb_logo = new javax.swing.JLabel();
         lb_cliente = new javax.swing.JLabel();
         lb_treino = new javax.swing.JLabel();
@@ -36,10 +36,12 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         lb_instrutor = new javax.swing.JLabel();
         lb_plano = new javax.swing.JLabel();
         lb_sideBar = new javax.swing.JLabel();
-        lb_txtAddCliente = new javax.swing.JLabel();
-        lb_botaoAddCliente = new javax.swing.JLabel();
-        tf_Nome1 = new javax.swing.JTextField();
+        lb_txtAddModalidade = new javax.swing.JLabel();
+        lb_botaoAddModalidade = new javax.swing.JLabel();
+        tf_Nome = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setLayout(null);
 
         lb_Nome.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
@@ -47,18 +49,17 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         add(lb_Nome);
         lb_Nome.setBounds(640, 270, 180, 30);
 
-        lb_titDadosPess.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
-        lb_titDadosPess.setText("Modalidade");
-        lb_titDadosPess.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        add(lb_titDadosPess);
-        lb_titDadosPess.setBounds(770, 240, 150, 20);
+        lb_titModalidade.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
+        lb_titModalidade.setText("Modalidade");
+        lb_titModalidade.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        add(lb_titModalidade);
+        lb_titModalidade.setBounds(640, 240, 150, 20);
 
         lb_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/preto.png"))); // NOI18N
         add(lb_logo);
         lb_logo.setBounds(30, 40, 190, 120);
 
         lb_cliente.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_cliente.setForeground(new java.awt.Color(0, 0, 0));
         lb_cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_cliente.setText("Cliente");
         lb_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -66,7 +67,6 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         lb_cliente.setBounds(0, 190, 250, 40);
 
         lb_treino.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_treino.setForeground(new java.awt.Color(0, 0, 0));
         lb_treino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_treino.setText("Treino");
         lb_treino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -74,7 +74,6 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         lb_treino.setBounds(0, 490, 250, 40);
 
         lb_modalidade.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        lb_modalidade.setForeground(new java.awt.Color(0, 0, 0));
         lb_modalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_modalidade.setText("Modalidade");
         lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -82,7 +81,6 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         lb_modalidade.setBounds(0, 430, 250, 40);
 
         lb_exercicio.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_exercicio.setForeground(new java.awt.Color(0, 0, 0));
         lb_exercicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_exercicio.setText("Exercício");
         lb_exercicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -90,7 +88,6 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         lb_exercicio.setBounds(0, 370, 250, 40);
 
         lb_instrutor.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_instrutor.setForeground(new java.awt.Color(0, 0, 0));
         lb_instrutor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_instrutor.setText("Instrutor");
         lb_instrutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -98,7 +95,6 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         lb_instrutor.setBounds(0, 250, 250, 40);
 
         lb_plano.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
-        lb_plano.setForeground(new java.awt.Color(0, 0, 0));
         lb_plano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_plano.setText("Plano");
         lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -109,39 +105,39 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         add(lb_sideBar);
         lb_sideBar.setBounds(0, 0, 254, 720);
 
-        lb_txtAddCliente.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 16)); // NOI18N
-        lb_txtAddCliente.setForeground(new java.awt.Color(255, 255, 255));
-        lb_txtAddCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_txtAddCliente.setText("ADICIONAR MODALIDADE");
-        lb_txtAddCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(lb_txtAddCliente);
-        lb_txtAddCliente.setBounds(680, 390, 260, 30);
+        lb_txtAddModalidade.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 16)); // NOI18N
+        lb_txtAddModalidade.setForeground(new java.awt.Color(255, 255, 255));
+        lb_txtAddModalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_txtAddModalidade.setText("ADICIONAR MODALIDADE");
+        lb_txtAddModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_txtAddModalidade);
+        lb_txtAddModalidade.setBounds(640, 390, 260, 30);
 
-        lb_botaoAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-azul.png"))); // NOI18N
-        lb_botaoAddCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(lb_botaoAddCliente);
-        lb_botaoAddCliente.setBounds(680, 370, 260, 70);
+        lb_botaoAddModalidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-azul.png"))); // NOI18N
+        lb_botaoAddModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(lb_botaoAddModalidade);
+        lb_botaoAddModalidade.setBounds(640, 370, 260, 70);
 
-        tf_Nome1.setBackground(new java.awt.Color(238, 238, 238));
-        tf_Nome1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tf_Nome1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tf_Nome1.addActionListener(new java.awt.event.ActionListener() {
+        tf_Nome.setBackground(new java.awt.Color(238, 238, 238));
+        tf_Nome.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        tf_Nome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tf_Nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_Nome1ActionPerformed(evt);
+                tf_NomeActionPerformed(evt);
             }
         });
-        add(tf_Nome1);
-        tf_Nome1.setBounds(640, 300, 340, 40);
+        add(tf_Nome);
+        tf_Nome.setBounds(640, 300, 340, 40);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf_Nome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_Nome1ActionPerformed
+    private void tf_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_NomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_Nome1ActionPerformed
+    }//GEN-LAST:event_tf_NomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lb_Nome;
-    private javax.swing.JLabel lb_botaoAddCliente;
+    private javax.swing.JLabel lb_botaoAddModalidade;
     private javax.swing.JLabel lb_cliente;
     private javax.swing.JLabel lb_exercicio;
     private javax.swing.JLabel lb_instrutor;
@@ -149,9 +145,9 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
     private javax.swing.JLabel lb_modalidade;
     private javax.swing.JLabel lb_plano;
     private javax.swing.JLabel lb_sideBar;
-    private javax.swing.JLabel lb_titDadosPess;
+    private javax.swing.JLabel lb_titModalidade;
     private javax.swing.JLabel lb_treino;
-    private javax.swing.JLabel lb_txtAddCliente;
-    private javax.swing.JTextField tf_Nome1;
+    private javax.swing.JLabel lb_txtAddModalidade;
+    private javax.swing.JTextField tf_Nome;
     // End of variables declaration//GEN-END:variables
 }

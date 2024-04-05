@@ -1,13 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controller;
 
-/**
- *
- * @author gabri
- */
+import views.TelaClienteAlterar;
+
 public class ClienteAlterarController {
+
+    public ClienteAlterarController() {
+    }
     
+    public void btAlteraDados(){
+        Main.controllerManager.getApplicationView().setTelaClienteAlterar(new TelaClienteAlterar());
+        Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaClienteAlterar());
+    }
 }

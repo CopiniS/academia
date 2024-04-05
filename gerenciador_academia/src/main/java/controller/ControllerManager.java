@@ -22,6 +22,7 @@ public class ControllerManager {
     private PlanoController planoController;
     private TreinoController treinoController;
     private LoginController loginController;
+    private ClienteAlterarController clienteAlterarController;
 
     public ControllerManager(ApplicationModel applicationModel, ApplicationView applicationView) {
         this.applicationModel = applicationModel;
@@ -35,6 +36,7 @@ public class ControllerManager {
         this.treinoController = new TreinoController();
         this.loginController = new LoginController();
         this.clienteAdicionarController = new ClienteAdicionarController();
+        this.clienteAlterarController = new ClienteAlterarController();
     }
     
     public void start(){
@@ -150,6 +152,14 @@ public class ControllerManager {
 
     public void setClienteAdicionarController(ClienteAdicionarController clienteAdicionarController) {
         this.clienteAdicionarController = clienteAdicionarController;
+    }
+
+    public ClienteAlterarController getClienteAlterarController() {
+        return clienteAlterarController;
+    }
+
+    public void setClienteAlterarController(ClienteAlterarController clienteAlterarController) {
+        this.clienteAlterarController = clienteAlterarController;
     }
     
     

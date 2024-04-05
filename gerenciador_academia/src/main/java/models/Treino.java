@@ -10,9 +10,8 @@ public class Treino {
     private String diaSemana;
     private Exercicio exercicio;
 
-    public Treino(String nome, String descricao) {
-        this.nome = nome;
-        this.descricao = descricao;
+    public Treino() {
+
     }
 
     public String getNome() {

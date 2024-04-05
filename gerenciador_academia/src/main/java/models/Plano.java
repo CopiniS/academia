@@ -7,10 +7,7 @@ public class Plano {
     private Float valor;
     private int tempoAtivacao;
 
-    public Plano(String nome, Float valor, int tempoAtivacao) {
-        this.nome = nome;
-        this.valor = valor;
-        this.tempoAtivacao = tempoAtivacao;
+    public Plano() {
     }
 
     public String getNome() {
