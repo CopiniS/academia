@@ -72,28 +72,7 @@ public class ClienteDAO{
         } 
     return lista;
     }
-    
-    public void alteraCliente(Cliente cliente, String cep, String rua, String bairro, String numero){
-        if(updateClienteSql(cliente.getId(), cep, rua, bairro, numero)){
-            System.out.println("Registro de "+cliente.getNome()+ " atulizado com sucesso");
-        }
-        else{
-            System.out.println("Ocorreu um erro na atualização dos dados");
-        }
-    }
-    
-    public void adicionaPlano(Cliente cliente, Plano plano){
-        if(updateClienteIdPlano(cliente.getId(), plano.getId())){
-        System.out.println("Plano de "+cliente.getNome()+ " adicionado com sucesso");
-        }
-    }
-    
-    public void adicionaTreino(Cliente cliente, Treino treino){
-        if(updateClienteIdTreino(cliente.getId(), treino.getId())){
-            System.out.println("Treino de "+cliente.getNome()+ " adicionado com sucesso");
-        }
-    }
-    
+
     public void removeTreino(Cliente cliente){
         if(deleteClienteIdTreino(cliente.getId())){
             System.out.println("Treino removido com sucesso");
@@ -116,8 +95,9 @@ public class ClienteDAO{
         boolean resultado = false;
         Connection conexao = this.banco.getConexao();
         
-            String sql = "INSERT INTO cliente(nome, cpf, dataNascimento, idEndereco, idPlano, idTreino) VALUES(?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO cliente(nome, cpf, dataNascimento, idEndereco, idPlano, dataInicioPlano, idTreino) VALUES(?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement consulta;
+            LocalDate dataHoje = LocalDate.now();
             
             try {
                 consulta = conexao.prepareStatement(sql);
@@ -126,7 +106,13 @@ public class ClienteDAO{
                 consulta.setDate(3, dataNascimento);
                 consulta.setObject(4, this.idEndereco);
                 consulta.setObject(5, idPlano);
-                consulta.setObject(6, idTreino);
+                if(idPlano != null){
+                    consulta.setDate(6, Date.valueOf(dataHoje));
+                }
+                else{
+                    consulta.setObject(6, null);
+                }
+                consulta.setObject(7, idTreino);
                 consulta.execute();
                 resultado = true;
                 this.idEndereco = null;
@@ -169,7 +155,7 @@ public class ClienteDAO{
         return resultado;
     }
     
-    public boolean updateClienteSql(int idCliente, String cep, String rua, String bairro, String numero){
+    public boolean updateClienteSql(Cliente cliente){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE enderecoCliente SET cep = ?, rua = ?, bairro = ?, numero = ? WHERE idEnderecoCliente= (SELECT idEndereco FROM cliente WHERE idCliente = ?)";
         PreparedStatement consulta;
@@ -177,11 +163,11 @@ public class ClienteDAO{
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setString(1, cep);
-            consulta.setString(2, rua);
-            consulta.setString(3, bairro);
-            consulta.setString(4, numero);
-            consulta.setInt(5, idCliente);
+            consulta.setString(1, cliente.getCep());
+            consulta.setString(2, cliente.getRua());
+            consulta.setString(3, cliente.getBairro());
+            consulta.setString(4, cliente.getNumero());
+            consulta.setInt(5, cliente.getId());
             
             int linhasAtualizadas = consulta.executeUpdate();
             if(linhasAtualizadas > 0) atualizado = true;
@@ -192,7 +178,7 @@ public class ClienteDAO{
         return atualizado;
     }
     
-    public boolean updateClienteIdPlano(int idCliente, int idPlano){
+    public boolean updateClienteIdPlano(Cliente cliente){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idPlano = ?, dataInicioPlano = ? WHERE idCliente = ?";
         PreparedStatement consulta;
@@ -202,9 +188,14 @@ public class ClienteDAO{
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setInt(1, idPlano);
-            consulta.setDate(2, Date.valueOf(dataHoje));
-            consulta.setInt(3, idCliente);
+            consulta.setObject(1, cliente.getPlano().getId());
+            if(cliente.getPlano().getNome() != null){
+                consulta.setDate(2, Date.valueOf(dataHoje));
+            }
+            else{
+                consulta.setObject(2, null);
+            }
+            consulta.setInt(3, cliente.getId());
  
             
             int linhasAtualizadas = consulta.executeUpdate();
@@ -216,7 +207,7 @@ public class ClienteDAO{
         return atualizado;
     }
     
-    public boolean updateClienteIdTreino(int idCliente, int idTreino){
+    public boolean updateClienteIdTreino(Cliente cliente){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idTreino = ? WHERE idCliente = ?";
         PreparedStatement consulta;
@@ -224,8 +215,8 @@ public class ClienteDAO{
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setInt(1, idTreino);
-            consulta.setInt(2, idCliente);
+            consulta.setInt(1, cliente.getTreino().getId());
+            consulta.setInt(2, cliente.getId());
  
             
             int linhasAtualizadas = consulta.executeUpdate();
@@ -308,7 +299,7 @@ public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLExcep
     Plano plano = new Plano();
     Treino treino = new Treino();
     
-    String sql = "SELECT c.nome, c.dataNascimento, e.rua, e.cep, e.bairro, e.numero, p.idPlano, p.nome, t.idTreino, t.nome FROM cliente AS c " +
+    String sql = "SELECT c.idCliente, c.nome, c.dataNascimento, e.rua, e.cep, e.bairro, e.numero, p.idPlano, p.nome, t.idTreino, t.nome FROM cliente AS c " +
                  "LEFT JOIN enderecoCliente AS e ON e.idEnderecoCliente = c.idendereco " +
                  "LEFT JOIN plano AS p ON p.idPlano = c.idPlano " +
                  "LEFT JOIN treino AS t ON t.idTreino = c.idTreino " +
@@ -320,6 +311,7 @@ public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLExcep
         resultados = consulta.executeQuery();
         
         if (resultados.next()) {
+            cliente.setId(resultados.getInt("c.idCliente"));
             cliente.setNome(resultados.getString("c.nome"));
             cliente.setCpf(cpf);
             cliente.setDataNascimento(resultados.getDate("c.dataNascimento"));
@@ -335,11 +327,11 @@ public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLExcep
             treino.setId(resultados.getInt("t.idTreino"));
             treino.setNome(resultados.getString("t.nome"));
             cliente.setTreino(treino);
+            
         }
     } catch (SQLException ex) {
         System.out.println("Erro na consulta ao Banco de dados: " + ex.getMessage());
         }
-    
     return cliente;
 }
 

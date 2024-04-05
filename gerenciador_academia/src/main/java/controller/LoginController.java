@@ -16,6 +16,7 @@ public class LoginController {
        if(Main.controllerManager.getApplicationModel().getLoginDAO().SelectSenhaDoUsuarioSQL(usuario, senha)){
              Main.controllerManager.getApplicationView().setTelaCliente(new TelaCliente());
              Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaCliente());
+             Main.controllerManager.getApplicationView().getJanela().setLocationRelativeTo(null);
        }
        else{
            JOptionPane.showMessageDialog(null, "Usuario ou senha incorretos");

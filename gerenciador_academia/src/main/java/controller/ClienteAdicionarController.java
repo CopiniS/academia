@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
+import models.Plano;
+import models.Treino;
 
 public class ClienteAdicionarController {
     
@@ -79,9 +81,23 @@ public class ClienteAdicionarController {
         return new Date(utilDate.getTime());
     }
     
-    public void addPlano(String idPlano){
-        if(idPlano != null){
-            
+    public String retornaIdPlanoSelecionado(List<Plano> lista, String nomePlano){
+        for(Plano p : lista){
+            if(p.getNome().equals(nomePlano)){
+                return String.valueOf(p.getId());
+            }
         }
+        return null;
+    }  
+    
+    public String retornaIdTreinoSelecionado(List<Treino> lista, String nomeTreino){
+        for(Treino t : lista){
+            if(t.getNome().equals(nomeTreino)){
+                return String.valueOf(t.getId());
+            }
+        }
+            return null;
     }
+    
 }
+

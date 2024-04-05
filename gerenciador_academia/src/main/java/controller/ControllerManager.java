@@ -65,36 +65,43 @@ public class ControllerManager {
     public void start(){
         this.applicationView.setTelaLogin(new TelaLogin());
         this.applicationView.mostraTela(this.applicationView.getTelaLogin());      //Mostra a tela de cadastro.
+        this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
     public void btAcessarTelaCliente(){
         this.applicationView.setTelaCliente(new TelaCliente());
         this.applicationView.mostraTela(this.applicationView.getTelaCliente());
+        this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
     public void btAcessarTelaInstrutor(){
         this.applicationView.setTelaInstrutor(new TelaInstrutor());
         this.applicationView.mostraTela(this.applicationView.getTelaInstrutor());
+        this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
     public void btAcessarTelaPlano(){
         this.applicationView.setTelaPlano(new TelaPlano());
         this.applicationView.mostraTela(this.applicationView.getTelaPlano());
+        this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
     public void btAcessarTelaModalidade(){
         this.applicationView.setTelaModalidade(new TelaModalidade());
         this.applicationView.mostraTela(this.applicationView.getTelaModalidade());
+        this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
     public void btAcessarTelaTreino(){
         this.applicationView.setTelaTreino(new TelaTreino());
         this.applicationView.mostraTela(this.applicationView.getTelaTreino());
+        this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
     public void btAcessartelaExercicio(){
         this.applicationView.setTelaExercicio(new TelaExercicio());
         this.applicationView.mostraTela(this.applicationView.getTelaExercicio());
+        this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
     public ApplicationModel getApplicationModel() {

@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Cliente;
+import models.Plano;
+import models.Treino;
 
 /**
  *
@@ -18,6 +20,9 @@ import models.Cliente;
  */
 public class TelaClienteAlterar extends javax.swing.JPanel {
     List<String> listaCPFS;
+    List<Plano> listaPlanos;
+    List<Treino> listaTreinos;
+    Cliente cliente;
         
     
     /**
@@ -25,12 +30,47 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
      */
     public TelaClienteAlterar() {
         initComponents();
-        tf_Nome.setEditable(false);
-        ftf_dataNasc.setEnabled(false);
-        listaCPFS = Main.controllerManager.getApplicationModel().getClienteDAO().retonaListaDeCPFS();
         
+        tf_Nome.setEditable(false);
+        ftf_dataNasc.setEditable(false);
+        inicializaComboBoxCpf();
+    }
+    
+    public void inicializaComboBoxCpf(){
+        listaCPFS = Main.controllerManager.getApplicationModel().getClienteDAO().retonaListaDeCPFS();
+
         for(String cpf : listaCPFS){
             cb_CPF.addItem(cpf);
+        }
+        
+
+    }
+    
+    public void inicializaComboBoxPlanoAndTreino(Cliente cliente){
+        listaPlanos = Main.controllerManager.getApplicationModel().getPlanoDAO().selectPlanoSql();
+        listaTreinos = Main.controllerManager.getApplicationModel().getTreinoDAO().selectTreinos();
+        
+        cb_tipoPlano.removeAllItems();
+        cb_treino.removeAllItems();
+        
+        cb_tipoPlano.addItem(null);
+        cb_treino.addItem(null);
+        
+        if(cliente.getPlano() != null){
+            for(int i=0; i<listaPlanos.size(); i++){
+                cb_tipoPlano.addItem(listaPlanos.get(i).getNome());
+                if(listaPlanos.get(i).getNome().equals(cliente.getPlano().getNome())){
+                    cb_tipoPlano.setSelectedIndex(i+1);
+                }
+            }
+        }
+        if(cliente.getTreino() != null){
+            for(int i=0; i<listaTreinos.size(); i++){
+                cb_treino.addItem(listaTreinos.get(i).getNome());
+                if(listaTreinos.get(i).getNome().equals(cliente.getTreino().getNome())){
+                    cb_treino.setSelectedIndex(i+1);
+                }
+            }
         }
     }
 
@@ -259,7 +299,6 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
 
         cb_treino.setBackground(new java.awt.Color(238, 238, 238));
         cb_treino.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        cb_treino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cb_treino);
         cb_treino.setBounds(330, 610, 300, 40);
 
@@ -276,7 +315,6 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
 
         cb_tipoPlano.setBackground(new java.awt.Color(238, 238, 238));
         cb_tipoPlano.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        cb_tipoPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cb_tipoPlano);
         cb_tipoPlano.setBounds(332, 510, 300, 40);
 
@@ -345,7 +383,6 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
 
         cb_CPF.setBackground(new java.awt.Color(153, 255, 51));
         cb_CPF.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        cb_CPF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cb_CPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_CPFActionPerformed(evt);
@@ -380,12 +417,29 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_visuTreinoActionPerformed
 
     private void lb_txtAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAlterarMouseClicked
+        Plano novoPlano = new Plano();
         
+        cliente.setRua(tf_rua.getText());
+        cliente.setBairro(tf_bairro.getText());
+        cliente.setCep(tf_cep.getText());
+        cliente.setNumero(tf_numero.getText());
+        
+        for(Plano p : listaPlanos){
+           if(p.getNome().equals(cb_tipoPlano.getSelectedItem().toString()))
+               cliente.setPlano(p);
+            }
+        
+        for(Plano p : listaPlanos){
+           if(p.getNome().equals(cb_tipoPlano.getSelectedItem().toString()))
+               cliente.setPlano(p);
+            }
+        
+        Main.controllerManager.getClienteAlterarController().btAlteraDados(cliente);
     }//GEN-LAST:event_lb_txtAlterarMouseClicked
 
     private void cb_CPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_CPFActionPerformed
         String cpfSelecionado = cb_CPF.getSelectedItem().toString();
-        Cliente cliente = new Cliente();
+        this.cliente = new Cliente();
         try {
             cliente = Main.controllerManager.getApplicationModel().getClienteDAO().retornaClientePeloCpf(cpfSelecionado);
         } catch (ParseException ex) {
@@ -394,13 +448,15 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
             Logger.getLogger(TelaClienteAlterar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        inicializaComboBoxPlanoAndTreino(cliente);
         tf_Nome.setText(cliente.getNome());
+        ftf_dataNasc.setText(cliente.getDataNascimento().toString());
         tf_cep.setText(cliente.getCep());
         tf_rua.setText(cliente.getRua());
         tf_bairro.setText(cliente.getBairro());
         tf_numero.setText(cliente.getNumero());
-        cb_tipoPlano.addItem(cliente.getPlano().getNome());
-        cb_treino.addItem(cliente.getTreino().getNome());
+        
+        
         
     }//GEN-LAST:event_cb_CPFActionPerformed
 

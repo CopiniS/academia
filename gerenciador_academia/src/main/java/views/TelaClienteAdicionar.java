@@ -6,20 +6,38 @@ package views;
 
 import controller.Main;
 import java.text.ParseException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import models.Plano;
+import models.Treino;
 
 /**
  *
  * @author tiovi
  */
 public class TelaClienteAdicionar extends javax.swing.JPanel {
-
+    List<Treino> listaTreinos;
+    List<Plano> listaPlanos;
     /**
      * Creates new form TelaClienteAdicionar
      */
     public TelaClienteAdicionar() {
         initComponents();
+        listaTreinos = Main.controllerManager.getApplicationModel().getTreinoDAO().selectTreinos();
+        listaPlanos = Main.controllerManager.getApplicationModel().getPlanoDAO().selectPlanoSql();
+        inicializaComboboxes();
+    }
+    
+    public void inicializaComboboxes(){
+        cb_tipoPlano.addItem(null);
+        for(Plano p : listaPlanos){
+            cb_tipoPlano.addItem(p.getNome());
+        }
+        cb_treino.addItem(null);
+        for(Treino t : listaTreinos){
+            cb_treino.addItem(t.getNome());
+        }
     }
 
     /**
@@ -263,7 +281,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
 
         cb_treino.setBackground(new java.awt.Color(235, 235, 235));
         cb_treino.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        cb_treino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cb_treino);
         cb_treino.setBounds(330, 610, 300, 40);
 
@@ -280,7 +297,6 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
 
         cb_tipoPlano.setBackground(new java.awt.Color(235, 235, 235));
         cb_tipoPlano.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        cb_tipoPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cb_tipoPlano);
         cb_tipoPlano.setBounds(332, 510, 300, 40);
 
@@ -322,10 +338,18 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
     }//GEN-LAST:event_tf_bairroActionPerformed
 
     private void lb_txtAddClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddClienteMouseClicked
+        String idPlano = null;
+        String idTreino= null;
+        if(cb_tipoPlano.getSelectedItem() != null){
+            idPlano = Main.controllerManager.getClienteAdicionarController().retornaIdPlanoSelecionado(listaPlanos, cb_tipoPlano.getSelectedItem().toString());
+        }
+        if(cb_treino.getSelectedItem() != null){
+            idTreino = Main.controllerManager.getClienteAdicionarController().retornaIdTreinoSelecionado(listaTreinos, cb_treino.getSelectedItem().toString());
+        }
+        
         try {
             Main.controllerManager.getClienteAdicionarController().btAddCliente(tf_Nome.getText(), ftf_cpf.getText(),
-                    ftf_dataNasc.getText(), tf_cep.getText(), tf_rua.getText(), tf_bairro.getText(), 
-                    tf_numero.getText(),String.valueOf(cb_tipoPlano.getSelectedIndex() + 1), String.valueOf(cb_treino.getSelectedIndex() + 1));
+                    ftf_dataNasc.getText(), tf_cep.getText(), tf_rua.getText(), tf_bairro.getText(), tf_numero.getText(),idPlano, idTreino);
         } catch (ParseException ex) {
             Logger.getLogger(TelaClienteAdicionar.class.getName()).log(Level.SEVERE, null, ex);
         }

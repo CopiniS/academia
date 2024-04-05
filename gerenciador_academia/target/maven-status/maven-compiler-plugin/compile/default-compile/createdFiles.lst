@@ -6,6 +6,7 @@ views\TelaInstrutorAdicionar$3.class
 views\TelaInstrutorAlterar$4.class
 models\TreinoDAO.class
 views\TelaPlanoAlterar$3.class
+views\TelaCliente$11.class
 views\TelaPlanoAdicionar$5.class
 views\TelaPlanoAdicionar$18.class
 views\TelaModalidade$2.class

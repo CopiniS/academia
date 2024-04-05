@@ -73,6 +73,11 @@ public class TelaCliente extends javax.swing.JPanel {
         lb_txtAlterar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAlterar.setText("ALTERAR CLIENTE");
         lb_txtAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAlterarMouseClicked(evt);
+            }
+        });
         add(lb_txtAlterar);
         lb_txtAlterar.setBounds(660, 350, 260, 30);
 
@@ -200,7 +205,7 @@ public class TelaCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_lb_botaoAddMouseClicked
 
     private void lb_botaoAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAlterarMouseClicked
-        Main.controllerManager.getClienteAlterarController().btAlteraDados();
+        Main.controllerManager.getClienteController().btAlterarCliente();
     }//GEN-LAST:event_lb_botaoAlterarMouseClicked
 
     private void lb_planoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_planoMouseClicked
@@ -230,6 +235,10 @@ public class TelaCliente extends javax.swing.JPanel {
     private void lb_txtMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtMostrarMouseClicked
         Main.controllerManager.getClienteController().btMostrarCliente();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_txtMostrarMouseClicked
+
+    private void lb_txtAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAlterarMouseClicked
+        Main.controllerManager.getClienteController().btAlterarCliente();
+    }//GEN-LAST:event_lb_txtAlterarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
