@@ -18,6 +18,7 @@ public class Janela extends javax.swing.JFrame {
     public Janela() {
         initComponents();
         
+        
         this.setLayout(new BorderLayout());  //Define o layout do frame como borderlayout.
     }
 

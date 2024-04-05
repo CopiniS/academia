@@ -12,8 +12,8 @@ import java.util.List;
 public class InstrutorDAO {
     Banco banco = new Banco();
     
-    public void criaInstrutor(String nome, String cpf){
-        if(insertInstrutor(nome, cpf)){
+    public void criaInstrutor(String nome, String cpf, String idModalidade){
+        if(insertInstrutor(nome, cpf, idModalidade)){
             System.out.println("Dados cadastrados com sucesso");
         }
     }
@@ -49,9 +49,9 @@ public class InstrutorDAO {
         }
     }
     
-    public boolean insertInstrutor(String nome, String cpf){
+    public boolean insertInstrutor(String nome, String cpf, String idModalidade){
         boolean resultado = false;
-        
+        String idInstrutor = "";
         Connection conexao = this.banco.getConexao();
         String sql = "INSERT INTO instrutor(nome, cpf) VALUES(?, ?)";
         PreparedStatement consulta;
@@ -62,14 +62,31 @@ public class InstrutorDAO {
             consulta.setString(2, cpf);
             consulta.execute();
             resultado = true;
+            
+            ResultSet key = consulta.getGeneratedKeys();
+            if (key.next()) { // Mova o cursor para a primeira linha do ResultSet
+                idInstrutor = key.getString(1);
+                resultado = true;
+            } 
+            else {
+                System.out.println("Nenhuma chave gerada após a execução da consulta.");
+                resultado = false;
+            }
+            
+            if(!idModalidade.isBlank()){
+                insertInstrutorIdModalidade(Integer.parseInt(idInstrutor), Integer.parseInt(idModalidade));
+            }
+            
 
         } catch (SQLException ex) {
-            System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
+            System.out.println("Erro ao cadastrar instrutor: " + ex.getMessage());
             resultado = false;
         }
         
         return resultado;
     }
+    
+    
     
     public List selectInstrutor(){
         Connection conexao = this.banco.getConexao();
@@ -106,8 +123,8 @@ public class InstrutorDAO {
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setInt(1, idInstrutor);
-            consulta.setInt(2, idModalidade);
+            consulta.setInt(1, idModalidade);
+            consulta.setInt(2, idInstrutor);
 
             consulta.execute();
             resultado = true;
@@ -160,5 +177,27 @@ public class InstrutorDAO {
             System.out.println("Não foi possivel remover o treino do cliente" + ex.getMessage());
         }
         return excluido;
+    }
+    
+    public List retonaListaDeCPFS(){
+        Connection conexao = this.banco.getConexao();
+        List lista = new ArrayList();
+        
+        String sql = "SELECT cpf FROM instrutor";
+        ResultSet resultados;
+        
+        try {
+            resultados = conexao.createStatement().executeQuery(sql);
+            
+            while(resultados.next()){
+                String cpfInstrutor = resultados.getString("cpf");
+
+                lista.add(cpfInstrutor);
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        return lista;
     }
 }

@@ -14,9 +14,19 @@ public class ApplicationView {
     private TelaInstrutorAdicionar telaInstrutorAdicionar;
     private TelaInstrutorAlterar telaInstrutorAlterar;
     private TelaModalidade telaModalidade;
+    private TelaModalidadeAdicionar telaModalidadeAdicionar;
+    private TelaModalidadeDeletar telaModalidadeDeletar;
     private TelaPlano telaPlano;
     private TelaPlanoAdicionar telaPlanoAdicionar;
+    private TelaPlanoAlterar telaPlanoAlterar;
     private TelaTreino telaTreino;
+    private TelaTreinoAdicionar telaTreinoAdicionar;
+    private TelaTreinoAlterar telaTreinoAlterar;
+    private TelaExercicio telaExercicio;
+    private TelaExercicioAdicionar telaExercicioAdicionar;
+    private TelaExercicioDeletar telaExercicioDeletar;
+    
+    
 
     public ApplicationView() {
         this.janela = new Janela();
@@ -129,6 +139,78 @@ public class ApplicationView {
 
     public void setTelaTreino(TelaTreino telaTreino) {
         this.telaTreino = telaTreino;
+    }
+
+    public TelaLogin getTelaInicial() {
+        return telaInicial;
+    }
+
+    public void setTelaInicial(TelaLogin telaInicial) {
+        this.telaInicial = telaInicial;
+    }
+
+    public TelaModalidadeAdicionar getTelaModalidadeAdicionar() {
+        return telaModalidadeAdicionar;
+    }
+
+    public void setTelaModalidadeAdicionar(TelaModalidadeAdicionar telaModalidadeAdicionar) {
+        this.telaModalidadeAdicionar = telaModalidadeAdicionar;
+    }
+
+    public TelaModalidadeDeletar getTelaModalidadeDeletar() {
+        return telaModalidadeDeletar;
+    }
+
+    public void setTelaModalidadeDeletar(TelaModalidadeDeletar telaModalidadeDeletar) {
+        this.telaModalidadeDeletar = telaModalidadeDeletar;
+    }
+
+    public TelaPlanoAlterar getTelaPlanoAlterar() {
+        return telaPlanoAlterar;
+    }
+
+    public void setTelaPlanoAlterar(TelaPlanoAlterar telaPlanoAlterar) {
+        this.telaPlanoAlterar = telaPlanoAlterar;
+    }
+
+    public TelaTreinoAdicionar getTelaTreinoAdicionar() {
+        return telaTreinoAdicionar;
+    }
+
+    public void setTelaTreinoAdicionar(TelaTreinoAdicionar telaTreinoAdicionar) {
+        this.telaTreinoAdicionar = telaTreinoAdicionar;
+    }
+
+    public TelaTreinoAlterar getTelaTreinoAlterar() {
+        return telaTreinoAlterar;
+    }
+
+    public void setTelaTreinoAlterar(TelaTreinoAlterar telaTreinoAlterar) {
+        this.telaTreinoAlterar = telaTreinoAlterar;
+    }
+
+    public TelaExercicio getTelaExercicio() {
+        return telaExercicio;
+    }
+
+    public void setTelaExercicio(TelaExercicio telaExercicio) {
+        this.telaExercicio = telaExercicio;
+    }
+
+    public TelaExercicioAdicionar getTelaExercicioAdicionar() {
+        return telaExercicioAdicionar;
+    }
+
+    public void setTelaExercicioAdicionar(TelaExercicioAdicionar telaExercicioAdicionar) {
+        this.telaExercicioAdicionar = telaExercicioAdicionar;
+    }
+
+    public TelaExercicioDeletar getTelaExercicioDeletar() {
+        return telaExercicioDeletar;
+    }
+
+    public void setTelaExercicioDeletar(TelaExercicioDeletar telaExercicioDeletar) {
+        this.telaExercicioDeletar = telaExercicioDeletar;
     }
     
     

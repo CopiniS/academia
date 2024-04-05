@@ -34,29 +34,43 @@ public class ClienteDAO{
     public List mostraClientes(){
         Connection conexao = this.banco.getConexao();
         List<Cliente> lista = new ArrayList();
+        ResultSet resultados = null;
+        Cliente cliente = new Cliente();
+        Plano plano = new Plano();
+        Treino treino = new Treino();
         
-        String sql = "SELECT * FROM cliente";
-        ResultSet resultados;
         
-        try {
-            resultados = conexao.createStatement().executeQuery(sql);
+        String sql = "SELECT c.nome, c.cpf, c.dataNascimento, e.rua, e.cep, e.bairro, e.numero, p.idPlano, p.nome, t.idTreino, t.nome FROM cliente AS c " +
+                 "LEFT JOIN enderecoCliente AS e ON e.idEnderecoCliente = c.idendereco " +
+                 "LEFT JOIN plano AS p ON p.idPlano = c.idPlano " +
+                 "LEFT JOIN treino AS t ON t.idTreino = c.idTreino ";
         
-            Cliente objeto;
-            while(resultados.next()){
-                int idCliente = Integer.parseInt(resultados.getString("idCliente"));
-                String nomeCliente = resultados.getString("nome");
-                String cpfCliente = resultados.getString("cpf");
-                objeto = new Cliente();
-                objeto.setNome(nomeCliente);
-                objeto.setCpf(cpfCliente);
-                objeto.setId(idCliente);
-                lista.add(objeto);
-            }
+    try {
+        resultados = conexao.createStatement().executeQuery(sql);
+        
+        while(resultados.next()) {
+            cliente.setNome(resultados.getString("c.nome"));
+            cliente.setCpf(resultados.getString("c.cpf"));
+            cliente.setDataNascimento(resultados.getDate("c.dataNascimento"));
+            cliente.setCep(resultados.getString("e.cep"));
+            cliente.setRua(resultados.getString("e.rua"));
+            cliente.setBairro(resultados.getString("e.bairro"));
+            cliente.setNumero(resultados.getString("e.numero"));
+            
+            plano.setId(resultados.getInt("p.idPlano"));
+            plano.setNome(resultados.getString("p.nome"));
+            cliente.setPlano(plano);
+            
+            treino.setId(resultados.getInt("t.idTreino"));
+            treino.setNome(resultados.getString("t.nome"));
+            cliente.setTreino(treino);
+            
+            lista.add(cliente);
         }
-        catch (SQLException ex) {
-            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
-        }
-        return lista;
+    } catch (SQLException ex) {
+        System.out.println("Erro na consulta ao Banco de dados: " + ex.getMessage());
+        } 
+    return lista;
     }
     
     public void alteraCliente(Cliente cliente, String cep, String rua, String bairro, String numero){
@@ -324,23 +338,7 @@ public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLExcep
         }
     } catch (SQLException ex) {
         System.out.println("Erro na consulta ao Banco de dados: " + ex.getMessage());
-    } finally {
-        // Fechar ResultSet e PreparedStatement
-        if (resultados != null) {
-            try {
-                resultados.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        if (consulta != null) {
-            try {
-                consulta.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     
     return cliente;
 }

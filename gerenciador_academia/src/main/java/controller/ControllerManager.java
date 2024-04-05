@@ -4,6 +4,7 @@ package controller;
 import models.ApplicationModel;
 import views.ApplicationView;
 import views.TelaCliente;
+import views.TelaExercicio;
 import views.TelaInstrutor;
 import views.TelaLogin;
 import views.TelaModalidade;
@@ -16,27 +17,49 @@ public class ControllerManager {
     
     private ClienteController clienteController;
     private ClienteAdicionarController clienteAdicionarController;
-    private ExercicioController exercicioController;
-    private InstrutorController instrutorController;
-    private ModalidadeController modalidadeController;
-    private PlanoController planoController;
-    private TreinoController treinoController;
-    private LoginController loginController;
     private ClienteAlterarController clienteAlterarController;
+    private ExercicioController exercicioController;
+    private ExercicioAdicionarController exercicioAdicionarController;
+    private ExercicioAlterarController exercicioAlterarController;
+    private InstrutorController instrutorController;
+    private InstrutorAdicionarController instrutorAdicionarController;
+    private InstrutorAlterarController instrutorAlterarController;
+    private ModalidadeController modalidadeController;
+    private ModalidadeAdicionarController modalidadeAdicionarController;
+    private ModalidadeAlterarController modalidadeAlterarController;
+    private PlanoController planoController;
+    private PlanoAdicionarController planoAdicionarController;
+    private PlanoAlterarController planoAlterarController;
+    private TreinoController treinoController;
+    private TreinoAdicionarController treinoAdicionarController;
+    private TreinoAlterarController treinoAlterarController;
+    private LoginController loginController;
+    
 
     public ControllerManager(ApplicationModel applicationModel, ApplicationView applicationView) {
         this.applicationModel = applicationModel;
         this.applicationView = applicationView;
         
         this.clienteController = new ClienteController();
-        this.exercicioController = new ExercicioController();
-        this.instrutorController = new InstrutorController();
-        this.modalidadeController = new ModalidadeController();
-        this.planoController = new PlanoController();
-        this.treinoController = new TreinoController();
-        this.loginController = new LoginController();
         this.clienteAdicionarController = new ClienteAdicionarController();
         this.clienteAlterarController = new ClienteAlterarController();
+        this.exercicioController = new ExercicioController();
+        this.exercicioAdicionarController = new ExercicioAdicionarController();
+        this.exercicioAlterarController = new ExercicioAlterarController();
+        this.instrutorController = new InstrutorController();
+        this.instrutorAdicionarController = new InstrutorAdicionarController();
+        this.instrutorAlterarController = new InstrutorAlterarController();
+        this.modalidadeController = new ModalidadeController();
+        this.modalidadeAdicionarController = new ModalidadeAdicionarController();
+        this.modalidadeAlterarController = new ModalidadeAlterarController();
+        this.planoController = new PlanoController();
+        this.planoAdicionarController = new PlanoAdicionarController();
+        this.planoAlterarController = new PlanoAlterarController();
+        this.treinoController = new TreinoController();
+        this.treinoAdicionarController = new TreinoAdicionarController();
+        this.treinoAlterarController = new TreinoAlterarController();
+        this.loginController = new LoginController();
+
     }
     
     public void start(){
@@ -70,7 +93,8 @@ public class ControllerManager {
     }
     
     public void btAcessartelaExercicio(){
-        
+        this.applicationView.setTelaExercicio(new TelaExercicio());
+        this.applicationView.mostraTela(this.applicationView.getTelaExercicio());
     }
     
     public ApplicationModel getApplicationModel() {
@@ -160,6 +184,86 @@ public class ControllerManager {
 
     public void setClienteAlterarController(ClienteAlterarController clienteAlterarController) {
         this.clienteAlterarController = clienteAlterarController;
+    }
+
+    public ExercicioAdicionarController getExercicioAdicionarController() {
+        return exercicioAdicionarController;
+    }
+
+    public void setExercicioAdicionarController(ExercicioAdicionarController exercicioAdicionarController) {
+        this.exercicioAdicionarController = exercicioAdicionarController;
+    }
+
+    public ExercicioAlterarController getExercicioAlterarController() {
+        return exercicioAlterarController;
+    }
+
+    public void setExercicioAlterarController(ExercicioAlterarController exercicioAlterarController) {
+        this.exercicioAlterarController = exercicioAlterarController;
+    }
+
+    public InstrutorAdicionarController getInstrutorAdicionarController() {
+        return instrutorAdicionarController;
+    }
+
+    public void setInstrutorAdicionarController(InstrutorAdicionarController instrutorAdicionarController) {
+        this.instrutorAdicionarController = instrutorAdicionarController;
+    }
+
+    public InstrutorAlterarController getInstrutorAlterarController() {
+        return instrutorAlterarController;
+    }
+
+    public void setInstrutorAlterarController(InstrutorAlterarController instrutorAlterarController) {
+        this.instrutorAlterarController = instrutorAlterarController;
+    }
+
+    public ModalidadeAdicionarController getModalidadeAdicionarController() {
+        return modalidadeAdicionarController;
+    }
+
+    public void setModalidadeAdicionarController(ModalidadeAdicionarController modalidadeAdicionarController) {
+        this.modalidadeAdicionarController = modalidadeAdicionarController;
+    }
+
+    public ModalidadeAlterarController getModalidadeAlterarController() {
+        return modalidadeAlterarController;
+    }
+
+    public void setModalidadeAlterarController(ModalidadeAlterarController modalidadeAlterarController) {
+        this.modalidadeAlterarController = modalidadeAlterarController;
+    }
+
+    public PlanoAdicionarController getPlanoAdicionarController() {
+        return planoAdicionarController;
+    }
+
+    public void setPlanoAdicionarController(PlanoAdicionarController planoAdicionarController) {
+        this.planoAdicionarController = planoAdicionarController;
+    }
+
+    public PlanoAlterarController getPlanoAlterarController() {
+        return planoAlterarController;
+    }
+
+    public void setPlanoAlterarController(PlanoAlterarController planoAlterarController) {
+        this.planoAlterarController = planoAlterarController;
+    }
+
+    public TreinoAdicionarController getTreinoAdicionarController() {
+        return treinoAdicionarController;
+    }
+
+    public void setTreinoAdicionarController(TreinoAdicionarController treinoAdicionarController) {
+        this.treinoAdicionarController = treinoAdicionarController;
+    }
+
+    public TreinoAlterarController getTreinoAlterarController() {
+        return treinoAlterarController;
+    }
+
+    public void setTreinoAlterarController(TreinoAlterarController treinoAlterarController) {
+        this.treinoAlterarController = treinoAlterarController;
     }
     
     

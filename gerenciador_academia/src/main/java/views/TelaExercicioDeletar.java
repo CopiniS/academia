@@ -4,6 +4,8 @@
  */
 package views;
 
+import controller.Main;
+
 /**
  *
  * @author tiovi
@@ -61,6 +63,11 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
         lb_cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_cliente.setText("Cliente");
         lb_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_clienteMouseClicked(evt);
+            }
+        });
         add(lb_cliente);
         lb_cliente.setBounds(0, 190, 250, 40);
 
@@ -68,6 +75,11 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
         lb_treino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_treino.setText("Treino");
         lb_treino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_treino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_treinoMouseClicked(evt);
+            }
+        });
         add(lb_treino);
         lb_treino.setBounds(0, 490, 250, 40);
 
@@ -75,6 +87,11 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
         lb_modalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_modalidade.setText("Modalidade");
         lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_modalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_modalidadeMouseClicked(evt);
+            }
+        });
         add(lb_modalidade);
         lb_modalidade.setBounds(0, 430, 250, 40);
 
@@ -89,6 +106,11 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
         lb_instrutor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_instrutor.setText("Instrutor");
         lb_instrutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_instrutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_instrutorMouseClicked(evt);
+            }
+        });
         add(lb_instrutor);
         lb_instrutor.setBounds(0, 250, 250, 40);
 
@@ -96,6 +118,11 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
         lb_plano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_plano.setText("Plano");
         lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_plano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_planoMouseClicked(evt);
+            }
+        });
         add(lb_plano);
         lb_plano.setBounds(0, 310, 250, 40);
 
@@ -120,6 +147,26 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
         add(cb_NomeExercicio);
         cb_NomeExercicio.setBounds(460, 350, 320, 40);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lb_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_clienteMouseClicked
+        Main.controllerManager.btAcessarTelaCliente();
+    }//GEN-LAST:event_lb_clienteMouseClicked
+
+    private void lb_instrutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_instrutorMouseClicked
+        Main.controllerManager.btAcessarTelaInstrutor();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_instrutorMouseClicked
+
+    private void lb_planoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_planoMouseClicked
+        Main.controllerManager.btAcessarTelaPlano();
+    }//GEN-LAST:event_lb_planoMouseClicked
+
+    private void lb_modalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_modalidadeMouseClicked
+        Main.controllerManager.btAcessarTelaModalidade();
+    }//GEN-LAST:event_lb_modalidadeMouseClicked
+
+    private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
+        Main.controllerManager.btAcessarTelaTreino();
+    }//GEN-LAST:event_lb_treinoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
