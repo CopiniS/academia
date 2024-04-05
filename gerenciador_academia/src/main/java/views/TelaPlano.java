@@ -149,6 +149,11 @@ public class TelaPlano extends javax.swing.JPanel {
         lb_txtAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAdd.setText("ADICIONAR PLANO");
         lb_txtAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddMouseClicked(evt);
+            }
+        });
         add(lb_txtAdd);
         lb_txtAdd.setBounds(350, 350, 260, 30);
 
@@ -185,6 +190,10 @@ public class TelaPlano extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_txtAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_txtAddMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

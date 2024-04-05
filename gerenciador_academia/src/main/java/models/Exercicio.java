@@ -6,9 +6,8 @@ public class Exercicio {
     private String nome;
     private String musculaturaAfetada;
 
-    public Exercicio(String nome, String musculaturaAfetada) {
-        this.nome = nome;
-        this.musculaturaAfetada = musculaturaAfetada;
+    public Exercicio() {
+        
     }
 
     public String getNome() {

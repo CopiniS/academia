@@ -136,11 +136,21 @@ public class TelaModalidade extends javax.swing.JPanel {
         lb_txtAlterar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAlterar.setText("ALTERAR MODALIDADE");
         lb_txtAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAlterarMouseClicked(evt);
+            }
+        });
         add(lb_txtAlterar);
         lb_txtAlterar.setBounds(660, 320, 260, 30);
 
         lb_botaoAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAlterarMouseClicked(evt);
+            }
+        });
         add(lb_botaoAlterar);
         lb_botaoAlterar.setBounds(660, 300, 260, 70);
 
@@ -149,11 +159,21 @@ public class TelaModalidade extends javax.swing.JPanel {
         lb_txtAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAdd.setText("ADICIONAR MODALIDADE");
         lb_txtAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddMouseClicked(evt);
+            }
+        });
         add(lb_txtAdd);
         lb_txtAdd.setBounds(350, 320, 260, 30);
 
         lb_botaoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddMouseClicked(evt);
+            }
+        });
         add(lb_botaoAdd);
         lb_botaoAdd.setBounds(350, 300, 260, 70);
 
@@ -185,6 +205,22 @@ public class TelaModalidade extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_txtAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddMouseClicked
+        Main.controllerManager.getModalidadeController().btAdicionarModalidade();                // TODO add your handling code here:
+    }//GEN-LAST:event_lb_txtAddMouseClicked
+
+    private void lb_botaoAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddMouseClicked
+        Main.controllerManager.getModalidadeController().btAdicionarModalidade();               // TODO add your handling code here:
+    }//GEN-LAST:event_lb_botaoAddMouseClicked
+
+    private void lb_botaoAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAlterarMouseClicked
+        Main.controllerManager.getModalidadeController().btDeletarModalidade();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_botaoAlterarMouseClicked
+
+    private void lb_txtAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAlterarMouseClicked
+        Main.controllerManager.getModalidadeController().btDeletarModalidade();          // TODO add your handling code here:
+    }//GEN-LAST:event_lb_txtAlterarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

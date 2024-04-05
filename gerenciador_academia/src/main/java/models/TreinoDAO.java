@@ -237,7 +237,9 @@ public class TreinoDAO {
                 objeto.setNome(nomeTreino);
                 objeto.setDescricao(descricaoTreino);
                 objeto.setDiaSemana(diaSemana);
-                objeto.setExercicio(new Exercicio(nomeExercicio, musculaturaExercicio));
+                objeto.setExercicio(new Exercicio());
+                objeto.getExercicio().setNome(nomeExercicio);
+                objeto.getExercicio().setMusculaturaAfetada(musculaturaExercicio);
                 lista.add(objeto);
             }
         }

@@ -417,23 +417,26 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_visuTreinoActionPerformed
 
     private void lb_txtAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAlterarMouseClicked
-        Plano novoPlano = new Plano();
+        
         
         cliente.setRua(tf_rua.getText());
         cliente.setBairro(tf_bairro.getText());
         cliente.setCep(tf_cep.getText());
         cliente.setNumero(tf_numero.getText());
         
-        for(Plano p : listaPlanos){
-           if(p.getNome().equals(cb_tipoPlano.getSelectedItem().toString()))
-               cliente.setPlano(p);
-            }
+        if(cb_tipoPlano.getSelectedItem() != null){
+            cliente.setPlano(Main.controllerManager.getClienteAlterarController().retornaPlano(listaPlanos, cb_tipoPlano.getSelectedItem().toString()));
+        }
+        else{
+            cliente.setPlano(null);
+        }
         
-        for(Plano p : listaPlanos){
-           if(p.getNome().equals(cb_tipoPlano.getSelectedItem().toString()))
-               cliente.setPlano(p);
-            }
-        
+        if(cb_treino.getSelectedItem() != null){
+            cliente.setTreino(Main.controllerManager.getClienteAlterarController().retornaTreino(listaTreinos, cb_treino.getSelectedItem().toString()));
+        }
+        else{
+            cliente.setTreino(null);
+        }
         Main.controllerManager.getClienteAlterarController().btAlteraDados(cliente);
     }//GEN-LAST:event_lb_txtAlterarMouseClicked
 

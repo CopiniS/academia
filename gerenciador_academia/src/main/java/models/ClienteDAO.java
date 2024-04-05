@@ -167,7 +167,7 @@ public class ClienteDAO{
             consulta.setString(2, cliente.getRua());
             consulta.setString(3, cliente.getBairro());
             consulta.setString(4, cliente.getNumero());
-            consulta.setInt(5, cliente.getId());
+            consulta.setObject(5, String.valueOf(cliente.getId()));
             
             int linhasAtualizadas = consulta.executeUpdate();
             if(linhasAtualizadas > 0) atualizado = true;
@@ -215,7 +215,7 @@ public class ClienteDAO{
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setInt(1, cliente.getTreino().getId());
+            consulta.setObject(1, String.valueOf(cliente.getTreino().getId()));
             consulta.setInt(2, cliente.getId());
  
             

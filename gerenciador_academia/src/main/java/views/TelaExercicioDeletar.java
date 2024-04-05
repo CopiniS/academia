@@ -1,22 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package views;
 
 import controller.Main;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import models.Exercicio;
 
 /**
  *
  * @author tiovi
  */
 public class TelaExercicioDeletar extends javax.swing.JPanel {
-
+    List<Exercicio> listaExercicios;
     /**
      * Creates new form TelaExercicioAlterar
      */
     public TelaExercicioDeletar() {
         initComponents();
+        this.listaExercicios = Main.controllerManager.getExercicioAlterarController().retornaListaexercicios();
+        inicializaComboBox();
+    }
+    
+    public void inicializaComboBox(){
+        for(Exercicio exercicio : listaExercicios){
+            cb_NomeExercicio.addItem(exercicio.getNome());
+        }
     }
 
     /**
@@ -134,6 +143,11 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
         lb_txtAddDeletar.setForeground(new java.awt.Color(255, 255, 255));
         lb_txtAddDeletar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAddDeletar.setText("DELETAR EXERCÍCIO");
+        lb_txtAddDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddDeletarMouseClicked(evt);
+            }
+        });
         add(lb_txtAddDeletar);
         lb_txtAddDeletar.setBounds(880, 350, 260, 30);
 
@@ -143,7 +157,6 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
 
         cb_NomeExercicio.setBackground(new java.awt.Color(153, 255, 51));
         cb_NomeExercicio.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        cb_NomeExercicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cb_NomeExercicio);
         cb_NomeExercicio.setBounds(460, 350, 320, 40);
     }// </editor-fold>//GEN-END:initComponents
@@ -167,6 +180,14 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_txtAddDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddDeletarMouseClicked
+        int id = Main.controllerManager.getExercicioAlterarController().retornaIdExercicioParaExcluir(listaExercicios, cb_NomeExercicio.getSelectedItem().toString());
+        if(Main.controllerManager.getExercicioAlterarController().btDeleteExercicio(id)){
+            JOptionPane.showMessageDialog(null, "exercicio excluido com sucesso");
+            cb_NomeExercicio.removeItem(cb_NomeExercicio.getSelectedItem());
+        }
+    }//GEN-LAST:event_lb_txtAddDeletarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,15 +11,7 @@ import java.util.List;
 
 public class ExercicioDAO {
     Banco banco = new Banco();
-    public void criaExercicio(String nome, String musculaturaAfetada){
-        if(insertExercicioSql(nome, musculaturaAfetada)){
-            System.out.println("Dados cadastrados com sucesso");
-        }
-        else{
-            System.out.println("Ocorreu algum problema com o cadastro");
-        }
-    }
-    
+ 
     public void mostraExercicios()  {
         List<Exercicio> lista = selectExerciciosSql();
         for(Exercicio exercicio : lista){
@@ -27,24 +19,9 @@ public class ExercicioDAO {
         }
     }
     
-    public void alteraExercicio(Exercicio exercicio, String novoNome, String novaMusculaturaAfetada){
-        if(updateExercicioSql(exercicio.getId(), novoNome, novaMusculaturaAfetada)){
-            System.out.println("Dados atualizados com sucesso");
-        }        
-    }
+    //------------------------------------------------- SQL ----------------------------------------------------------------------//
     
-    public void deletaExercicio(Exercicio exercicio){
-        if(delteExercicioSql(exercicio.getId())){
-            System.out.println("Exercicio deletado com sucesso");
-        }
-        else{
-            System.out.println("Ocorreu algum problema durante a exclusao");
-        }
-    }
-    
-    //-----------------------------------------------------------------------------------------------------------------------//
-    
-    public boolean insertExercicioSql(String nome, String musculaturaAfetada){
+    public boolean insertExercicioSql(Exercicio exercicio){
         boolean resultado = false;
         
         Connection conexao = this.banco.getConexao();
@@ -53,8 +30,8 @@ public class ExercicioDAO {
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setString(1, nome);
-            consulta.setString(2, musculaturaAfetada);
+            consulta.setString(1, exercicio.getNome());
+            consulta.setString(2, exercicio.getMusculaturaAfetada());
             consulta.execute();
             resultado = true;
 
@@ -81,7 +58,9 @@ public class ExercicioDAO {
                 int idExercicio = Integer.parseInt(resultados.getString("idExercicio"));
                 String nomeExercicio = resultados.getString("nome");
                 String musculaturaAfetadaExercicio = resultados.getString("musculaturaAfetada");
-                objeto = new Exercicio(nomeExercicio, musculaturaAfetadaExercicio);
+                objeto = new Exercicio();
+                objeto.setNome(nomeExercicio);
+                objeto.setMusculaturaAfetada(musculaturaAfetadaExercicio);
                 objeto.setId(idExercicio);
                 lista.add(objeto);
             }

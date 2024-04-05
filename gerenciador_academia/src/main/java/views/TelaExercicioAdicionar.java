@@ -5,18 +5,20 @@
 package views;
 
 import controller.Main;
+import models.Exercicio;
 
 /**
  *
  * @author tiovi
  */
 public class TelaExercicioAdicionar extends javax.swing.JPanel {
-
+    Exercicio exercicio;
     /**
      * Creates new form TelaExercicioAdicionar
      */
     public TelaExercicioAdicionar() {
         initComponents();
+        exercicio = new Exercicio();
     }
 
     /**
@@ -136,10 +138,20 @@ public class TelaExercicioAdicionar extends javax.swing.JPanel {
         lb_txtAddExercicio.setForeground(new java.awt.Color(255, 255, 255));
         lb_txtAddExercicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAddExercicio.setText("ADICIONAR EXERCICIO");
+        lb_txtAddExercicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddExercicioMouseClicked(evt);
+            }
+        });
         add(lb_txtAddExercicio);
         lb_txtAddExercicio.setBounds(850, 400, 260, 30);
 
         lb_botaoAddExercicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-azul.png"))); // NOI18N
+        lb_botaoAddExercicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddExercicioMouseClicked(evt);
+            }
+        });
         add(lb_botaoAddExercicio);
         lb_botaoAddExercicio.setBounds(850, 380, 260, 70);
 
@@ -150,7 +162,8 @@ public class TelaExercicioAdicionar extends javax.swing.JPanel {
 
         cb_Musculo.setBackground(new java.awt.Color(153, 255, 51));
         cb_Musculo.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        cb_Musculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_Musculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Peito", "Costas", "Braço", "Perna", "Ombro" }));
+        cb_Musculo.setToolTipText("");
         add(cb_Musculo);
         cb_Musculo.setBounds(440, 290, 320, 40);
 
@@ -189,6 +202,20 @@ public class TelaExercicioAdicionar extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_txtAddExercicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddExercicioMouseClicked
+        exercicio.setNome(tf_Nome.getText());
+        exercicio.setMusculaturaAfetada(cb_Musculo.getSelectedItem().toString());
+        
+        Main.controllerManager.getExercicioAdicionarController().bt_addExercicio(exercicio);
+    }//GEN-LAST:event_lb_txtAddExercicioMouseClicked
+
+    private void lb_botaoAddExercicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddExercicioMouseClicked
+        exercicio.setNome(tf_Nome.getText());
+        exercicio.setMusculaturaAfetada(cb_Musculo.getSelectedItem().toString());
+        
+        Main.controllerManager.getExercicioAdicionarController().bt_addExercicio(exercicio);
+    }//GEN-LAST:event_lb_botaoAddExercicioMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

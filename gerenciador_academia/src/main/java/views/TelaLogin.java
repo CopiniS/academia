@@ -29,7 +29,6 @@ public class TelaLogin extends javax.swing.JPanel {
 
         tf_nome.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         tf_nome.setForeground(new java.awt.Color(51, 51, 51));
-        tf_nome.setText("Nome");
         tf_nome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tf_nome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -46,7 +45,6 @@ public class TelaLogin extends javax.swing.JPanel {
 
         pf_senha.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         pf_senha.setForeground(new java.awt.Color(51, 51, 51));
-        pf_senha.setText("Senha");
         pf_senha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pf_senhaMouseClicked(evt);

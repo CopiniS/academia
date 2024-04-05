@@ -48,11 +48,21 @@ public class TelaExercicio extends javax.swing.JPanel {
         lb_txtDeletar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtDeletar.setText("DELETAR EXERCÍCIO");
         lb_txtDeletar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtDeletarMouseClicked(evt);
+            }
+        });
         add(lb_txtDeletar);
         lb_txtDeletar.setBounds(840, 350, 260, 30);
 
         lb_botaoDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoDeletar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoDeletarMouseClicked(evt);
+            }
+        });
         add(lb_botaoDeletar);
         lb_botaoDeletar.setBounds(840, 330, 260, 70);
 
@@ -71,6 +81,11 @@ public class TelaExercicio extends javax.swing.JPanel {
 
         lb_botaoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddMouseClicked(evt);
+            }
+        });
         add(lb_botaoAdd);
         lb_botaoAdd.setBounds(530, 330, 260, 70);
 
@@ -157,7 +172,7 @@ public class TelaExercicio extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lb_txtAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddMouseClicked
-        Main.controllerManager.getClienteController().btAdicionarCliente();
+        Main.controllerManager.getExercicioController().btAdicionarExercicio();
     }//GEN-LAST:event_lb_txtAddMouseClicked
 
     private void lb_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_clienteMouseClicked
@@ -179,6 +194,18 @@ public class TelaExercicio extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_botaoAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddMouseClicked
+        Main.controllerManager.getExercicioController().btAdicionarExercicio();
+    }//GEN-LAST:event_lb_botaoAddMouseClicked
+
+    private void lb_txtDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtDeletarMouseClicked
+        Main.controllerManager.getExercicioController().btDeletarExercicio();
+    }//GEN-LAST:event_lb_txtDeletarMouseClicked
+
+    private void lb_botaoDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoDeletarMouseClicked
+        Main.controllerManager.getExercicioController().btDeletarExercicio();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_botaoDeletarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
