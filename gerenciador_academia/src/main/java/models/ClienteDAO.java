@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,9 @@ public class ClienteDAO{
                 int idCliente = Integer.parseInt(resultados.getString("idCliente"));
                 String nomeCliente = resultados.getString("nome");
                 String cpfCliente = resultados.getString("cpf");
-                objeto = new Cliente(nomeCliente, cpfCliente, null, null, null, null);
+                objeto = new Cliente();
+                objeto.setNome(nomeCliente);
+                objeto.setCpf(cpfCliente);
                 objeto.setId(idCliente);
                 lista.add(objeto);
             }
@@ -173,6 +177,7 @@ public class ClienteDAO{
         }
         return atualizado;
     }
+    
     public boolean updateClienteIdPlano(int idCliente, int idPlano){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idPlano = ?, dataInicioPlano = ? WHERE idCliente = ?";
@@ -258,4 +263,59 @@ public class ClienteDAO{
         }
         return excluido;
     }
+    
+    public List retonaListaDeCPFS(){
+        Connection conexao = this.banco.getConexao();
+        List lista = new ArrayList();
+        
+        String sql = "SELECT cpf FROM cliente";
+        ResultSet resultados;
+        
+        try {
+            resultados = conexao.createStatement().executeQuery(sql);
+            
+            while(resultados.next()){
+                String cpfCliente = resultados.getString("cpf");
+
+                lista.add(cpfCliente);
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        return lista;
+    }
+    
+    public Cliente retornaClientePeloCpf(String cpf) throws ParseException{
+        Connection conexao = this.banco.getConexao();
+        
+        String sql = "SELECT c.nome, c.dataNascimento, e.rua, e.cep, e.bairro, e.numero p.nome FROM cliente as c LEFT JOIN enderecoCliente ON e.idEnderecoCliente = c.idendereco "
+                + "LEFT JOIN plano as p ON p.idPlano = c.idPlano LEFT JOIN treino as t ON t.idTreino = c.idTreino WHERE c.cpf = ?";
+        ResultSet resultados;
+        Cliente objeto = new Cliente();
+        String dataNascimento = "";
+        try {
+            resultados = conexao.createStatement().executeQuery(sql);
+        
+            while(resultados.next()){
+                int idCliente = Integer.parseInt(resultados.getString("idCliente"));
+                String nomeCliente = resultados.getString("nome");
+                String cpfCliente = resultados.getString("cpf");
+                dataNascimento = resultados.getString("dataNascimento");
+                String cep = resultados.getString("cep");
+                String rua = resultados.getString("rua");
+                String bairro = resultados.getString("bairro");
+                String numero = resultados.getString("numero");
+                
+            }
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date utilDate = formato.parse(dataNascimento);
+        Date data = new Date(utilDate.getTime());
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        return objeto;
+    }
+        
 }

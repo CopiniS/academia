@@ -3,8 +3,12 @@ package controller;
 
 import models.ApplicationModel;
 import views.ApplicationView;
-import views.TelaClienteAdicionar;
+import views.TelaCliente;
+import views.TelaInstrutor;
 import views.TelaLogin;
+import views.TelaModalidade;
+import views.TelaPlano;
+import views.TelaTreino;
 
 public class ControllerManager {
     private ApplicationModel applicationModel;
@@ -37,6 +41,36 @@ public class ControllerManager {
         this.applicationView.setTelaLogin(new TelaLogin());
         this.applicationView.mostraTela(this.applicationView.getTelaLogin());      //Mostra a tela de cadastro.
     }
+    
+    public void btAcessarTelaCliente(){
+        this.applicationView.setTelaCliente(new TelaCliente());
+        this.applicationView.mostraTela(this.applicationView.getTelaCliente());
+    }
+    
+    public void btAcessarTelaInstrutor(){
+        this.applicationView.setTelaInstrutor(new TelaInstrutor());
+        this.applicationView.mostraTela(this.applicationView.getTelaInstrutor());
+    }
+    
+    public void btAcessarTelaPlano(){
+        this.applicationView.setTelaPlano(new TelaPlano());
+        this.applicationView.mostraTela(this.applicationView.getTelaPlano());
+    }
+    
+    public void btAcessarTelaModalidade(){
+        this.applicationView.setTelaModalidade(new TelaModalidade());
+        this.applicationView.mostraTela(this.applicationView.getTelaModalidade());
+    }
+    
+    public void btAcessarTelaTreino(){
+        this.applicationView.setTelaTreino(new TelaTreino());
+        this.applicationView.mostraTela(this.applicationView.getTelaTreino());
+    }
+    
+    public void btAcessartelaExercicio(){
+        
+    }
+    
     public ApplicationModel getApplicationModel() {
         return applicationModel;
     }

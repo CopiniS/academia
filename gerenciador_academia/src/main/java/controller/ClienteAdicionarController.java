@@ -5,17 +5,25 @@ package controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class ClienteAdicionarController {
-
+    
     public ClienteAdicionarController() {
     }
        
     public void btAddCliente(String nome, String cpf, String dataNascimento, String cep, String rua, String bairro, String numero, String idPlano, String idTreino) throws ParseException{
-        if(nome.isBlank() || validarCPF(cpf) == false || dataNascimento.isBlank()){
+        if(nome.isBlank() || cpf.isBlank() || dataNascimento.isBlank()){
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios");
+        }
+        
+        else if(!validarCPF(cpf)){
+            JOptionPane.showMessageDialog(null, "este CPF não é valido");
+        }
+        
+        else if(verificaCPFrepetido(cpf)){
+            JOptionPane.showMessageDialog(null, "CPF já cadastrado");
         }
         
         else{
@@ -57,6 +65,12 @@ public class ClienteAdicionarController {
         // Verificar se os dígitos calculados são iguais aos dígitos do CPF
         return (Character.getNumericValue(cpf.charAt(9)) == digito1) && 
                (Character.getNumericValue(cpf.charAt(10)) == digito2);
+    }
+    
+    public boolean verificaCPFrepetido(String cpf){
+        List<String> lista = Main.controllerManager.getApplicationModel().getClienteDAO().retonaListaDeCPFS();
+        
+        return lista.contains(cpf);
     }
     
     public Date validaDataNascimento(String dataString) throws ParseException {

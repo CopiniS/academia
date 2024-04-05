@@ -1,6 +1,7 @@
 
 package models;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Cliente {
@@ -10,6 +11,7 @@ public class Cliente {
     private int id;
     private String nome;
     private String cpf;
+    private Date dataNascimento;
     private String cep;
     private String rua;
     private String bairro;
@@ -18,15 +20,9 @@ public class Cliente {
     private LocalDate dataInicioPlano;
     private Treino treino;
 
-    public Cliente(String nome, String cpf, String cep, String rua, String bairro, String numero) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.cep = cep;
-        this.rua = rua;
-        this.bairro = bairro;
-        this.numero = numero;
+    public Cliente() {
+        
     }
-
 
 
     public String getNome() {
