@@ -5,18 +5,21 @@
 package views;
 
 import controller.Main;
+import javax.swing.JOptionPane;
+import models.Modalidade;
 
 /**
  *
  * @author alunolages
  */
 public class TelaModalidadeAdicionar extends javax.swing.JPanel {
-
+    Modalidade modalidade;
     /**
      * Creates new form TelaModalidadeAdicionar
      */
     public TelaModalidadeAdicionar() {
         initComponents();
+        this.modalidade = new Modalidade();
     }
 
     /**
@@ -89,6 +92,11 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         lb_modalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_modalidade.setText("Modalidade");
         lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_modalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_modalidadeMouseClicked(evt);
+            }
+        });
         add(lb_modalidade);
         lb_modalidade.setBounds(0, 430, 250, 40);
 
@@ -137,11 +145,21 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
         lb_txtAddModalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAddModalidade.setText("ADICIONAR MODALIDADE");
         lb_txtAddModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAddModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddModalidadeMouseClicked(evt);
+            }
+        });
         add(lb_txtAddModalidade);
         lb_txtAddModalidade.setBounds(640, 390, 260, 30);
 
         lb_botaoAddModalidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-azul.png"))); // NOI18N
         lb_botaoAddModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAddModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddModalidadeMouseClicked(evt);
+            }
+        });
         add(lb_botaoAddModalidade);
         lb_botaoAddModalidade.setBounds(640, 370, 260, 70);
 
@@ -180,6 +198,30 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_txtAddModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddModalidadeMouseClicked
+        if(Main.controllerManager.getModalidadeAdicionarController().validaCampo(tf_Nome.getText())){
+            this.modalidade.setNome(tf_Nome.getText());
+            Main.controllerManager.getModalidadeAdicionarController().btAddModalidade(modalidade);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha o campo nome da modalidade");
+        }
+    }//GEN-LAST:event_lb_txtAddModalidadeMouseClicked
+
+    private void lb_botaoAddModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddModalidadeMouseClicked
+        if(Main.controllerManager.getModalidadeAdicionarController().validaCampo(tf_Nome.getText())){
+            this.modalidade.setNome(tf_Nome.getText());
+            Main.controllerManager.getModalidadeAdicionarController().btAddModalidade(modalidade);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha o campo nome da modalidade");
+        }
+    }//GEN-LAST:event_lb_botaoAddModalidadeMouseClicked
+
+    private void lb_modalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_modalidadeMouseClicked
+        Main.controllerManager.btAcessarTelaModalidade();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_modalidadeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

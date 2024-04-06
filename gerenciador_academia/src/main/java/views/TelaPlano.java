@@ -136,11 +136,21 @@ public class TelaPlano extends javax.swing.JPanel {
         lb_txtAdd1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAdd1.setText("ALTERAR PLANO");
         lb_txtAdd1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAdd1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAdd1MouseClicked(evt);
+            }
+        });
         add(lb_txtAdd1);
         lb_txtAdd1.setBounds(660, 350, 260, 30);
 
         lb_botaoAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAlterarMouseClicked(evt);
+            }
+        });
         add(lb_botaoAlterar);
         lb_botaoAlterar.setBounds(660, 330, 260, 70);
 
@@ -159,6 +169,11 @@ public class TelaPlano extends javax.swing.JPanel {
 
         lb_botaoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddMouseClicked(evt);
+            }
+        });
         add(lb_botaoAdd);
         lb_botaoAdd.setBounds(350, 330, 260, 70);
 
@@ -192,8 +207,20 @@ public class TelaPlano extends javax.swing.JPanel {
     }//GEN-LAST:event_lb_treinoMouseClicked
 
     private void lb_txtAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddMouseClicked
-        // TODO add your handling code here:
+        Main.controllerManager.getPlanoController().btAdicionarPlano();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_txtAddMouseClicked
+
+    private void lb_botaoAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddMouseClicked
+        Main.controllerManager.getPlanoController().btAdicionarPlano();
+    }//GEN-LAST:event_lb_botaoAddMouseClicked
+
+    private void lb_txtAdd1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAdd1MouseClicked
+        Main.controllerManager.getPlanoController().btAlterarPlano();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_txtAdd1MouseClicked
+
+    private void lb_botaoAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAlterarMouseClicked
+        Main.controllerManager.getPlanoController().btAlterarPlano();
+    }//GEN-LAST:event_lb_botaoAlterarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

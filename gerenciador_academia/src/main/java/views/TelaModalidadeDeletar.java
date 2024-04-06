@@ -5,18 +5,29 @@
 package views;
 
 import controller.Main;
+import java.util.List;
+import javax.swing.JOptionPane;
+import models.Modalidade;
 
 /**
  *
  * @author alunolages
  */
 public class TelaModalidadeDeletar extends javax.swing.JPanel {
-
+    List<Modalidade> lista;
     /**
      * Creates new form TelaModalidadeAlterar
      */
     public TelaModalidadeDeletar() {
         initComponents();
+        lista = Main.controllerManager.getModalidadeAlterarController().retornaListaDeModalidade();
+        inicializaComboBox();
+    }
+    
+    public void inicializaComboBox(){
+        for(Modalidade m : lista){
+            cb_Modalidade.addItem(m.getNome());
+        }
     }
 
     /**
@@ -87,6 +98,11 @@ public class TelaModalidadeDeletar extends javax.swing.JPanel {
         lb_modalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_modalidade.setText("Modalidade");
         lb_modalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_modalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_modalidadeMouseClicked(evt);
+            }
+        });
         add(lb_modalidade);
         lb_modalidade.setBounds(0, 430, 250, 40);
 
@@ -135,17 +151,26 @@ public class TelaModalidadeDeletar extends javax.swing.JPanel {
         lb_txtAddModalidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAddModalidade.setText("DELETAR MODALIDADE");
         lb_txtAddModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAddModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddModalidadeMouseClicked(evt);
+            }
+        });
         add(lb_txtAddModalidade);
         lb_txtAddModalidade.setBounds(640, 390, 260, 30);
 
         lb_botaoAddModalidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-vermelho.png"))); // NOI18N
         lb_botaoAddModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAddModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddModalidadeMouseClicked(evt);
+            }
+        });
         add(lb_botaoAddModalidade);
         lb_botaoAddModalidade.setBounds(640, 370, 260, 70);
 
         cb_Modalidade.setBackground(new java.awt.Color(153, 255, 51));
         cb_Modalidade.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        cb_Modalidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cb_Modalidade);
         cb_Modalidade.setBounds(640, 300, 320, 40);
     }// </editor-fold>//GEN-END:initComponents
@@ -169,6 +194,32 @@ public class TelaModalidadeDeletar extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_txtAddModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddModalidadeMouseClicked
+        int id = Main.controllerManager.getModalidadeAlterarController().retornaIdModalidadeParaExcluir(cb_Modalidade.getSelectedItem().toString(), lista);
+        if(Main.controllerManager.getModalidadeAlterarController().btDeletaModalidade(id)){
+            JOptionPane.showMessageDialog(null, "Modalidade excluida com sucesso");
+            cb_Modalidade.removeItem(cb_Modalidade.getSelectedItem());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Erro na exlusão da modalidade, tente novamente mais tarde");
+        }
+    }//GEN-LAST:event_lb_txtAddModalidadeMouseClicked
+
+    private void lb_botaoAddModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddModalidadeMouseClicked
+        int id = Main.controllerManager.getModalidadeAlterarController().retornaIdModalidadeParaExcluir(cb_Modalidade.getSelectedItem().toString(), lista);
+        if(Main.controllerManager.getModalidadeAlterarController().btDeletaModalidade(id)){
+            JOptionPane.showMessageDialog(null, "Modalidade excluida com sucesso");
+            cb_Modalidade.removeItem(cb_Modalidade.getSelectedItem());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Erro na exlusão da modalidade, tente novamente mais tarde");
+        }
+    }//GEN-LAST:event_lb_botaoAddModalidadeMouseClicked
+
+    private void lb_modalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_modalidadeMouseClicked
+        Main.controllerManager.btAcessarTelaModalidade();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_modalidadeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

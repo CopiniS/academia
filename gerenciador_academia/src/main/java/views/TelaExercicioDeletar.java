@@ -108,6 +108,11 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
         lb_exercicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_exercicio.setText("Exercício");
         lb_exercicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_exercicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_exercicioMouseClicked(evt);
+            }
+        });
         add(lb_exercicio);
         lb_exercicio.setBounds(0, 370, 250, 40);
 
@@ -188,6 +193,10 @@ public class TelaExercicioDeletar extends javax.swing.JPanel {
             cb_NomeExercicio.removeItem(cb_NomeExercicio.getSelectedItem());
         }
     }//GEN-LAST:event_lb_txtAddDeletarMouseClicked
+
+    private void lb_exercicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_exercicioMouseClicked
+        Main.controllerManager.btAcessartelaExercicio();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_exercicioMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

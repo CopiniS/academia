@@ -14,4 +14,12 @@ public class ExercicioAdicionarController {
             JOptionPane.showMessageDialog(null, "Dados cadastrados com sucesso");
         }
     }
+    
+    public boolean validaCampo(String str){
+        boolean resultado = false;
+        if(!str.isBlank()){
+            resultado = true;
+        }
+        return resultado;
+    }
 }

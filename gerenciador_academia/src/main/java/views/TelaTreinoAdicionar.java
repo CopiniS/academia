@@ -171,6 +171,11 @@ public class TelaTreinoAdicionar extends javax.swing.JPanel {
         lb_treino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_treino.setText("Treino");
         lb_treino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_treino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_treinoMouseClicked(evt);
+            }
+        });
         add(lb_treino);
         lb_treino.setBounds(0, 490, 250, 40);
 
@@ -334,6 +339,10 @@ public class TelaTreinoAdicionar extends javax.swing.JPanel {
     private void lb_modalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_modalidadeMouseClicked
         Main.controllerManager.btAcessarTelaModalidade();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_modalidadeMouseClicked
+
+    private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
+        Main.controllerManager.btAcessarTelaTreino();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_treinoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -134,6 +134,11 @@ public class TelaInstrutorAlterar extends javax.swing.JPanel {
         lb_instrutor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_instrutor.setText("Instrutor");
         lb_instrutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_instrutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_instrutorMouseClicked(evt);
+            }
+        });
         add(lb_instrutor);
         lb_instrutor.setBounds(0, 250, 250, 40);
 
@@ -261,6 +266,10 @@ public class TelaInstrutorAlterar extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_instrutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_instrutorMouseClicked
+        Main.controllerManager.btAcessarTelaInstrutor();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_instrutorMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

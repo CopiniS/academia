@@ -178,6 +178,11 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
         lb_cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_cliente.setText("Cliente");
         lb_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_clienteMouseClicked(evt);
+            }
+        });
         add(lb_cliente);
         lb_cliente.setBounds(0, 190, 250, 40);
 
@@ -482,6 +487,10 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
     private void lb_treinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_treinoMouseClicked
         Main.controllerManager.btAcessarTelaTreino();
     }//GEN-LAST:event_lb_treinoMouseClicked
+
+    private void lb_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_clienteMouseClicked
+        Main.controllerManager.btAcessarTelaCliente();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_clienteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

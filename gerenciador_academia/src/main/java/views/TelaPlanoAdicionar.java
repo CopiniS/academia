@@ -1,69 +1,179 @@
 package views;
 
 import controller.Main;
+import java.util.List;
+import javax.swing.JOptionPane;
+import models.Modalidade;
+import models.Plano;
 
 public class TelaPlanoAdicionar extends javax.swing.JPanel {
-
-    public void apagarModalidades(){
-        lb_txtCaixa1.setVisible(false);
-        lb_txtCaixa2.setVisible(false);
-        lb_txtCaixa3.setVisible(false);
-        lb_txtCaixa4.setVisible(false);
-        lb_txtCaixa5.setVisible(false);
-        lb_txtCaixa6.setVisible(false);
-        lb_txtCaixa7.setVisible(false);
-        lb_txtCaixa8.setVisible(false);
-        
-        lb_caixaSemSelec1.setVisible(false);
-        lb_caixaSemSelec2.setVisible(false);
-        lb_caixaSemSelec3.setVisible(false);
-        lb_caixaSemSelec4.setVisible(false);
-        lb_caixaSemSelec5.setVisible(false);
-        lb_caixaSemSelec6.setVisible(false);
-        lb_caixaSemSelec7.setVisible(false);
-        lb_caixaSemSelec8.setVisible(false);
-        
-        lb_caixaComSelec1.setVisible(false);
-        lb_caixaComSelec2.setVisible(false);
-        lb_caixaComSelec3.setVisible(false);
-        lb_caixaComSelec4.setVisible(false);
-        lb_caixaComSelec5.setVisible(false);
-        lb_caixaComSelec6.setVisible(false);
-        lb_caixaComSelec7.setVisible(false);
-        lb_caixaComSelec8.setVisible(false);
-    }
-    
-    public void mostrarModalidadeExistente(){
-        
-    }
+    List<Modalidade> listaModalidades;
+    String []vetorModalidade; 
+    Plano plano;
     
     public TelaPlanoAdicionar() {
-        initComponents();
-        apagarModalidades();       
-        
-        mostrarModalidadeExistente();
+        initComponents();     
+        listaModalidades = Main.controllerManager.getPlanoAdicionarController().retornaListaModadalidade();
+        inicializarCheckBoxs();
     }
+    
+    public void inicializaVetorModalidades(){
+        vetorModalidade = new String [8];
+        for(int i=0; i<8; i++){
+            vetorModalidade[i] = "";
+        }
+        
+      
+        for(int i=0; i<listaModalidades.size(); i++){
+            vetorModalidade[i] = listaModalidades.get(i).getNome();
+            System.out.println("vetor: " + vetorModalidade[i]);
+            System.out.println("lista: " + listaModalidades.get(i).getNome());
+        }
+        
+    }
+    
+    public void inicializarCheckBoxs(){
+        inicializaVetorModalidades();
+        
+        if(!vetorModalidade[0].equals("")){
+            jCheckBox1.setText(vetorModalidade[0]);
+        }
+        else{
+            jCheckBox1.setVisible(false);
+        }
+        
+        if(!vetorModalidade[1].equals("")){
+            jCheckBox2.setText(vetorModalidade[1]);
+        }
+        else{
+            jCheckBox2.setVisible(false);
+        }
+        
+        if(!vetorModalidade[2].equals("")){
+            jCheckBox3.setText(vetorModalidade[2]);
+        }
+        else{
+            jCheckBox3.setVisible(false);
+        }
+        
+        if(!vetorModalidade[3].equals("")){
+            jCheckBox4.setText(vetorModalidade[3]);
+        }
+        else{
+            jCheckBox4.setVisible(false);
+        }
+        
+        if(!vetorModalidade[4].equals("")){
+            jCheckBox5.setText(vetorModalidade[4]);
+        }
+        else{
+            jCheckBox5.setVisible(false);
+        }
+        
+        if(!vetorModalidade[5].equals("")){
+            jCheckBox6.setText(vetorModalidade[5]);
+        }
+        else{
+            jCheckBox6.setVisible(false);
+        }
+        
+        if(!vetorModalidade[6].equals("")){
+            jCheckBox7.setText(vetorModalidade[6]);
+        }
+        else{
+            jCheckBox7.setVisible(false);
+        }
+        
+        if(!vetorModalidade[7].equals("")){
+            jCheckBox8.setText(vetorModalidade[7]);
+        }
+        else{
+            jCheckBox8.setVisible(false);
+        }
+        
+    }
+    
+    public boolean [] retornaboleanoCheckBoxs(){
+        boolean [] checkBoxs = new boolean[8];
+        
+        if(jCheckBox1.isSelected()){
+            checkBoxs[0] = true;
+        }
+        else{
+            checkBoxs[0] = false;
+        }
+        
+        if(jCheckBox2.isSelected()){
+            checkBoxs[1] = true;
+        }
+        else{
+            checkBoxs[1] = false;
+        }
+        
+        if(jCheckBox3.isSelected()){
+            checkBoxs[2] = true;
+        }
+        else{
+            checkBoxs[2] = false;
+        }
+        
+        if(jCheckBox4.isSelected()){
+            checkBoxs[3] = true;
+        }
+        else{
+            checkBoxs[3] = false;
+        }
+        
+        if(jCheckBox5.isSelected()){
+            checkBoxs[4] = true;
+        }
+        else{
+            checkBoxs[4] = false;
+        }
+        
+        if(jCheckBox6.isSelected()){
+            checkBoxs[5] = true;
+        }
+        else{
+            checkBoxs[5] = false;
+        }
+        
+        if(jCheckBox7.isSelected()){
+            checkBoxs[6] = true;
+        }
+        else{
+            checkBoxs[6] = false;
+        }
+        
+        if(jCheckBox8.isSelected()){
+            checkBoxs[7] = true;
+        }
+        else{
+            checkBoxs[7] = false;
+        }
+        
+        return checkBoxs;
+    }
+    
+    public void resetaCampos(){
+        tf_Nome.setText("");
+        tf_TempoContrato.setText("");
+        tf_Valor.setText("");
+        jCheckBox1.setSelected(false);
+        jCheckBox2.setSelected(false);
+        jCheckBox3.setSelected(false);
+        jCheckBox4.setSelected(false);
+        jCheckBox5.setSelected(false);
+        jCheckBox6.setSelected(false);
+        jCheckBox7.setSelected(false);
+        jCheckBox8.setSelected(false);
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lb_caixaComSelec5 = new javax.swing.JLabel();
-        lb_caixaSemSelec5 = new javax.swing.JLabel();
-        lb_caixaComSelec6 = new javax.swing.JLabel();
-        lb_caixaSemSelec6 = new javax.swing.JLabel();
-        lb_caixaComSelec7 = new javax.swing.JLabel();
-        lb_caixaSemSelec7 = new javax.swing.JLabel();
-        lb_caixaComSelec8 = new javax.swing.JLabel();
-        lb_caixaSemSelec8 = new javax.swing.JLabel();
-        lb_caixaComSelec4 = new javax.swing.JLabel();
-        lb_caixaSemSelec4 = new javax.swing.JLabel();
-        lb_caixaComSelec3 = new javax.swing.JLabel();
-        lb_caixaSemSelec3 = new javax.swing.JLabel();
-        lb_caixaComSelec2 = new javax.swing.JLabel();
-        lb_caixaSemSelec2 = new javax.swing.JLabel();
-        lb_caixaComSelec1 = new javax.swing.JLabel();
-        lb_caixaSemSelec1 = new javax.swing.JLabel();
         lb_TempoContrato = new javax.swing.JLabel();
         lb_Nome = new javax.swing.JLabel();
         lb_titValor = new javax.swing.JLabel();
@@ -81,127 +191,18 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         lb_botaoAddPlano = new javax.swing.JLabel();
         tf_Valor = new javax.swing.JTextField();
         tf_TempoContrato = new javax.swing.JTextField();
-        lb_txtCaixa1 = new javax.swing.JLabel();
-        lb_txtCaixa2 = new javax.swing.JLabel();
-        lb_txtCaixa3 = new javax.swing.JLabel();
-        lb_txtCaixa4 = new javax.swing.JLabel();
-        lb_txtCaixa5 = new javax.swing.JLabel();
-        lb_txtCaixa6 = new javax.swing.JLabel();
-        lb_txtCaixa7 = new javax.swing.JLabel();
-        lb_txtCaixa8 = new javax.swing.JLabel();
         tf_Nome = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jCheckBox6 = new javax.swing.JCheckBox();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jCheckBox8 = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
-
-        lb_caixaComSelec5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa com selecao.png"))); // NOI18N
-        lb_caixaComSelec5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaComSelec5MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaComSelec5);
-        lb_caixaComSelec5.setBounds(550, 350, 30, 30);
-
-        lb_caixaSemSelec5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
-        add(lb_caixaSemSelec5);
-        lb_caixaSemSelec5.setBounds(550, 350, 30, 30);
-
-        lb_caixaComSelec6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa com selecao.png"))); // NOI18N
-        lb_caixaComSelec6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaComSelec6MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaComSelec6);
-        lb_caixaComSelec6.setBounds(550, 390, 30, 30);
-
-        lb_caixaSemSelec6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
-        add(lb_caixaSemSelec6);
-        lb_caixaSemSelec6.setBounds(550, 390, 30, 30);
-
-        lb_caixaComSelec7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa com selecao.png"))); // NOI18N
-        lb_caixaComSelec7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaComSelec7MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaComSelec7);
-        lb_caixaComSelec7.setBounds(550, 430, 30, 30);
-
-        lb_caixaSemSelec7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
-        add(lb_caixaSemSelec7);
-        lb_caixaSemSelec7.setBounds(550, 430, 30, 30);
-
-        lb_caixaComSelec8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa com selecao.png"))); // NOI18N
-        lb_caixaComSelec8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaComSelec8MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaComSelec8);
-        lb_caixaComSelec8.setBounds(550, 470, 30, 30);
-
-        lb_caixaSemSelec8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
-        add(lb_caixaSemSelec8);
-        lb_caixaSemSelec8.setBounds(550, 470, 30, 30);
-
-        lb_caixaComSelec4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa com selecao.png"))); // NOI18N
-        lb_caixaComSelec4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaComSelec4MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaComSelec4);
-        lb_caixaComSelec4.setBounds(330, 470, 30, 30);
-
-        lb_caixaSemSelec4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
-        add(lb_caixaSemSelec4);
-        lb_caixaSemSelec4.setBounds(330, 470, 30, 30);
-
-        lb_caixaComSelec3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa com selecao.png"))); // NOI18N
-        lb_caixaComSelec3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaComSelec3MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaComSelec3);
-        lb_caixaComSelec3.setBounds(330, 430, 30, 30);
-
-        lb_caixaSemSelec3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
-        add(lb_caixaSemSelec3);
-        lb_caixaSemSelec3.setBounds(330, 430, 30, 30);
-
-        lb_caixaComSelec2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa com selecao.png"))); // NOI18N
-        lb_caixaComSelec2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaComSelec2MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaComSelec2);
-        lb_caixaComSelec2.setBounds(330, 390, 30, 30);
-
-        lb_caixaSemSelec2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
-        add(lb_caixaSemSelec2);
-        lb_caixaSemSelec2.setBounds(330, 390, 30, 30);
-
-        lb_caixaComSelec1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa com selecao.png"))); // NOI18N
-        lb_caixaComSelec1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaComSelec1MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaComSelec1);
-        lb_caixaComSelec1.setBounds(330, 350, 30, 30);
-
-        lb_caixaSemSelec1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caixa sem selecao.png"))); // NOI18N
-        lb_caixaSemSelec1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaSemSelec1MouseClicked1(evt);
-            }
-        });
-        add(lb_caixaSemSelec1);
-        lb_caixaSemSelec1.setBounds(330, 350, 30, 30);
 
         lb_TempoContrato.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
         lb_TempoContrato.setText("Tempo Contrato:");
@@ -209,7 +210,7 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         lb_TempoContrato.setBounds(330, 215, 180, 20);
 
         lb_Nome.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
-        lb_Nome.setText("Nome Plano:");
+        lb_Nome.setText("Nome Plano: (meses)");
         add(lb_Nome);
         lb_Nome.setBounds(330, 130, 180, 30);
 
@@ -296,6 +297,14 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         lb_plano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_plano.setText("Plano");
         lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_plano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_planoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lb_planoMouseEntered(evt);
+            }
+        });
         add(lb_plano);
         lb_plano.setBounds(0, 310, 250, 40);
 
@@ -308,11 +317,21 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         lb_txtAddPlano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAddPlano.setText("ADICIONAR PLANO");
         lb_txtAddPlano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAddPlano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddPlanoMouseClicked(evt);
+            }
+        });
         add(lb_txtAddPlano);
         lb_txtAddPlano.setBounds(970, 560, 260, 30);
 
         lb_botaoAddPlano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-azul.png"))); // NOI18N
         lb_botaoAddPlano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAddPlano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddPlanoMouseClicked(evt);
+            }
+        });
         add(lb_botaoAddPlano);
         lb_botaoAddPlano.setBounds(970, 540, 260, 70);
 
@@ -338,52 +357,6 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         add(tf_TempoContrato);
         tf_TempoContrato.setBounds(330, 240, 320, 40);
 
-        lb_txtCaixa1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        lb_txtCaixa1.setText("jLabel1");
-        lb_txtCaixa1.setPreferredSize(new java.awt.Dimension(1280, 720));
-        lb_txtCaixa1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lb_caixaSemSelec1MouseClicked(evt);
-            }
-        });
-        add(lb_txtCaixa1);
-        lb_txtCaixa1.setBounds(360, 350, 180, 30);
-
-        lb_txtCaixa2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        lb_txtCaixa2.setText("jLabel1");
-        add(lb_txtCaixa2);
-        lb_txtCaixa2.setBounds(360, 390, 180, 30);
-
-        lb_txtCaixa3.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        lb_txtCaixa3.setText("jLabel1");
-        add(lb_txtCaixa3);
-        lb_txtCaixa3.setBounds(360, 430, 180, 30);
-
-        lb_txtCaixa4.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        lb_txtCaixa4.setText("jLabel1");
-        add(lb_txtCaixa4);
-        lb_txtCaixa4.setBounds(360, 470, 180, 30);
-
-        lb_txtCaixa5.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        lb_txtCaixa5.setText("jLabel1");
-        add(lb_txtCaixa5);
-        lb_txtCaixa5.setBounds(580, 350, 180, 30);
-
-        lb_txtCaixa6.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        lb_txtCaixa6.setText("jLabel1");
-        add(lb_txtCaixa6);
-        lb_txtCaixa6.setBounds(580, 390, 180, 30);
-
-        lb_txtCaixa7.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        lb_txtCaixa7.setText("jLabel1");
-        add(lb_txtCaixa7);
-        lb_txtCaixa7.setBounds(580, 430, 180, 30);
-
-        lb_txtCaixa8.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        lb_txtCaixa8.setText("jLabel1");
-        add(lb_txtCaixa8);
-        lb_txtCaixa8.setBounds(580, 470, 180, 30);
-
         tf_Nome.setBackground(new java.awt.Color(238, 238, 238));
         tf_Nome.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         tf_Nome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -394,6 +367,40 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         });
         add(tf_Nome);
         tf_Nome.setBounds(330, 160, 320, 40);
+
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        add(jCheckBox1);
+        jCheckBox1.setBounds(340, 360, 130, 30);
+        add(jCheckBox2);
+        jCheckBox2.setBounds(510, 360, 140, 30);
+        add(jCheckBox3);
+        jCheckBox3.setBounds(340, 400, 130, 30);
+        add(jCheckBox4);
+        jCheckBox4.setBounds(510, 400, 140, 30);
+        add(jCheckBox5);
+        jCheckBox5.setBounds(340, 440, 140, 30);
+        add(jCheckBox6);
+        jCheckBox6.setBounds(510, 440, 150, 30);
+
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
+        add(jCheckBox7);
+        jCheckBox7.setBounds(340, 480, 150, 30);
+
+        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox8ActionPerformed(evt);
+            }
+        });
+        add(jCheckBox8);
+        jCheckBox8.setBounds(510, 480, 160, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_ValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ValorActionPerformed
@@ -407,52 +414,6 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
     private void tf_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_NomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_NomeActionPerformed
-
-    private void lb_caixaSemSelec1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaSemSelec1MouseClicked
-    }//GEN-LAST:event_lb_caixaSemSelec1MouseClicked
-
-    private void lb_caixaSemSelec1MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaSemSelec1MouseClicked1
-        lb_caixaSemSelec1.setVisible(false);
-        lb_caixaComSelec1.setVisible(true);
-    }//GEN-LAST:event_lb_caixaSemSelec1MouseClicked1
-
-    private void lb_caixaComSelec1MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaComSelec1MouseClicked1
-        lb_caixaSemSelec1.setVisible(true);
-        lb_caixaComSelec1.setVisible(false);
-    }//GEN-LAST:event_lb_caixaComSelec1MouseClicked1
-
-    private void lb_caixaComSelec2MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaComSelec2MouseClicked1
-        lb_caixaSemSelec2.setVisible(true);
-        lb_caixaComSelec2.setVisible(false);
-    }//GEN-LAST:event_lb_caixaComSelec2MouseClicked1
-
-    private void lb_caixaComSelec3MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaComSelec3MouseClicked1
-        lb_caixaSemSelec3.setVisible(true);
-        lb_caixaComSelec3.setVisible(false);
-    }//GEN-LAST:event_lb_caixaComSelec3MouseClicked1
-
-    private void lb_caixaComSelec4MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaComSelec4MouseClicked1
-        lb_caixaSemSelec4.setVisible(true);
-        lb_caixaComSelec4.setVisible(false);
-    }//GEN-LAST:event_lb_caixaComSelec4MouseClicked1
-
-    private void lb_caixaComSelec5MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaComSelec5MouseClicked1
-        lb_caixaSemSelec5.setVisible(true);
-        lb_caixaComSelec5.setVisible(false);
-    }//GEN-LAST:event_lb_caixaComSelec5MouseClicked1
-
-    private void lb_caixaComSelec6MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaComSelec6MouseClicked1
-        lb_caixaSemSelec6.setVisible(true);
-        lb_caixaComSelec6.setVisible(false);
-    }//GEN-LAST:event_lb_caixaComSelec6MouseClicked1
-
-    private void lb_caixaComSelec7MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaComSelec7MouseClicked1
-        lb_caixaSemSelec7.setVisible(true);
-        lb_caixaComSelec7.setVisible(false);    }//GEN-LAST:event_lb_caixaComSelec7MouseClicked1
-
-    private void lb_caixaComSelec8MouseClicked1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_caixaComSelec8MouseClicked1
-        lb_caixaSemSelec8.setVisible(true);
-        lb_caixaComSelec8.setVisible(false);    }//GEN-LAST:event_lb_caixaComSelec8MouseClicked1
 
     private void lb_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_clienteMouseClicked
         Main.controllerManager.btAcessarTelaCliente();        // TODO add your handling code here:
@@ -474,27 +435,83 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         Main.controllerManager.btAcessarTelaTreino();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_treinoMouseClicked
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox7ActionPerformed
+
+    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox8ActionPerformed
+
+    private void lb_botaoAddPlanoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddPlanoMouseClicked
+        List<Modalidade> selecionados;
+        
+        if(Main.controllerManager.getPlanoAdicionarController().validaCamposGerais(tf_Nome.getText(), retornaboleanoCheckBoxs(), tf_Valor.getText(), tf_TempoContrato.getText())){
+            plano = new Plano();
+            plano.setNome(tf_Nome.getText());
+            plano.setValor(Float.parseFloat(tf_Valor.getText()));
+            plano.setTempoAtivacao(Integer.parseInt(tf_TempoContrato.getText()));
+            
+            selecionados = Main.controllerManager.getPlanoAdicionarController().retornaModalidadesSelecionadas(retornaboleanoCheckBoxs(), listaModalidades);
+            if(Main.controllerManager.getPlanoAdicionarController().btAddPlano(plano, selecionados)){
+                JOptionPane.showMessageDialog(null, "Plano cadastrado com sucesso");
+                resetaCampos();
+            }
+        }
+        
+        else{
+            JOptionPane.showMessageDialog(null, "Erro: Digite valores validos nos campos e escolha pelo menos uma modalidade");
+            resetaCampos();
+        }
+    }//GEN-LAST:event_lb_botaoAddPlanoMouseClicked
+
+    private void lb_planoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_planoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_planoMouseEntered
+
+    private void lb_planoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_planoMouseClicked
+        Main.controllerManager.btAcessarTelaPlano();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_planoMouseClicked
+
+    private void lb_txtAddPlanoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddPlanoMouseClicked
+        List<Modalidade> selecionados;
+        
+        if(Main.controllerManager.getPlanoAdicionarController().validaCamposGerais(tf_Nome.getText(), retornaboleanoCheckBoxs(), tf_Valor.getText(), tf_TempoContrato.getText())){
+            plano = new Plano();
+            plano.setNome(tf_Nome.getText());
+            plano.setValor(Float.parseFloat(tf_Valor.getText()));
+            plano.setTempoAtivacao(Integer.parseInt(tf_TempoContrato.getText()));
+            
+            selecionados = Main.controllerManager.getPlanoAdicionarController().retornaModalidadesSelecionadas(retornaboleanoCheckBoxs(), listaModalidades);
+            if(Main.controllerManager.getPlanoAdicionarController().btAddPlano(plano, selecionados)){
+                JOptionPane.showMessageDialog(null, "Plano cadastrado com sucesso");
+                resetaCampos();
+            }
+        }
+        
+        else{
+            JOptionPane.showMessageDialog(null, "Erro: Digite valores validos nos campos e escolha pelo menos uma modalidade");
+            resetaCampos();
+        }
+    }//GEN-LAST:event_lb_txtAddPlanoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel lb_Nome;
     private javax.swing.JLabel lb_TempoContrato;
     private javax.swing.JLabel lb_botaoAddPlano;
-    private javax.swing.JLabel lb_caixaComSelec1;
-    private javax.swing.JLabel lb_caixaComSelec2;
-    private javax.swing.JLabel lb_caixaComSelec3;
-    private javax.swing.JLabel lb_caixaComSelec4;
-    private javax.swing.JLabel lb_caixaComSelec5;
-    private javax.swing.JLabel lb_caixaComSelec6;
-    private javax.swing.JLabel lb_caixaComSelec7;
-    private javax.swing.JLabel lb_caixaComSelec8;
-    private javax.swing.JLabel lb_caixaSemSelec1;
-    private javax.swing.JLabel lb_caixaSemSelec2;
-    private javax.swing.JLabel lb_caixaSemSelec3;
-    private javax.swing.JLabel lb_caixaSemSelec4;
-    private javax.swing.JLabel lb_caixaSemSelec5;
-    private javax.swing.JLabel lb_caixaSemSelec6;
-    private javax.swing.JLabel lb_caixaSemSelec7;
-    private javax.swing.JLabel lb_caixaSemSelec8;
     private javax.swing.JLabel lb_cliente;
     private javax.swing.JLabel lb_exercicio;
     private javax.swing.JLabel lb_instrutor;
@@ -507,14 +524,6 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
     private javax.swing.JLabel lb_titValor;
     private javax.swing.JLabel lb_treino;
     private javax.swing.JLabel lb_txtAddPlano;
-    private javax.swing.JLabel lb_txtCaixa1;
-    private javax.swing.JLabel lb_txtCaixa2;
-    private javax.swing.JLabel lb_txtCaixa3;
-    private javax.swing.JLabel lb_txtCaixa4;
-    private javax.swing.JLabel lb_txtCaixa5;
-    private javax.swing.JLabel lb_txtCaixa6;
-    private javax.swing.JLabel lb_txtCaixa7;
-    private javax.swing.JLabel lb_txtCaixa8;
     private javax.swing.JTextField tf_Nome;
     private javax.swing.JTextField tf_TempoContrato;
     private javax.swing.JTextField tf_Valor;

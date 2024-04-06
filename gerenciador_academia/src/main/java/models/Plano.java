@@ -6,6 +6,7 @@ public class Plano {
     private String nome;
     private Float valor;
     private int tempoAtivacao;
+    
 
     public Plano() {
     }

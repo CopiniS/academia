@@ -2,6 +2,7 @@
 package views;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.JPanel;
 
 public class ApplicationView {
@@ -35,9 +36,13 @@ public class ApplicationView {
     }
     
     public void mostraTela(JPanel tela){
+        this.janela.setPreferredSize(new Dimension(1280, 720));
         this.janela.getContentPane().removeAll();       //Remove o conteúdo atual do frame.
         this.janela.add(tela, BorderLayout.CENTER);     //Adiciona o novo painel ao frame.
-        this.janela.pack();                             //Redimensiona o frame.
+        this.janela.setVisible(true);
+        this.janela.pack();
+        
+        //Redimensiona o frame.
     }
     
     public void fechaJanela(){

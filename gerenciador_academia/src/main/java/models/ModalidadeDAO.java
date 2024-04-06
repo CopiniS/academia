@@ -12,15 +12,6 @@ import java.util.List;
 public class ModalidadeDAO {
     Banco banco = new Banco();
     
-    public void criaModalidade(String nome, String horarios){
-        if(insertModalidadeSql(nome, horarios)){
-            System.out.println("Dados cadastrados com sucesso");
-        }
-        else{
-            System.out.println("Ocorreu um erro no cadastro");
-        }
-    }
-    
     public void alteraModalidade(Modalidade modalidade, String novoNome, String novosHorarios){
         if(updateModalidadeSql(modalidade.getId(), novoNome, novosHorarios)){
             System.out.println("Dados atualizados com sucesso");
@@ -71,22 +62,21 @@ public class ModalidadeDAO {
     //--------------------------------------------------------------------------------------------------------------------//
     
     
-    public boolean insertModalidadeSql(String nome, String horarios){
+    public boolean insertModalidadeSql(Modalidade modalidade){
         boolean resultado = false;
         
         Connection conexao = this.banco.getConexao();
-        String sql = "INSERT INTO modalidade(nome, horarios) VALUES(?, ?)";
+        String sql = "INSERT INTO modalidade(nome) VALUES(?)";
         PreparedStatement consulta;
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setString(1, nome);
-            consulta.setString(2, horarios);
+            consulta.setString(1, modalidade.getNome());
             consulta.execute();
             resultado = true;
 
         } catch (SQLException ex) {
-            System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
+            System.out.println("Erro ao cadastrar modalidade: " + ex.getMessage());
             resultado = false;
         }
         
@@ -128,8 +118,8 @@ public class ModalidadeDAO {
             while(resultados.next()){
                 int idModalidade = Integer.parseInt(resultados.getString("idModalidade"));
                 String nomeModalidade = resultados.getString("nome");
-                String horariosModalidade = resultados.getString("horarios");
-                objeto = new Modalidade(nomeModalidade, horariosModalidade);
+                objeto = new Modalidade();
+                objeto.setNome(nomeModalidade);
                 objeto.setId(idModalidade);
                 lista.add(objeto);
             }

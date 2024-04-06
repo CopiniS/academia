@@ -8,7 +8,6 @@ models\TreinoDAO.class
 views\TelaPlanoAlterar$3.class
 views\TelaCliente$11.class
 views\TelaPlanoAdicionar$5.class
-views\TelaPlanoAdicionar$18.class
 views\TelaModalidade$2.class
 models\PlanoDAO.class
 views\TelaTreino$4.class
@@ -24,6 +23,7 @@ views\TelaModalidadeAdicionar$6.class
 views\TelaModalidadeDeletar$5.class
 views\TelaPlanoAdicionar$6.class
 views\TelaClienteAlterar$11.class
+views\TelaPlanoAlterar$8.class
 views\TelaExercicio$5.class
 controller\LoginController.class
 views\TelaModalidadeAdicionar.class
@@ -75,11 +75,9 @@ views\TelaInstrutorAdicionar$2.class
 views\TelaExercicioDeletar$2.class
 views\TelaPlanoAlterar$5.class
 views\TelaPlanoAdicionar$14.class
-views\TelaPlanoAdicionar$17.class
 views\TelaPlanoAlterar$2.class
 views\TelaClienteAlterar$12.class
 DB\Banco.class
-views\TelaPlanoAdicionar$16.class
 views\TelaTreinoAdicionar$10.class
 views\TelaClienteAdicionar$5.class
 views\TelaCliente$7.class
@@ -97,7 +95,6 @@ views\TelaCliente.class
 views\TelaClienteAdicionar$4.class
 views\TelaPlano$1.class
 controller\ExercicioAlterarController.class
-views\TelaPlanoAdicionar$15.class
 views\TelaInstrutorAlterar$5.class
 controller\InstrutorAdicionarController.class
 controller\ModalidadeAdicionarController.class
@@ -134,6 +131,7 @@ views\TelaPlano$6.class
 views\TelaClienteAdicionar$9.class
 views\TelaModalidadeDeletar$2.class
 views\TelaPlanoAdicionar$10.class
+views\TelaExercicioAdicionar$9.class
 views\TelaPlanoAdicionar$2.class
 views\TelaInstrutor$1.class
 controller\TreinoAdicionarController.class
@@ -177,8 +175,11 @@ views\ApplicationView.class
 models\Pedido.class
 views\TelaExercicioDeletar$5.class
 views\TelaExercicioDeletar.class
+views\TelaModalidadeAdicionar$7.class
+views\TelaModalidadeDeletar$6.class
 views\TelaExercicioAdicionar.class
 views\TelaCliente$1.class
+views\TelaPlano$7.class
 views\TelaClienteAlterar.class
 views\TelaTreinoAdicionar$7.class
 views\TelaCliente$10.class
@@ -192,7 +193,9 @@ views\TelaPlanoAdicionar$9.class
 views\TelaLogin$4.class
 views\TelaPlanoAlterar.class
 views\TelaTreino$1.class
+views\TelaModalidadeAdicionar$8.class
 views\TelaClienteAlterar$2.class
+views\TelaPlano$9.class
 views\TelaTreino.class
 views\TelaCliente$3.class
 views\TelaTreinoAdicionar$8.class
@@ -204,7 +207,9 @@ views\TelaExercicioAdicionar$7.class
 views\TelaTreino$2.class
 views\TelaModalidadeDeletar.class
 views\TelaLogin$3.class
+views\TelaPlano$8.class
 views\TelaExercicio$9.class
+views\TelaModalidadeDeletar$7.class
 views\TelaClienteAlterar$3.class
 views\TelaModalidade$4.class
 views\TelaLogin.class

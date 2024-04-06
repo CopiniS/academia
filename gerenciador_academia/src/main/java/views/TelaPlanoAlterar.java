@@ -62,6 +62,7 @@ public class TelaPlanoAlterar extends javax.swing.JPanel {
         lb_txtCaixa7 = new javax.swing.JLabel();
         lb_txtCaixa8 = new javax.swing.JLabel();
         cb_Plano = new javax.swing.JComboBox<>();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -202,6 +203,11 @@ public class TelaPlanoAlterar extends javax.swing.JPanel {
         lb_plano.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_plano.setText("Plano");
         lb_plano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_plano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_planoMouseClicked(evt);
+            }
+        });
         add(lb_plano);
         lb_plano.setBounds(0, 310, 250, 40);
 
@@ -276,6 +282,10 @@ public class TelaPlanoAlterar extends javax.swing.JPanel {
         cb_Plano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cb_Plano);
         cb_Plano.setBounds(330, 160, 320, 40);
+
+        jCheckBox1.setText("jCheckBox1");
+        add(jCheckBox1);
+        jCheckBox1.setBounds(0, 0, 85, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_ValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ValorActionPerformed
@@ -306,9 +316,14 @@ public class TelaPlanoAlterar extends javax.swing.JPanel {
         Main.controllerManager.btAcessarTelaTreino();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_treinoMouseClicked
 
+    private void lb_planoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_planoMouseClicked
+        Main.controllerManager.btAcessarTelaPlano();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_planoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_Plano;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel lb_Nome;
     private javax.swing.JLabel lb_TempoContrato;
     private javax.swing.JLabel lb_botaoAddPlano;

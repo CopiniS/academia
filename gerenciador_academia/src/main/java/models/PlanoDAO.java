@@ -7,81 +7,74 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlanoDAO {
     Banco banco = new Banco();
-    public void criaPlano(String nome, float valor, int tempoAtivacao){
-        if(insertPlanoSql(nome, valor, tempoAtivacao)){
-            System.out.println("Dados cadastrados com sucesso");
-        }
-        else{
-            System.out.println("Ocorreu um erro no cadastro");
-        }
-    }
-    
-    public void alteraPlano(Plano plano, String nome, float valor, int tempoAtivacao){
-        if(updatePlanoSql(plano.getId(), nome, valor, tempoAtivacao)){
-            System.out.println("Dados atualizados com sucesso");
-        }
-    }
-    
+
+
     public void verPlanos(){
         List<Plano> lista = selectPlanoSql();
         for(Plano plano : lista){
             System.out.println(plano.toString());
         }      
     }
-    
-    public void deletaPlano(Plano plano){
-        if(deletePlanoSql(plano.getId())){
-            System.out.println("Plano excluido com sucesso");
-        }
-        else{
-            System.out.println("O Plano requisitado, não foi encontrado no banco de dados");
-        }      
-    }
-    
-    public void adicionaCliente(Cliente cliente, Plano plano){
-        if(updateClienteIdPlano(plano.getId(), cliente.getId())){
-        System.out.println("Plano de "+cliente.getNome()+ " adicionado com sucesso");
-        }        
-    }
-    
-    public void removeCliente(Cliente cliente, Plano plano){
-        if(updateDeleteClienteIdPlano(plano.getId(), cliente.getId())){
-        System.out.println("Plano de "+cliente.getNome()+ " removido com sucesso");
-        }         
-    }
-    
-    
-    
     //-------------------------------------------------------------------------------------------------------------------------//
     //SQL
     
     
-    public boolean insertPlanoSql(String nome, float valor, int tempoAtivacao){
-        boolean resultado = false;
+    public int insertPlanoSql(Plano plano){
+        int idPlano = -1;
         
         Connection conexao = this.banco.getConexao();
         String sql = "INSERT INTO plano(nome, valor, tempoAtivacao) VALUES(?, ?, ?)";
         PreparedStatement consulta;
         
         try {
-            consulta = conexao.prepareStatement(sql);
-            consulta.setString(1, nome);
-            consulta.setFloat(2, valor);
-            consulta.setInt(3, tempoAtivacao);
+            consulta = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            consulta.setString(1, plano.getNome());
+            consulta.setFloat(2, plano.getValor());
+            consulta.setInt(3, plano.getTempoAtivacao());
             consulta.execute();
-            resultado = true;
+            ResultSet key = consulta.getGeneratedKeys();
+            if (key.next()) { // Mova o cursor para a primeira linha do ResultSet
+                idPlano = key.getInt(1);
+                
+            } 
+            else {
+                System.out.println("Nenhuma chave gerada após a execução da consulta.");
+                
+            }
 
         } catch (SQLException ex) {
             System.out.println("Erro ao cadastrar plano: " + ex.getMessage());
-            resultado = false;
+            
         }
-        
+        return idPlano;
+    }
+    
+    public boolean insertPlanoHasModalidade(int idPlano, List<Modalidade> listaModalidadesSelecionadas){
+        boolean resultado = false;
+        Connection conexao = this.banco.getConexao();
+        for(Modalidade m : listaModalidadesSelecionadas){
+            String sql = "INSERT INTO plano_has_modalidade(idPlano, idModalidade) VALUES(?, ?)";
+            PreparedStatement consulta;
+
+            try {
+                consulta = conexao.prepareStatement(sql);
+                consulta.setInt(1, idPlano);
+                consulta.setFloat(2, m.getId());
+                consulta.execute();
+                resultado = true;
+
+            } catch (SQLException ex) {
+                System.out.println("Erro ao cadastrar plano: " + ex.getMessage());
+                resultado = false;
+            }
+        }
         return resultado;
     }
     

@@ -1,49 +1,24 @@
 
 package controller;
 
+import views.TelaPlanoAdicionar;
+import views.TelaPlanoAlterar;
+
 public class PlanoController {
 
     public PlanoController() {
     }
-    
-    
-    public void btCliente(){
-        
-    }
-    
-    public void btInstrutor(){
-        
-    }
-    
-    public void btModalidade(){
-        
-    }
-    
-    public void btTreino(){
-        
-    }
-    
-    public void btExercicio(){
-        
-    }
-    
+
     public void btAdicionarPlano(){
-        
+        Main.controllerManager.getApplicationView().setTelaPlanoAdicionar(new TelaPlanoAdicionar());
+        Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaPlanoAdicionar());
+        Main.controllerManager.getApplicationView().getJanela().setLocationRelativeTo(null);
     }
     
     public void btAlterarPlano(){
-        
+        Main.controllerManager.getApplicationView().setTelaPlanoAlterar(new TelaPlanoAlterar());
+        Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaPlanoAlterar());
+        Main.controllerManager.getApplicationView().getJanela().setLocationRelativeTo(null);
     }
-    
-    public void btSalvarNovoPlano(){
+}   
         
-    }
-    
-    public void btSalvarAlteraçãoPlano(){
-        
-    }
-    
-    public void btDeletarPlano(){
-        
-    }
-}
