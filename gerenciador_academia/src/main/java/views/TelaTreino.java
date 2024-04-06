@@ -123,11 +123,21 @@ public class TelaTreino extends javax.swing.JPanel {
         lb_txtAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAdd.setText("ADICIONAR TREINO");
         lb_txtAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAddMouseClicked(evt);
+            }
+        });
         add(lb_txtAdd);
         lb_txtAdd.setBounds(350, 330, 260, 30);
 
         lb_botaoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddMouseClicked(evt);
+            }
+        });
         add(lb_botaoAdd);
         lb_botaoAdd.setBounds(350, 310, 260, 70);
 
@@ -136,11 +146,21 @@ public class TelaTreino extends javax.swing.JPanel {
         lb_txtAlterar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAlterar.setText("ALTERAR TREINO");
         lb_txtAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAlterarMouseClicked(evt);
+            }
+        });
         add(lb_txtAlterar);
         lb_txtAlterar.setBounds(660, 330, 260, 30);
 
         lb_botaoAlterarTreino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoAlterarTreino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAlterarTreino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAlterarTreinoMouseClicked(evt);
+            }
+        });
         add(lb_botaoAlterarTreino);
         lb_botaoAlterarTreino.setBounds(660, 310, 260, 70);
 
@@ -185,6 +205,22 @@ public class TelaTreino extends javax.swing.JPanel {
     private void lb_modalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_modalidadeMouseClicked
         Main.controllerManager.btAcessarTelaModalidade();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_modalidadeMouseClicked
+
+    private void lb_botaoAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddMouseClicked
+        Main.controllerManager.getTreinoController().btAdicionarTreino();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_botaoAddMouseClicked
+
+    private void lb_txtAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddMouseClicked
+        Main.controllerManager.getTreinoController().btAdicionarTreino(); // TODO add your handling code here:
+    }//GEN-LAST:event_lb_txtAddMouseClicked
+
+    private void lb_txtAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAlterarMouseClicked
+        Main.controllerManager.getTreinoController().btAlterarTreino();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_txtAlterarMouseClicked
+
+    private void lb_botaoAlterarTreinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAlterarTreinoMouseClicked
+        Main.controllerManager.getTreinoController().btAlterarTreino();       // TODO add your handling code here:
+    }//GEN-LAST:event_lb_botaoAlterarTreinoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,52 +6,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TreinoDAO {
     Banco banco = new Banco();
+
+
     
-    public void criaTreino(String nome, String descricao){
-        if(insertTreinoSql(nome, descricao)){
-            System.out.println("Os dados do Treino foram cadastrados com sucesso");
-        }
-        else{
-            System.out.println("Ocorreu algum erro na adição dos exercicios");
-        }
-    }
-    
-    public void AdicionaExercicio(Treino treino, List<Exercicio> listaExercicios, String diaSemana){
-        boolean resultado = true;
         
-        for(int i=0; i<listaExercicios.size(); i++){
-            resultado = insertTreinoHasExercicioSql(treino.getId(), listaExercicios.get(i).getId(), diaSemana);
-        }
-        
-        if(resultado){
-            System.out.println("Os exercicios foram cadastrados no treino");
-        }
-    }
-    
-    public void alteraTreino(Treino treino, String nome, String descricao){
-        if(updateTreinoSql(treino.getId(), nome, descricao)){
-            System.out.println("Dados do treino atualizados com sucesso");
-        }
-    }
-    
-    public void alteraExercicio(Treino treino, List<Exercicio> listaNovosExercicios, List<Exercicio> listaExerciciosRetirados, String diaSemana){
-        boolean resultado = true;
-        
-        for(int i=0; i<listaNovosExercicios.size(); i++){
-            if(!(updateTreinoHasExercicioSql(treino.getId(), listaNovosExercicios.get(i).getId(), listaExerciciosRetirados.get(i).getId(), diaSemana))){
-                resultado = false;
-            }
-        }
-        
-        if(resultado){
-            System.out.println("Exercicios alterados com sucesso");
-        }
-    }
     
     public void mostraListaTreinos(){
         List<Treino> lista = selectTreinos();
@@ -66,41 +30,37 @@ public class TreinoDAO {
             System.out.println(t.toString());
         } 
     }
-    
-    public void deletaTreino(Treino treino){
-        if(deleteTreinoSql(treino.getId())){
-            System.out.println("Treino removido com sucesso");
-        }
-        else{
-            System.out.println("Ocorreu algum erro na remoção do treino");
-        }
-    }
-    
-    
 
 //--------------------------------------------------------------------------------------------------------------------------------------//
     //SQL
     
     
-    public boolean insertTreinoSql(String nome, String descricao){
+    public int insertTreinoSql(String nome, String descricao){
+        int idTreino = -1;
         boolean resultado = false;
         Connection conexao = this.banco.getConexao();
         String sql = "INSERT INTO treino(nome, descricao) VALUES(?, ?)";
         PreparedStatement consulta;
         
         try {
-            consulta = conexao.prepareStatement(sql);
+            consulta = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             consulta.setString(1, nome);
             consulta.setString(2, descricao);
             consulta.execute();
-            resultado = true;
+            ResultSet key = consulta.getGeneratedKeys();
+            if (key.next()) { // Mova o cursor para a primeira linha do ResultSet
+                idTreino = key.getInt(1);
+            } 
+            else {
+                System.out.println("Nenhuma chave gerada após a execução da consulta.");
+            }
 
         } catch (SQLException ex) {
             System.out.println("Erro ao cadastrar treino: " + ex.getMessage());
             resultado = false;
         }
         
-        return resultado;
+        return idTreino;
     }
     
     public boolean insertTreinoHasExercicioSql(int idTreino, int idExercicio, String diaSemana){

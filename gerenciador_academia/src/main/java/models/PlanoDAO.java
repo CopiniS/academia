@@ -42,11 +42,9 @@ public class PlanoDAO {
             ResultSet key = consulta.getGeneratedKeys();
             if (key.next()) { // Mova o cursor para a primeira linha do ResultSet
                 idPlano = key.getInt(1);
-                
             } 
             else {
                 System.out.println("Nenhuma chave gerada após a execução da consulta.");
-                
             }
 
         } catch (SQLException ex) {

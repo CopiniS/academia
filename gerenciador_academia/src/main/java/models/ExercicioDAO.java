@@ -55,7 +55,7 @@ public class ExercicioDAO {
         
             Exercicio objeto;
             while(resultados.next()){
-                int idExercicio = Integer.parseInt(resultados.getString("idExercicio"));
+                int idExercicio = resultados.getInt("idExercicio");
                 String nomeExercicio = resultados.getString("nome");
                 String musculaturaAfetadaExercicio = resultados.getString("musculaturaAfetada");
                 objeto = new Exercicio();
