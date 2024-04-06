@@ -15,6 +15,8 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         initComponents();     
         listaModalidades = Main.controllerManager.getPlanoAdicionarController().retornaListaModadalidade();
         inicializarCheckBoxs();
+        verificaModalidadesVazias();
+        
     }
     
     public void inicializaVetorModalidades(){
@@ -26,8 +28,6 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
       
         for(int i=0; i<listaModalidades.size(); i++){
             vetorModalidade[i] = listaModalidades.get(i).getNome();
-            System.out.println("vetor: " + vetorModalidade[i]);
-            System.out.println("lista: " + listaModalidades.get(i).getNome());
         }
         
     }
@@ -167,6 +167,13 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
         jCheckBox6.setSelected(false);
         jCheckBox7.setSelected(false);
         jCheckBox8.setSelected(false);
+    }
+    
+    public void verificaModalidadesVazias(){
+        if(!Main.controllerManager.getPlanoAdicionarController().verificaModalidadesvazias(listaModalidades)){
+            JOptionPane.showMessageDialog(null, "Cadastre pelo menos uma modalidade para ter acesso ao cadastro de planos");
+            Main.controllerManager.btAcessarTelaPlano();
+        }
     }
 
 

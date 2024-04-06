@@ -78,18 +78,42 @@ public class PlanoDAO {
         return resultado;
     }
     
-    public boolean updatePlanoSql(int idPlano, String nome, float valor, int tempoAtivacao){
+    public boolean deletePlanohasModalidade(int idPlano, List<Modalidade> listaModalidadesAntigas){
+        boolean excluido = false;
         Connection conexao = this.banco.getConexao();
-        String sql = "UPDATE plano SET nome= ?, valor = ?, tempoAtivacao = ? WHERE idPlano= ?";
+        
+        for(int i=0; i<listaModalidadesAntigas.size(); i++){
+            String sql = "DELETE FROM plano_has_modalidade WHERE idPlano = ? AND idModalidade = ?";
+            PreparedStatement consulta;
+
+
+            try {
+                consulta = conexao.prepareStatement(sql);
+                consulta.setInt(1, idPlano);
+                consulta.setInt(2, listaModalidadesAntigas.get(i).getId());
+
+                int linhasAtualizadas = consulta.executeUpdate();
+                if(linhasAtualizadas > 0) excluido = true;
+
+            } catch (SQLException ex) {
+                excluido = false;
+                System.out.println("Não foi possivel excluir o plano" + ex.getMessage());
+            }
+        }
+        return excluido;             
+    }
+    
+    public boolean updatePlanoSql(Plano plano){
+        Connection conexao = this.banco.getConexao();
+        String sql = "UPDATE plano SET valor = ?, tempoAtivacao = ? WHERE idPlano= ?";
         PreparedStatement consulta;
         boolean atualizado = false;
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setString(1, nome);
-            consulta.setFloat(2, valor);
-            consulta.setInt(3, tempoAtivacao);
-            consulta.setInt(4, idPlano);
+            consulta.setFloat(1, plano.getValor());
+            consulta.setInt(2, plano.getTempoAtivacao());
+            consulta.setInt(3, plano.getId());
             
             int linhasAtualizadas = consulta.executeUpdate();
             if(linhasAtualizadas > 0) atualizado = true;
@@ -195,6 +219,42 @@ public class PlanoDAO {
             System.out.println("Não foi possivel remover o cliente do plano" + ex.getMessage());
         }
         return atualizado;          
+    }
+    
+    public List retornaListaDeModalidadesDoPlano(int idPlano) throws SQLException{
+        Connection conexao = this.banco.getConexao();
+        List<Modalidade> lista = new ArrayList<>();
+        PreparedStatement consulta = null;
+        ResultSet resultados;
+        String sql = "SELECT m.nome, m.idModalidade FROM plano JOIN plano_has_modalidade AS p ON plano.idPlano = p.idPlano JOIN modalidade AS m ON m.idModalidade = p.idModalidade WHERE plano.idPlano = ?";
+        
+        consulta = conexao.prepareStatement(sql);
+        consulta.setInt(1, idPlano);
+        resultados = consulta.executeQuery();
+        
+        
+        try {
+        
+            Modalidade objeto;
+            while(resultados.next()){
+                String nomeModalidade = resultados.getString("m.nome");
+                int idModalidade = resultados.getInt("m.idModalidade");
+                
+                objeto = new Modalidade();
+                objeto.setNome(nomeModalidade);
+                objeto.setId(idModalidade);
+                
+                System.out.println("modalidade: " + objeto.getNome());
+                System.out.println("id: " + objeto.getId());
+                
+                lista.add(objeto);
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        
+        return lista;
     }
     
 }

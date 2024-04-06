@@ -69,6 +69,14 @@ public class PlanoAdicionarController {
         return str.matches("^\\d*\\.?\\d+$");
     }
     
+    public boolean verificaModalidadesvazias(List<Modalidade> lista){
+        boolean vazia = false;
+        if(!lista.isEmpty()){
+            vazia = true;
+        }
+        return vazia;
+    }
+    
     public boolean btAddPlano(Plano plano, List<Modalidade> lista){
         boolean resultado = false;
         int idPlano = Main.controllerManager.getApplicationModel().getPlanoDAO().insertPlanoSql(plano);
@@ -78,5 +86,7 @@ public class PlanoAdicionarController {
         }
         return resultado;
     }
+    
+    
     
 }
