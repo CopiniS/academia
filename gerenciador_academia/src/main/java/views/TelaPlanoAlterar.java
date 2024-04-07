@@ -170,7 +170,7 @@ public class TelaPlanoAlterar extends javax.swing.JPanel {
         jCheckBox9.setSelected(false);
     }
     
-        public boolean [] retornaboleanoCheckBoxs(){
+    public boolean [] retornaboleanoCheckBoxs(){
         boolean [] checkBoxs = new boolean[8];
         
         if(jCheckBox2.isSelected()){
@@ -232,17 +232,17 @@ public class TelaPlanoAlterar extends javax.swing.JPanel {
         return checkBoxs;
     }
         
-        public void iniciaCampos(){
-            tf_TempoContrato.setText(String.valueOf(plano.getTempoAtivacao()));
-            tf_Valor.setText(String.valueOf(plano.getValor()));
-            inicializaCheckBoxesNomes();
-            resetarCheckBoxes();
-            try {
-                inicializaCheckBoxesCheck();
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaPlanoAlterar.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    public void iniciaCampos(){
+        tf_TempoContrato.setText(String.valueOf(plano.getTempoAtivacao()));
+        tf_Valor.setText(String.valueOf(plano.getValor()));
+        inicializaCheckBoxesNomes();
+        resetarCheckBoxes();
+        try {
+            inicializaCheckBoxesCheck();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPlanoAlterar.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -50,8 +50,6 @@ public class InstrutorDAO {
         return idInstrutor;
     }
     
-    
-    
     public List selectInstrutor(){
         Connection conexao = this.banco.getConexao();
         List<Instrutor> lista = new ArrayList();
@@ -164,5 +162,63 @@ public class InstrutorDAO {
             }
         }
         return resultado;
+    }
+    
+    public boolean deleteInstrutorHasModalidade(int idInstrutor, List<Modalidade> listaModalidadesAntigas){
+        boolean excluido = false;
+        Connection conexao = this.banco.getConexao();
+        
+        for(int i=0; i<listaModalidadesAntigas.size(); i++){
+            String sql = "DELETE FROM modalidade_has_instrutor WHERE idInstrutor = ? AND idModalidade = ?";
+            PreparedStatement consulta;
+
+
+            try {
+                consulta = conexao.prepareStatement(sql);
+                consulta.setInt(1, idInstrutor);
+                consulta.setInt(2, listaModalidadesAntigas.get(i).getId());
+
+                int linhasAtualizadas = consulta.executeUpdate();
+                if(linhasAtualizadas > 0) excluido = true;
+
+            } catch (SQLException ex) {
+                excluido = false;
+                System.out.println("Não foi possivel excluir o plano" + ex.getMessage());
+            }
+        }
+        return excluido;     
+    }
+    
+    public List retornaListaDeModalidadesDoInstrutor(int idInstrutor) throws SQLException{
+        Connection conexao = this.banco.getConexao();
+        List<Modalidade> lista = new ArrayList<>();
+        PreparedStatement consulta = null;
+        ResultSet resultados;
+        String sql = "SELECT m.nome, m.idModalidade FROM instrutor AS i JOIN modalidade_has_instrutor AS mhp ON i.idInstrutor = mhp.idInstrutor JOIN modalidade AS m ON m.idModalidade = mhp.idModalidade WHERE i.idInstrutor = ?";
+        
+        consulta = conexao.prepareStatement(sql);
+        consulta.setInt(1, idInstrutor);
+        resultados = consulta.executeQuery();
+        
+        
+        try {
+        
+            Modalidade objeto;
+            while(resultados.next()){
+                String nomeModalidade = resultados.getString("m.nome");
+                int idModalidade = resultados.getInt("m.idModalidade");
+                
+                objeto = new Modalidade();
+                objeto.setNome(nomeModalidade);
+                objeto.setId(idModalidade);
+                
+                lista.add(objeto);
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        
+        return lista;
     }
 }

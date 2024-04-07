@@ -26,7 +26,6 @@ public class Banco {
         try {
             this.url = "jdbc:"+this.banco+"://localhost:"+this.porta+"/"+this.nome;
             conexao = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Conexao feita com sucesso");
         } catch (SQLException ex) {
             System.out.println("Conexão falhou");
         }
