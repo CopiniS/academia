@@ -5,31 +5,174 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import models.Instrutor;
 import models.Modalidade;
 
 public class TelaInstrutorAdicionar extends javax.swing.JPanel {
-
-    private List<Modalidade> listaModalidade;
-    
-    public void preencheCbModalidade(){
-        int i = 0;
-        
-        for(Modalidade modalidade : listaModalidade){
-            cb_tipoModalidade.addItem(listaModalidade.get(i).getNome());
-            i++;
-        }
-    }
-    
-    public void addInstrutor(){
-        
-    }
+    private List<Modalidade> listaModalidades;
+    private String []vetorModalidade;
+    private Instrutor instrutor;
     
     public TelaInstrutorAdicionar() {
         initComponents();
-        this.listaModalidade = Main.controllerManager.getApplicationModel().getModalidadeDAO().selectModalidadeSql();
+        inicializaListaModalidades();
+        inicializarCheckBoxs();
         
-        preencheCbModalidade();
     }
+    
+    public void inicializaListaModalidades(){
+        listaModalidades = Main.controllerManager.getInstrutorAdicionarController().retornaModalidades();
+    }
+    
+    public void inicializaVetorModalidades(){
+        vetorModalidade = new String [8];
+        for(int i=0; i<8; i++){
+            vetorModalidade[i] = "";
+        }
+        
+      
+        for(int i=0; i<listaModalidades.size(); i++){
+            vetorModalidade[i] = listaModalidades.get(i).getNome();
+        }
+        
+    }
+    
+    public void inicializarCheckBoxs(){
+        inicializaVetorModalidades();
+        
+        if(!vetorModalidade[0].equals("")){
+            jCheckBox1.setText(vetorModalidade[0]);
+        }
+        else{
+            jCheckBox1.setVisible(false);
+        }
+        
+        if(!vetorModalidade[1].equals("")){
+            jCheckBox2.setText(vetorModalidade[1]);
+        }
+        else{
+            jCheckBox2.setVisible(false);
+        }
+        
+        if(!vetorModalidade[2].equals("")){
+            jCheckBox3.setText(vetorModalidade[2]);
+        }
+        else{
+            jCheckBox3.setVisible(false);
+        }
+        
+        if(!vetorModalidade[3].equals("")){
+            jCheckBox4.setText(vetorModalidade[3]);
+        }
+        else{
+            jCheckBox4.setVisible(false);
+        }
+        
+        if(!vetorModalidade[4].equals("")){
+            jCheckBox5.setText(vetorModalidade[4]);
+        }
+        else{
+            jCheckBox5.setVisible(false);
+        }
+        
+        if(!vetorModalidade[5].equals("")){
+            jCheckBox6.setText(vetorModalidade[5]);
+        }
+        else{
+            jCheckBox6.setVisible(false);
+        }
+        
+        if(!vetorModalidade[6].equals("")){
+            jCheckBox7.setText(vetorModalidade[6]);
+        }
+        else{
+            jCheckBox7.setVisible(false);
+        }
+        
+        if(!vetorModalidade[7].equals("")){
+            jCheckBox8.setText(vetorModalidade[7]);
+        }
+        else{
+            jCheckBox8.setVisible(false);
+        }
+    }
+    
+    public boolean [] retornaboleanoCheckBoxs(){
+        boolean [] checkBoxs = new boolean[8];
+        
+        if(jCheckBox1.isSelected()){
+            checkBoxs[0] = true;
+        }
+        else{
+            checkBoxs[0] = false;
+        }
+        
+        if(jCheckBox2.isSelected()){
+            checkBoxs[1] = true;
+        }
+        else{
+            checkBoxs[1] = false;
+        }
+        
+        if(jCheckBox3.isSelected()){
+            checkBoxs[2] = true;
+        }
+        else{
+            checkBoxs[2] = false;
+        }
+        
+        if(jCheckBox4.isSelected()){
+            checkBoxs[3] = true;
+        }
+        else{
+            checkBoxs[3] = false;
+        }
+        
+        if(jCheckBox5.isSelected()){
+            checkBoxs[4] = true;
+        }
+        else{
+            checkBoxs[4] = false;
+        }
+        
+        if(jCheckBox6.isSelected()){
+            checkBoxs[5] = true;
+        }
+        else{
+            checkBoxs[5] = false;
+        }
+        
+        if(jCheckBox7.isSelected()){
+            checkBoxs[6] = true;
+        }
+        else{
+            checkBoxs[6] = false;
+        }
+        
+        if(jCheckBox8.isSelected()){
+            checkBoxs[7] = true;
+        }
+        else{
+            checkBoxs[7] = false;
+        }
+        
+        return checkBoxs;
+    }
+    
+    public void resetaCampos(){
+        tf_Nome.setText("");
+        ftf_cpf.setText("");
+        jCheckBox1.setSelected(false);
+        jCheckBox2.setSelected(false);
+        jCheckBox3.setSelected(false);
+        jCheckBox4.setSelected(false);
+        jCheckBox5.setSelected(false);
+        jCheckBox6.setSelected(false);
+        jCheckBox7.setSelected(false);
+        jCheckBox8.setSelected(false);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,21 +184,24 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         lb_exercicio = new javax.swing.JLabel();
         lb_instrutor = new javax.swing.JLabel();
         lb_plano = new javax.swing.JLabel();
-        lb_dataNasc = new javax.swing.JLabel();
         lb_CPF = new javax.swing.JLabel();
         lb_Nome = new javax.swing.JLabel();
         lb_titModalidade = new javax.swing.JLabel();
-        lb_titFormacao = new javax.swing.JLabel();
         lb_titDadosPess = new javax.swing.JLabel();
         lb_logo = new javax.swing.JLabel();
         lb_sideBar = new javax.swing.JLabel();
         lb_tipoModalidade = new javax.swing.JLabel();
         lb_txtAddInstrutor = new javax.swing.JLabel();
         lb_botaoAddInstrutor = new javax.swing.JLabel();
-        tf_Formacao = new javax.swing.JTextField();
-        cb_tipoModalidade = new javax.swing.JComboBox<>();
         ftf_cpf = new javax.swing.JFormattedTextField();
-        ftf_dataNasc = new javax.swing.JFormattedTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jCheckBox6 = new javax.swing.JCheckBox();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jCheckBox8 = new javax.swing.JCheckBox();
 
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setRequestFocusEnabled(false);
@@ -144,11 +290,6 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         add(lb_plano);
         lb_plano.setBounds(0, 310, 250, 40);
 
-        lb_dataNasc.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
-        lb_dataNasc.setText("Data de Nascimento:");
-        add(lb_dataNasc);
-        lb_dataNasc.setBounds(670, 180, 200, 30);
-
         lb_CPF.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
         lb_CPF.setText("CPF:");
         add(lb_CPF);
@@ -162,12 +303,7 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         lb_titModalidade.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
         lb_titModalidade.setText("Modalidade");
         add(lb_titModalidade);
-        lb_titModalidade.setBounds(330, 450, 170, 20);
-
-        lb_titFormacao.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
-        lb_titFormacao.setText("Formação");
-        add(lb_titFormacao);
-        lb_titFormacao.setBounds(330, 350, 170, 20);
+        lb_titModalidade.setBounds(340, 360, 170, 20);
 
         lb_titDadosPess.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 18)); // NOI18N
         lb_titDadosPess.setText("Dados Pessoais");
@@ -183,9 +319,9 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         lb_sideBar.setBounds(0, 0, 254, 720);
 
         lb_tipoModalidade.setFont(new java.awt.Font("Montserrat", 0, 16)); // NOI18N
-        lb_tipoModalidade.setText("Tipo de Modalidade:");
+        lb_tipoModalidade.setText("Modalidade ensinadas:");
         add(lb_tipoModalidade);
-        lb_tipoModalidade.setBounds(330, 480, 230, 30);
+        lb_tipoModalidade.setBounds(340, 390, 230, 30);
 
         lb_txtAddInstrutor.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 16)); // NOI18N
         lb_txtAddInstrutor.setForeground(new java.awt.Color(255, 255, 255));
@@ -200,25 +336,13 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         lb_txtAddInstrutor.setBounds(960, 510, 260, 30);
 
         lb_botaoAddInstrutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-azul.png"))); // NOI18N
-        add(lb_botaoAddInstrutor);
-        lb_botaoAddInstrutor.setBounds(960, 490, 260, 70);
-
-        tf_Formacao.setBackground(new java.awt.Color(238, 238, 238));
-        tf_Formacao.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tf_Formacao.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tf_Formacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_FormacaoActionPerformed(evt);
+        lb_botaoAddInstrutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddInstrutorMouseClicked(evt);
             }
         });
-        add(tf_Formacao);
-        tf_Formacao.setBounds(330, 380, 320, 40);
-
-        cb_tipoModalidade.setBackground(new java.awt.Color(235, 235, 235));
-        cb_tipoModalidade.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        cb_tipoModalidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(cb_tipoModalidade);
-        cb_tipoModalidade.setBounds(330, 510, 300, 40);
+        add(lb_botaoAddInstrutor);
+        lb_botaoAddInstrutor.setBounds(960, 490, 260, 70);
 
         ftf_cpf.setBackground(new java.awt.Color(228, 228, 228));
         ftf_cpf.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -230,20 +354,44 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         add(ftf_cpf);
         ftf_cpf.setBounds(330, 280, 320, 40);
 
-        ftf_dataNasc.setBackground(new java.awt.Color(228, 228, 228));
-        ftf_dataNasc.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ftf_dataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        add(ftf_dataNasc);
-        ftf_dataNasc.setBounds(670, 210, 200, 40);
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        add(jCheckBox1);
+        jCheckBox1.setBounds(340, 430, 130, 30);
+        add(jCheckBox2);
+        jCheckBox2.setBounds(510, 430, 140, 30);
+        add(jCheckBox3);
+        jCheckBox3.setBounds(340, 470, 130, 30);
+        add(jCheckBox4);
+        jCheckBox4.setBounds(510, 470, 140, 30);
+        add(jCheckBox5);
+        jCheckBox5.setBounds(340, 510, 140, 30);
+        add(jCheckBox6);
+        jCheckBox6.setBounds(510, 510, 150, 30);
+
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
+        add(jCheckBox7);
+        jCheckBox7.setBounds(340, 550, 150, 30);
+
+        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox8ActionPerformed(evt);
+            }
+        });
+        add(jCheckBox8);
+        jCheckBox8.setBounds(510, 550, 160, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_NomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_NomeActionPerformed
-
-    private void tf_FormacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_FormacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_FormacaoActionPerformed
 
     private void lb_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_clienteMouseClicked
         Main.controllerManager.btAcessarTelaCliente();        // TODO add your handling code here:
@@ -266,20 +414,29 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
     }//GEN-LAST:event_lb_treinoMouseClicked
 
     private void lb_txtAddInstrutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddInstrutorMouseClicked
-        String nome = tf_Nome.getText();
-        String cpf = ftf_cpf.getText();
-        String idModalidade = "";
-        int i = 0;
-        for (Modalidade modalidade : listaModalidade) {
-            if(cb_tipoModalidade.getSelectedItem().equals(listaModalidade.get(i).getNome())){
-                idModalidade = String.valueOf(listaModalidade.get(i).getId());
+        if(Main.controllerManager.getInstrutorAdicionarController().validaCamposObrigatorios(tf_Nome.getText(), ftf_cpf.getText())){
+            if(Main.controllerManager.getInstrutorAdicionarController().validarCPF(ftf_cpf.getText())){
+                if(!Main.controllerManager.getInstrutorAdicionarController().verificaCPFrepetido(ftf_cpf.getText())){
+                    
+                    instrutor = new Instrutor();
+                    instrutor.setNome(tf_Nome.getText());
+                    instrutor.setCpf(ftf_cpf.getText());
+                    List selecionadas = Main.controllerManager.getInstrutorAdicionarController().retornaModalidadesSelecionadas(retornaboleanoCheckBoxs(), listaModalidades);
+                    if(Main.controllerManager.getInstrutorAdicionarController().btAddInstrutor(this.instrutor, selecionadas)){
+                       JOptionPane.showMessageDialog(null, "Instrutor cadastrado com sucesso");
+                       resetaCampos();
+                    }
+                }
+                else{
+                   JOptionPane.showMessageDialog(null, "CPF já cadastrado");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "CPF inválido");
             }
         }
-        
-        try {
-            Main.controllerManager.getInstrutorAdicionarController().btAddInstrutor(nome, cpf, idModalidade);
-        } catch (ParseException ex) {
-            Logger.getLogger(TelaInstrutorAdicionar.class.getName()).log(Level.SEVERE, null, ex);
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios");
         }
     }//GEN-LAST:event_lb_txtAddInstrutorMouseClicked
 
@@ -287,16 +444,60 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
         Main.controllerManager.btAcessarTelaInstrutor();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_instrutorMouseClicked
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox7ActionPerformed
+
+    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox8ActionPerformed
+
+    private void lb_botaoAddInstrutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddInstrutorMouseClicked
+        if(Main.controllerManager.getInstrutorAdicionarController().validaCamposObrigatorios(tf_Nome.getText(), ftf_cpf.getText())){
+            if(Main.controllerManager.getInstrutorAdicionarController().validarCPF(ftf_cpf.getText())){
+                if(!Main.controllerManager.getInstrutorAdicionarController().verificaCPFrepetido(ftf_cpf.getText())){
+                    
+                    instrutor = new Instrutor();
+                    instrutor.setNome(tf_Nome.getText());
+                    instrutor.setCpf(ftf_cpf.getText());
+                    List selecionadas = Main.controllerManager.getInstrutorAdicionarController().retornaModalidadesSelecionadas(retornaboleanoCheckBoxs(), listaModalidades);
+                    if(Main.controllerManager.getInstrutorAdicionarController().btAddInstrutor(this.instrutor, selecionadas)){
+                       JOptionPane.showMessageDialog(null, "Instrutor cadastrado com sucesso");
+                       resetaCampos();
+                    }
+                }
+                else{
+                   JOptionPane.showMessageDialog(null, "CPF já cadastrado");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "CPF inválido");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios");
+        }
+    }//GEN-LAST:event_lb_botaoAddInstrutorMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cb_tipoModalidade;
     private javax.swing.JFormattedTextField ftf_cpf;
-    private javax.swing.JFormattedTextField ftf_dataNasc;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel lb_CPF;
     private javax.swing.JLabel lb_Nome;
     private javax.swing.JLabel lb_botaoAddInstrutor;
     private javax.swing.JLabel lb_cliente;
-    private javax.swing.JLabel lb_dataNasc;
     private javax.swing.JLabel lb_exercicio;
     private javax.swing.JLabel lb_instrutor;
     private javax.swing.JLabel lb_logo;
@@ -305,11 +506,9 @@ public class TelaInstrutorAdicionar extends javax.swing.JPanel {
     private javax.swing.JLabel lb_sideBar;
     private javax.swing.JLabel lb_tipoModalidade;
     private javax.swing.JLabel lb_titDadosPess;
-    private javax.swing.JLabel lb_titFormacao;
     private javax.swing.JLabel lb_titModalidade;
     private javax.swing.JLabel lb_treino;
     private javax.swing.JLabel lb_txtAddInstrutor;
-    private javax.swing.JTextField tf_Formacao;
     private javax.swing.JTextField tf_Nome;
     // End of variables declaration//GEN-END:variables
 }

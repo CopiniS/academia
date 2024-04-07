@@ -12,11 +12,13 @@ public class InstrutorController {
     public void btAdd(){
         Main.controllerManager.getApplicationView().setTelaInstrutorAdicionar(new TelaInstrutorAdicionar());
         Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaInstrutorAdicionar());
+        Main.controllerManager.getApplicationView().getJanela().setLocationRelativeTo(null);
     }
     
     public void btAlterar(){
         Main.controllerManager.getApplicationView().setTelaInstrutorAlterar(new TelaInstrutorAlterar());
         Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaInstrutorAlterar());
+        Main.controllerManager.getApplicationView().getJanela().setLocationRelativeTo(null);
     }
     
     public void btMostrar(){

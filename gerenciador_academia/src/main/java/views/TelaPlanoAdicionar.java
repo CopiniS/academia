@@ -13,10 +13,13 @@ public class TelaPlanoAdicionar extends javax.swing.JPanel {
     
     public TelaPlanoAdicionar() {
         initComponents();     
-        listaModalidades = Main.controllerManager.getPlanoAdicionarController().retornaListaModadalidade();
+        inicializaListaModalidade();
         inicializarCheckBoxs();
         verificaModalidadesVazias();
         
+    }
+    public void inicializaListaModalidade(){
+        listaModalidades = Main.controllerManager.getPlanoAdicionarController().retornaListaModadalidade();
     }
     
     public void inicializaVetorModalidades(){

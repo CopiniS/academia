@@ -6,17 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class InstrutorDAO {
     Banco banco = new Banco();
     
-    public void criaInstrutor(String nome, String cpf, String idModalidade){
-        if(insertInstrutor(nome, cpf, idModalidade)){
-            System.out.println("Dados cadastrados com sucesso");
-        }
-    }
+
     
     public void mostraInstrutores(){
         List<Instrutor> lista = selectInstrutor();
@@ -25,65 +22,32 @@ public class InstrutorDAO {
         }
     }
     
-    public void AlteraModalidade(Instrutor instrutor, Modalidade modalidade){
-        if(updateInstrutorIdModalidade(instrutor.getId(), modalidade.getId())){
-            System.out.println("Modalidade de "+instrutor.getNome()+ " alterada com sucesso");
-        }
-        else{
-            System.out.println("Os dados não foram atualizados");
-        }
-    }
+    public int insertInstrutor(String nome, String cpf){
         
-    public void adicionaModalidade(Instrutor instrutor, Modalidade modalidade){
-        if(insertInstrutorIdModalidade(instrutor.getId(), modalidade.getId())){
-            System.out.println("Modalidade de "+instrutor.getNome()+ " adicionada com sucesso");
-        }
-    }
-        
-    public void deletaInstrutor(Instrutor instrutor){
-        if(deleteInstrutorSql(instrutor.getId())){
-            System.out.println("Instrutor excluido com sucesso");
-        }
-        else{
-            System.out.println("O Instrutor requisitado, não foi encontrado no banco de dados");
-        }
-    }
-    
-    public boolean insertInstrutor(String nome, String cpf, String idModalidade){
-        boolean resultado = false;
-        String idInstrutor = "";
+        int idInstrutor = -1;
         Connection conexao = this.banco.getConexao();
         String sql = "INSERT INTO instrutor(nome, cpf) VALUES(?, ?)";
         PreparedStatement consulta;
         
         try {
-            consulta = conexao.prepareStatement(sql);
+            consulta = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             consulta.setString(1, nome);
             consulta.setString(2, cpf);
             consulta.execute();
-            resultado = true;
             
             ResultSet key = consulta.getGeneratedKeys();
             if (key.next()) { // Mova o cursor para a primeira linha do ResultSet
-                idInstrutor = key.getString(1);
-                resultado = true;
+                idInstrutor = key.getInt(1);
             } 
             else {
                 System.out.println("Nenhuma chave gerada após a execução da consulta.");
-                resultado = false;
             }
             
-            if(!idModalidade.isBlank()){
-                insertInstrutorIdModalidade(Integer.parseInt(idInstrutor), Integer.parseInt(idModalidade));
-            }
-            
-
         } catch (SQLException ex) {
             System.out.println("Erro ao cadastrar instrutor: " + ex.getMessage());
-            resultado = false;
         }
         
-        return resultado;
+        return idInstrutor;
     }
     
     
@@ -103,7 +67,9 @@ public class InstrutorDAO {
                 int idInstrutor = Integer.parseInt(resultados.getString("idInstrutor"));
                 String nomeInstrutor = resultados.getString("nome");
                 String cpfInstrutor = resultados.getString("cpf");
-                objeto = new Instrutor(nomeInstrutor, cpfInstrutor);
+                objeto = new Instrutor();
+                objeto.setNome(nomeInstrutor);
+                objeto.setCpf(cpfInstrutor);
                 objeto.setId(idInstrutor);
                 lista.add(objeto);
             }
@@ -113,30 +79,7 @@ public class InstrutorDAO {
         }
         return lista;
     }
-    
-    public boolean insertInstrutorIdModalidade(int idInstrutor, int idModalidade){
-        boolean resultado = false;
-        
-        Connection conexao = this.banco.getConexao();
-        String sql = "INSERT INTO modalidade_has_instrutor(idModalidade, idInstrutor) VALUES(?, ?)";
-        PreparedStatement consulta;
-        
-        try {
-            consulta = conexao.prepareStatement(sql);
-            consulta.setInt(1, idModalidade);
-            consulta.setInt(2, idInstrutor);
-
-            consulta.execute();
-            resultado = true;
-
-        } catch (SQLException ex) {
-            System.out.println("Erro ao adicionar modalidade: " + ex.getMessage());
-            resultado = false;
-        }
-        
-        return resultado;
-    }
-    
+ 
     public boolean updateInstrutorIdModalidade(int idInstrutor, int idModalidade){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE modalidade_has_instrutor SET idModalidade = ? WHERE idInstrutor= ?";
@@ -199,5 +142,27 @@ public class InstrutorDAO {
             System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
         }
         return lista;
+    }
+    
+    public boolean insertInstrutorHasModalidade(int idInstrutor, List<Modalidade> listaModalidadesSelecionadas){
+        boolean resultado = false;
+        Connection conexao = this.banco.getConexao();
+        for(Modalidade m : listaModalidadesSelecionadas){
+            String sql = "INSERT INTO modalidade_has_instrutor(idModalidade, idInstrutor) VALUES(?, ?)";
+            PreparedStatement consulta;
+
+            try {
+                consulta = conexao.prepareStatement(sql);
+                consulta.setInt(1, m.getId());
+                consulta.setFloat(2, idInstrutor);
+                consulta.execute();
+                resultado = true;
+
+            } catch (SQLException ex) {
+                System.out.println("Erro ao cadastrar plano: " + ex.getMessage());
+                resultado = false;
+            }
+        }
+        return resultado;
     }
 }

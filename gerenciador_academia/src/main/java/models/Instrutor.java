@@ -9,9 +9,7 @@ public class Instrutor {
     private String cpf;
     private ArrayList<Modalidade> modalidadesEnsinadas;
 
-    public Instrutor(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
+    public Instrutor() {
     }
 
     public String getNome() {

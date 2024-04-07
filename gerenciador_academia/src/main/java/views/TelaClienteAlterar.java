@@ -366,6 +366,11 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
         jLabel1.setBounds(940, 0, 20, 720);
 
         lb_btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-vermelho.png"))); // NOI18N
+        lb_btDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_btDeletarMouseClicked(evt);
+            }
+        });
         add(lb_btDeletar);
         lb_btDeletar.setBounds(980, 580, 260, 70);
 
@@ -544,6 +549,17 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
                JOptionPane.showMessageDialog(null, "Erro na exclusao do cliente, tente novamente mais tarde");
            }
     }//GEN-LAST:event_lb_txtDeletarMouseClicked
+
+    private void lb_btDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_btDeletarMouseClicked
+        if(Main.controllerManager.getClienteAlterarController().deletaCliente(cliente.getId())){
+            JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso");
+            cb_CPF.removeItem(cb_CPF.getSelectedItem());
+
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Erro na exclusao do cliente, tente novamente mais tarde");
+           }
+    }//GEN-LAST:event_lb_btDeletarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

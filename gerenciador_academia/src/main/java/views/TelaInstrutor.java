@@ -110,11 +110,21 @@ public class TelaInstrutor extends javax.swing.JPanel {
         lb_txtMostrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtMostrar.setText("MOSTRAR INSTRUTORES");
         lb_txtMostrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtMostrarMouseClicked(evt);
+            }
+        });
         add(lb_txtMostrar);
         lb_txtMostrar.setBounds(960, 350, 260, 30);
 
         lb_botaoMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoMostrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoMostrarMouseClicked(evt);
+            }
+        });
         add(lb_botaoMostrar);
         lb_botaoMostrar.setBounds(960, 330, 260, 70);
 
@@ -123,11 +133,21 @@ public class TelaInstrutor extends javax.swing.JPanel {
         lb_txtAlterar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtAlterar.setText("ALTERAR INSTRUTOR");
         lb_txtAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_txtAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtAlterarMouseClicked(evt);
+            }
+        });
         add(lb_txtAlterar);
         lb_txtAlterar.setBounds(660, 350, 260, 30);
 
         lb_botaoAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-cinza.png"))); // NOI18N
         lb_botaoAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lb_botaoAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAlterarMouseClicked(evt);
+            }
+        });
         add(lb_botaoAlterar);
         lb_botaoAlterar.setBounds(660, 330, 260, 70);
 
@@ -190,6 +210,22 @@ public class TelaInstrutor extends javax.swing.JPanel {
     private void lb_botaoAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddMouseClicked
         Main.controllerManager.getInstrutorController().btAdd();  
     }//GEN-LAST:event_lb_botaoAddMouseClicked
+
+    private void lb_txtAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAlterarMouseClicked
+        Main.controllerManager.getInstrutorController().btAlterar();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_txtAlterarMouseClicked
+
+    private void lb_botaoAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAlterarMouseClicked
+        Main.controllerManager.getInstrutorController().btAlterar();         // TODO add your handling code here:
+    }//GEN-LAST:event_lb_botaoAlterarMouseClicked
+
+    private void lb_txtMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtMostrarMouseClicked
+        Main.controllerManager.getInstrutorController().btMostrar();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_txtMostrarMouseClicked
+
+    private void lb_botaoMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoMostrarMouseClicked
+        Main.controllerManager.getInstrutorController().btMostrar();        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_botaoMostrarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

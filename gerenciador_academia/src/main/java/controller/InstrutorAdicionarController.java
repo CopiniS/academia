@@ -2,31 +2,16 @@
 package controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import models.Instrutor;
+import models.Modalidade;
+import models.Plano;
 
 public class InstrutorAdicionarController {
 
     public InstrutorAdicionarController() {
-    }
-    
-     public void btAddInstrutor(String nome, String cpf, String idModalidade) throws ParseException{
-        if(nome.isBlank() || cpf.isBlank()){
-            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios");
-        }
-        
-        else if(!validarCPF(cpf)){
-            JOptionPane.showMessageDialog(null, "este CPF não é valido");
-        }
-        
-        else if(verificaCPFrepetido(cpf)){
-            JOptionPane.showMessageDialog(null, "CPF já cadastrado");
-        }
-        
-        else{
-           Main.controllerManager.getApplicationModel().getInstrutorDAO().criaInstrutor(nome, cpf, idModalidade);
-        }
-        
     }
     
     public boolean validarCPF(String cpf) {
@@ -67,4 +52,39 @@ public class InstrutorAdicionarController {
         
         return lista.contains(cpf);
     }
+    
+    public List retornaModalidades(){
+        return Main.controllerManager.getApplicationModel().getModalidadeDAO().selectModalidadeSql();
+    }
+    
+    public boolean validaCamposObrigatorios(String nome, String cpf){
+         if(cpf.isBlank() || nome.isBlank()){
+             return false;
+         }
+         return true;
+    }
+    
+    public List<Modalidade> retornaModalidadesSelecionadas(boolean [] vetorCheckBox, List<Modalidade> lista){
+        List<Modalidade> selecionados = new ArrayList<>();
+        
+        for(int i=0; i<8; i++){
+            if(vetorCheckBox[i]){
+                selecionados.add(lista.get(i));
+            }
+        }
+        
+        return selecionados;
+    }
+    
+    public boolean btAddInstrutor(Instrutor instrutor, List<Modalidade> listaModalidade){
+        boolean resultado = false;
+        int idInstrutor = Main.controllerManager.getApplicationModel().getInstrutorDAO().insertInstrutor(instrutor.getNome(), instrutor.getCpf());
+       
+        if(Main.controllerManager.getApplicationModel().getInstrutorDAO().insertInstrutorHasModalidade(idInstrutor, listaModalidade)){
+            resultado = true;
+        }
+        return resultado;
+    }
+
+    
 }
