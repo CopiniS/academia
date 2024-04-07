@@ -417,6 +417,11 @@ public class TelaInstrutorAlterar extends javax.swing.JPanel {
         lb_txtDeletar.setForeground(new java.awt.Color(255, 255, 255));
         lb_txtDeletar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtDeletar.setText("DELETAR INSTRUTOR");
+        lb_txtDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtDeletarMouseClicked(evt);
+            }
+        });
         add(lb_txtDeletar);
         lb_txtDeletar.setBounds(980, 600, 260, 30);
 
@@ -425,6 +430,11 @@ public class TelaInstrutorAlterar extends javax.swing.JPanel {
         jLabel1.setBounds(940, 0, 20, 720);
 
         lb_btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-vermelho.png"))); // NOI18N
+        lb_btDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_btDeletarMouseClicked(evt);
+            }
+        });
         add(lb_btDeletar);
         lb_btDeletar.setBounds(980, 580, 260, 70);
 
@@ -563,6 +573,26 @@ public class TelaInstrutorAlterar extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Erro na alteração do instrutor, tente novamente mais tarde");
         }      
     }//GEN-LAST:event_lb_btAlterarMouseClicked
+
+    private void lb_txtDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtDeletarMouseClicked
+        if(Main.controllerManager.getInstrutorAlterarController().deletaInstrutor(instrutor.getId())){
+            JOptionPane.showMessageDialog(null, "Instrutor excluido com sucesso");
+            cb_CPF.removeItem(cb_CPF.getSelectedItem());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "erro ao excluir o instrutor, tente novamente mais tarde");
+        }
+    }//GEN-LAST:event_lb_txtDeletarMouseClicked
+
+    private void lb_btDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_btDeletarMouseClicked
+        if(Main.controllerManager.getInstrutorAlterarController().deletaInstrutor(instrutor.getId())){
+            JOptionPane.showMessageDialog(null, "Instrutor excluido com sucesso");
+            cb_CPF.removeItem(cb_CPF.getSelectedItem());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "erro ao excluir o instrutor, tente novamente mais tarde");
+        }        
+    }//GEN-LAST:event_lb_btDeletarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

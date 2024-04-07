@@ -13,10 +13,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que cuida da conecção da classe cliente ao banco de dados
+ * @author gabri
+ */
 
 public class ClienteDAO{
     Banco banco = new Banco();
-
+    
   
     public List mostraClientes(){
         Connection conexao = this.banco.getConexao();
@@ -59,7 +63,13 @@ public class ClienteDAO{
         } 
     return lista;
     }
-
+    
+    /**
+     * Insere cliente no BD
+     * @param cliente Cliente que deseja inserir 
+     * @param idEndereco chave do enderecoCliente que será usado assossiar o Endereco com o cliente
+     * @return retorna resultado = true se a inserção foi feita corretamente
+     */
     public boolean insertClienteSql(Cliente cliente, String idEndereco){
         boolean resultado = false;
         Connection conexao = this.banco.getConexao();
@@ -93,6 +103,12 @@ public class ClienteDAO{
             return resultado;
     }
     
+    
+    /**
+     * Insere endereço do cliente no BD
+     * @param cliente cliente que terá o endereço inserido
+     * @return id do Endereço que acabou de ser adicionado
+     */
     public String insertEnderecoClienteSql(Cliente cliente){
         String idEndereco = null;
         
@@ -122,6 +138,13 @@ public class ClienteDAO{
         return idEndereco;
     }
     
+    
+    /**
+     * Faz a alteração do idEndereço do cliente selecionado no BD
+     * @param idCliente id do cliente que deseja alterar o endereço
+     * @param idEndereco id do endereço atualizado
+     * @return atualzado = true se o update foi feito corretamente
+     */
     public boolean updateIdEnderecoNoCliente(int idCliente, int idEndereco){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE cliente SET idEndereco = ? WHERE idCliente = ?";
@@ -143,6 +166,13 @@ public class ClienteDAO{
         return atualizado;
     }
     
+    
+    /**
+     * Faz a alteração do endereço no BD
+     * @param cliente cliente que terá o endereço alterado
+     * @param idEndereco endereço que será atualizado
+     * @return atualizado = true se a alteração for feita corretamente
+     */
     public boolean updateEnderecoClienteSql(Cliente cliente, int idEndereco){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE enderecoCliente SET cep = ?, rua = ?, bairro = ?, numero = ? WHERE idEnderecoCliente = ?";
@@ -166,7 +196,11 @@ public class ClienteDAO{
         return atualizado;
     }
    
-    
+    /**
+     * Faz a busca e mostra o idEndereco do Cliente selecionado
+     * @param idCliente id do cliente selecionado
+     * @return retorna idEndereco do cliente como uma string porque pode ser null
+     */
     public String selectIdEnderecoCliente(int idCliente){
         Connection conexao = this.banco.getConexao();
         PreparedStatement consulta = null;
@@ -190,6 +224,12 @@ public class ClienteDAO{
         return idEnderecoCliente;
     }
     
+    
+    /**
+     * Faz a atualização do idPlano 
+     * @param cliente 
+     * @return 
+     */
     public boolean updateClienteIdPlano(Cliente cliente){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idPlano = ?, dataInicioPlano = ? WHERE idCliente = ?";

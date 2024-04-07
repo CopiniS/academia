@@ -79,4 +79,8 @@ public class InstrutorAlterarController {
         
         return selecionados;
     }
+    
+    public boolean deletaInstrutor(int idInstrutor){
+        return Main.controllerManager.getApplicationModel().getInstrutorDAO().deleteInstrutorSql(idInstrutor);
+    }
 }
