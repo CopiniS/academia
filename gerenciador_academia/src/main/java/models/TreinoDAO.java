@@ -8,7 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TreinoDAO {
     Banco banco = new Banco();
@@ -84,17 +86,16 @@ public class TreinoDAO {
         return resultado;
     }
     
-    public boolean updateTreinoSql(int idTreino, String nome, String descricao){
+    public boolean updateTreinoSql(int idTreino, String descricao){
         Connection conexao = this.banco.getConexao();
-        String sql = "UPDATE treino SET nome= ?, descricao = ? WHERE idTreino = ?";
+        String sql = "UPDATE treino SET descricao = ? WHERE idTreino = ?";
         PreparedStatement consulta;
         boolean atualizado = false;
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setString(1, nome);
-            consulta.setString(2, descricao);
-            consulta.setInt(3, idTreino);
+            consulta.setString(1, descricao);
+            consulta.setInt(2, idTreino);
             
             int linhasAtualizadas = consulta.executeUpdate();
             if(linhasAtualizadas > 0) atualizado = true;
@@ -159,7 +160,7 @@ public class TreinoDAO {
         
             Treino objeto;
             while(resultados.next()){
-                int idTreino = Integer.parseInt(resultados.getString("idTreino"));
+                int idTreino = resultados.getInt("idTreino");
                 String nomeTreino = resultados.getString("nome");
                 String descricaoTreino = resultados.getString("descricao");
                 objeto = new Treino();
@@ -207,6 +208,58 @@ public class TreinoDAO {
             System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
         }
         return lista;
+    }
+    
+    public List<Exercicio> selectTreinoHasExercicioSql(int idTreino){
+        Connection conexao = this.banco.getConexao();
+        List<Exercicio> lista = new ArrayList();
+        PreparedStatement consulta = null;
+        
+        String sql = "SELECT t.idExercicio, e.nome, e.musculaturaAfetada FROM treino_has_exercicio as t JOIN exercicio as e ON t.idExercicio = e.idExercicio WHERE t.idTreino = ?";
+        ResultSet resultados;
+        
+        try {
+        consulta = conexao.prepareStatement(sql);
+        consulta.setInt(1, idTreino);
+        resultados = consulta.executeQuery();
+        
+            Exercicio objeto = new Exercicio();
+            while(resultados.next()){
+                int idExercicio = resultados.getInt("t.idExercicio");
+                String nomeExercicio = resultados.getString("e.nome");
+                String musculatura = resultados.getString("e.musculaturaAfetada");
+
+                objeto.setId(idExercicio);
+                objeto.setNome(nomeExercicio);
+                objeto.setMusculaturaAfetada(musculatura);
+                
+                lista.add(objeto);
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        return lista;        
+    }
+    
+    public boolean deleteTreinoHasExercicioSql(int idTreino){
+        Connection conexao = this.banco.getConexao();
+        String sql = "DELETE FROM treino_has_exercicio WHERE idTreino = ?";
+        PreparedStatement consulta;
+        boolean excluido = false;
+        
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setInt(1, idTreino);
+            
+            int linhasAtualizadas = consulta.executeUpdate();
+            if(linhasAtualizadas > 0) excluido = true;
+            
+        } catch (SQLException ex) {
+            excluido = false;
+            System.out.println("Não foi possivel remover o treino" + ex.getMessage());
+        }
+        return excluido;
     }
     
     

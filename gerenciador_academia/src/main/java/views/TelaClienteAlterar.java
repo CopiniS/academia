@@ -5,11 +5,14 @@
 package views;
 
 import controller.Main;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import models.Cliente;
 import models.Plano;
 import models.Treino;
@@ -22,6 +25,7 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
     List<String> listaCPFS;
     List<Plano> listaPlanos;
     List<Treino> listaTreinos;
+    
     Cliente cliente;
         
     
@@ -37,7 +41,7 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
     }
     
     public void inicializaComboBoxCpf(){
-        listaCPFS = Main.controllerManager.getApplicationModel().getClienteDAO().retonaListaDeCPFS();
+        listaCPFS = Main.controllerManager.getClienteAlterarController().retornaListaCPFS();
 
         for(String cpf : listaCPFS){
             cb_CPF.addItem(cpf);
@@ -47,8 +51,8 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
     }
     
     public void inicializaComboBoxPlanoAndTreino(Cliente cliente){
-        listaPlanos = Main.controllerManager.getApplicationModel().getPlanoDAO().selectPlanoSql();
-        listaTreinos = Main.controllerManager.getApplicationModel().getTreinoDAO().selectTreinos();
+        listaPlanos = Main.controllerManager.getClienteAlterarController().retornaListaPlanos();
+        listaTreinos = Main.controllerManager.getClienteAlterarController().retornaListatreinos();
         
         cb_tipoPlano.removeAllItems();
         cb_treino.removeAllItems();
@@ -349,6 +353,11 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
         lb_txtDeletar.setForeground(new java.awt.Color(255, 255, 255));
         lb_txtDeletar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_txtDeletar.setText("DELETAR CLIENTE");
+        lb_txtDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_txtDeletarMouseClicked(evt);
+            }
+        });
         add(lb_txtDeletar);
         lb_txtDeletar.setBounds(980, 600, 260, 30);
 
@@ -372,6 +381,11 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
         lb_txtAlterar.setBounds(980, 510, 260, 30);
 
         lb_btAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-verde.png"))); // NOI18N
+        lb_btAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_btAlterarMouseClicked(evt);
+            }
+        });
         add(lb_btAlterar);
         lb_btAlterar.setBounds(980, 490, 260, 70);
 
@@ -423,11 +437,11 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
 
     private void lb_txtAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAlterarMouseClicked
         
-        
         cliente.setRua(tf_rua.getText());
         cliente.setBairro(tf_bairro.getText());
         cliente.setCep(tf_cep.getText());
         cliente.setNumero(tf_numero.getText());
+        cliente = Main.controllerManager.getClienteAlterarController().verificaEnderecoNulo(cliente);
         
         if(cb_tipoPlano.getSelectedItem() != null){
             cliente.setPlano(Main.controllerManager.getClienteAlterarController().retornaPlano(listaPlanos, cb_tipoPlano.getSelectedItem().toString()));
@@ -449,7 +463,7 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
         String cpfSelecionado = cb_CPF.getSelectedItem().toString();
         this.cliente = new Cliente();
         try {
-            cliente = Main.controllerManager.getApplicationModel().getClienteDAO().retornaClientePeloCpf(cpfSelecionado);
+            cliente = Main.controllerManager.getClienteAlterarController().retornaClientePeloCpf(cpfSelecionado);
         } catch (ParseException ex) {
             Logger.getLogger(TelaClienteAlterar.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -457,13 +471,17 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
         }
         
         inicializaComboBoxPlanoAndTreino(cliente);
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         tf_Nome.setText(cliente.getNome());
-        ftf_dataNasc.setText(cliente.getDataNascimento().toString());
+        ftf_dataNasc.setText(formato.format(cliente.getDataNascimento()));
         tf_cep.setText(cliente.getCep());
         tf_rua.setText(cliente.getRua());
         tf_bairro.setText(cliente.getBairro());
         tf_numero.setText(cliente.getNumero());
-        
+        if(cliente.getDataInicioPlano() != null){
+            ftf_dataInicioPlano.setText(formato.format(Date.valueOf(cliente.getDataInicioPlano())));
+        }
         
         
     }//GEN-LAST:event_cb_CPFActionPerformed
@@ -491,6 +509,41 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
     private void lb_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_clienteMouseClicked
         Main.controllerManager.btAcessarTelaCliente();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_clienteMouseClicked
+
+    private void lb_btAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_btAlterarMouseClicked
+                
+        cliente.setRua(tf_rua.getText());
+        cliente.setBairro(tf_bairro.getText());
+        cliente.setCep(tf_cep.getText());
+        cliente.setNumero(tf_numero.getText());
+        cliente = Main.controllerManager.getClienteAlterarController().verificaEnderecoNulo(cliente);
+        
+        if(cb_tipoPlano.getSelectedItem() != null){
+            cliente.setPlano(Main.controllerManager.getClienteAlterarController().retornaPlano(listaPlanos, cb_tipoPlano.getSelectedItem().toString()));
+        }
+        else{
+            cliente.setPlano(null);
+        }
+        
+        if(cb_treino.getSelectedItem() != null){
+            cliente.setTreino(Main.controllerManager.getClienteAlterarController().retornaTreino(listaTreinos, cb_treino.getSelectedItem().toString()));
+        }
+        else{
+            cliente.setTreino(null);
+        }
+        Main.controllerManager.getClienteAlterarController().btAlteraDados(cliente);
+    }//GEN-LAST:event_lb_btAlterarMouseClicked
+
+    private void lb_txtDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtDeletarMouseClicked
+           if(Main.controllerManager.getClienteAlterarController().deletaCliente(cliente.getId())){
+               JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso");
+               cb_CPF.removeItem(cb_CPF.getSelectedItem());
+               
+           }
+           else{
+               JOptionPane.showMessageDialog(null, "Erro na exclusao do cliente, tente novamente mais tarde");
+           }
+    }//GEN-LAST:event_lb_txtDeletarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,12 +1,9 @@
 
 package controller;
 
-
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.swing.JOptionPane;
+import models.Cliente;
 import models.Plano;
 import models.Treino;
 
@@ -14,26 +11,19 @@ public class ClienteAdicionarController {
     
     public ClienteAdicionarController() {
     }
-       
-    public void btAddCliente(String nome, String cpf, String dataNascimento, String cep, String rua, String bairro, String numero, String idPlano, String idTreino) throws ParseException{
-        if(nome.isBlank() || cpf.isBlank() || dataNascimento.isBlank()){
-            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios");
-        }
+    
+    public boolean validacaoCamposObrigatorios(String nome, String cpf, String data){
+        return nome.isBlank() || cpf.isBlank() || data.isBlank();
+    }
+    
+    public boolean btAddCliente(Cliente cliente) throws ParseException{
         
-        else if(!validarCPF(cpf)){
-            JOptionPane.showMessageDialog(null, "este CPF não é valido");
+        String idEndereco = null;
+        if(!cliente.getCep().isBlank() || !cliente.getRua().isBlank() || !cliente.getBairro().isBlank() || !cliente.getNumero().isBlank()){
+             idEndereco = Main.controllerManager.getApplicationModel().getClienteDAO().insertEnderecoClienteSql(cliente);
         }
+        return Main.controllerManager.getApplicationModel().getClienteDAO().insertClienteSql(cliente, idEndereco);
         
-        else if(verificaCPFrepetido(cpf)){
-            JOptionPane.showMessageDialog(null, "CPF já cadastrado");
-        }
-        
-        else{
-            if(!cep.isBlank() || !rua.isBlank() || !bairro.isBlank() || !numero.isBlank()){
-                Main.controllerManager.getApplicationModel().getClienteDAO().criaNovoEnderecoCliente(cep, rua, bairro, numero);
-            }
-            Main.controllerManager.getApplicationModel().getClienteDAO().criaNovoCliente(nome, cpf, validaDataNascimento(dataNascimento), idPlano, idTreino);
-        }
     }
     
     public boolean validarCPF(String cpf) {
@@ -75,25 +65,19 @@ public class ClienteAdicionarController {
         return lista.contains(cpf);
     }
     
-    public Date validaDataNascimento(String dataString) throws ParseException {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        java.util.Date utilDate = formato.parse(dataString);
-        return new Date(utilDate.getTime());
-    }
-    
-    public String retornaIdPlanoSelecionado(List<Plano> lista, String nomePlano){
+    public Plano retornaPlanoSelecionado(List<Plano> lista, String nomePlano){
         for(Plano p : lista){
             if(p.getNome().equals(nomePlano)){
-                return String.valueOf(p.getId());
+                return p;
             }
         }
         return null;
     }  
     
-    public String retornaIdTreinoSelecionado(List<Treino> lista, String nomeTreino){
+    public Treino retornaTreinoSelecionado(List<Treino> lista, String nomeTreino){
         for(Treino t : lista){
             if(t.getNome().equals(nomeTreino)){
-                return String.valueOf(t.getId());
+                return t;
             }
         }
             return null;

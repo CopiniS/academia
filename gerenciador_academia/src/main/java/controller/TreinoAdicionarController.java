@@ -53,8 +53,8 @@ public class TreinoAdicionarController {
         return !nome.isBlank() && !descricao.isBlank();
     }
     
-    public boolean validaExercicios(Map<String, List<Exercicio>> map){
-        return !map.isEmpty();
+    public boolean validaExercicios(List<String> diasAdd){
+        return !diasAdd.isEmpty();
     }
     
     public boolean btAddtreino(Map<String, List<Exercicio>> map, String nome, String descricao, List<String> diasAdd){

@@ -1,6 +1,8 @@
 
 package controller;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import models.Cliente;
@@ -17,7 +19,7 @@ public class ClienteAlterarController {
         boolean updateTreino = false;
         boolean updateEndereco = false;
 
-        if(Main.controllerManager.getApplicationModel().getClienteDAO().updateClienteSql(cliente)){
+        if(alteraEnderecoCliente(cliente)){
             updateEndereco = true;
         }
         else{
@@ -77,4 +79,65 @@ public class ClienteAlterarController {
         return null;
     }
     
+    public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLException{
+        return Main.controllerManager.getApplicationModel().getClienteDAO().retornaClientePeloCpf(cpf);
+    }
+    
+    public List retornaListaCPFS(){
+       return Main.controllerManager.getApplicationModel().getClienteDAO().retonaListaDeCPFS();
+    }
+    
+    public List retornaListaPlanos(){
+        return Main.controllerManager.getApplicationModel().getPlanoDAO().selectPlanoSql();
+    }
+    
+    public List retornaListatreinos(){
+        return Main.controllerManager.getApplicationModel().getTreinoDAO().selectTreinos();
+    }
+    
+    public String retornaIdEnderecoDoCliente(int idCliente){
+        return Main.controllerManager.getApplicationModel().getClienteDAO().selectIdEnderecoCliente(idCliente);
+    }
+    
+    public boolean alteraEnderecoCliente(Cliente cliente){
+        boolean resultado = false;
+        String idEndereco = retornaIdEnderecoDoCliente(cliente.getId());
+        if(idEndereco == null){
+            idEndereco = Main.controllerManager.getApplicationModel().getClienteDAO().insertEnderecoClienteSql(cliente);
+            if(idEndereco != null){
+                if(Main.controllerManager.getApplicationModel().getClienteDAO().updateIdEnderecoNoCliente(cliente.getId(), Integer.parseInt(idEndereco))){
+                    resultado = true;
+                }
+            }
+        }    
+        else{
+           Main.controllerManager.getApplicationModel().getClienteDAO().updateEnderecoClienteSql(cliente, Integer.parseInt(idEndereco));
+        }
+            
+        return resultado;
+    }
+    
+    public Cliente verificaEnderecoNulo(Cliente cliente){
+        if(cliente.getBairro().isBlank()){
+            cliente.setBairro(null);
+        }
+        if(cliente.getCep().isBlank()){
+            cliente.setCep(null);
+        }
+        if(cliente.getRua().isBlank()){
+            cliente.setRua(null);
+        }
+        if(cliente.getNumero().isBlank()){
+            cliente.setNumero(null);
+        }
+        
+        
+        return cliente;
+    }
+    
+    public boolean deletaCliente(int idCliente){
+        return Main.controllerManager.getApplicationModel().getClienteDAO().deletaClienteSql(idCliente);
+    }
+    
+   
 }

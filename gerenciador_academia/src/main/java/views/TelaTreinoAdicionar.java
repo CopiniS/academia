@@ -855,10 +855,11 @@ public class TelaTreinoAdicionar extends javax.swing.JPanel {
         diasAdd.add(cb_selecDia.getSelectedItem().toString());
         adicionarExerciciosAoMap(cb_selecDia.getSelectedItem().toString(), 
                 Main.controllerManager.getTreinoAdicionarController().retornaExerciciosSelecionados(retornaboleanoCheckBoxs(), listaEspecifica));
-        cb_selecDia.removeItem(cb_selecDia.getSelectedItem());
+       
         
         InicializaListaEspecifica(cb_selecMusc.getSelectedItem().toString());
         if(!listaEspecifica.isEmpty()){
+            cb_selecDia.removeItem(cb_selecDia.getSelectedItem());
             inicializarCheckBoxes();
         }
         else{
@@ -868,7 +869,7 @@ public class TelaTreinoAdicionar extends javax.swing.JPanel {
 
     private void lb_txtAddClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddClienteMouseClicked
         if(Main.controllerManager.getTreinoAdicionarController().validaNomeEdescricao(tf_Nome.getText(), tf_descricao.getText())){
-            if(Main.controllerManager.getTreinoAdicionarController().validaExercicios(map)){
+            if(Main.controllerManager.getTreinoAdicionarController().validaExercicios(diasAdd)){
                 if(Main.controllerManager.getTreinoAdicionarController().btAddtreino(map, tf_Nome.getText(), tf_descricao.getText(), diasAdd)){
                     JOptionPane.showMessageDialog(null, "treino cadastrado com sucesso");
                 }
@@ -891,7 +892,7 @@ public class TelaTreinoAdicionar extends javax.swing.JPanel {
 
     private void lb_botaoAddClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddClienteMouseClicked
         if(Main.controllerManager.getTreinoAdicionarController().validaNomeEdescricao(tf_Nome.getText(), tf_descricao.getText())){
-            if(Main.controllerManager.getTreinoAdicionarController().validaExercicios(map)){
+            if(Main.controllerManager.getTreinoAdicionarController().validaExercicios(diasAdd)){
                 if(Main.controllerManager.getTreinoAdicionarController().btAddtreino(map, tf_Nome.getText(), tf_descricao.getText(), diasAdd)){
                     JOptionPane.showMessageDialog(null, "treino cadastrado com sucesso");
                 }

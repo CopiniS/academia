@@ -9,28 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 
 public class ClienteDAO{
     Banco banco = new Banco();
-    String idEndereco;
-    
-    public void criaNovoCliente(String nome, String cpf, Date dataNascimento, String idPlano, String idTreino){
-        
-        if(insertClienteSql(nome, cpf, dataNascimento, idPlano, idTreino)){
-            JOptionPane.showMessageDialog(null, "Dados cadastrados com sucesso");
-        }
-    }
-    
-    public void criaNovoEnderecoCliente(String cep, String rua, String bairro, String numero){
-        insertEnderecoClienteSql(cep, rua, bairro, numero);
-    }
-    
+
+  
     public List mostraClientes(){
         Connection conexao = this.banco.getConexao();
         List<Cliente> lista = new ArrayList();
@@ -73,38 +60,21 @@ public class ClienteDAO{
     return lista;
     }
 
-    public void removeTreino(Cliente cliente){
-        if(deleteClienteIdTreino(cliente.getId())){
-            System.out.println("Treino removido com sucesso");
-        }
-        else{
-            System.out.println("Treino não pode ser removido");
-        }
-    }
-        
-    public void deletaCliente(Cliente cliente){
-        if(deletaClienteSql(cliente.getId())){
-            System.out.println("Cliente excluido com sucesso");
-        }
-        else{
-            System.out.println("O cliente requisitado, não foi encontrado no banco de dados");
-        }
-    }
-    
-    public boolean insertClienteSql(String nome, String cpf, Date dataNascimento, String idPlano, String idTreino){
+    public boolean insertClienteSql(Cliente cliente, String idEndereco){
         boolean resultado = false;
         Connection conexao = this.banco.getConexao();
         
             String sql = "INSERT INTO cliente(nome, cpf, dataNascimento, idEndereco, idPlano, dataInicioPlano, idTreino) VALUES(?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement consulta;
             LocalDate dataHoje = LocalDate.now();
+            String idPlano = String.valueOf(cliente.getPlano().getId());
             
             try {
                 consulta = conexao.prepareStatement(sql);
-                consulta.setString(1, nome);
-                consulta.setString(2, cpf);
-                consulta.setDate(3, dataNascimento);
-                consulta.setObject(4, this.idEndereco);
+                consulta.setString(1, cliente.getNome());
+                consulta.setString(2, cliente.getCpf());
+                consulta.setDate(3, cliente.getDataNascimento());
+                consulta.setObject(4, idEndereco);
                 consulta.setObject(5, idPlano);
                 if(idPlano != null){
                     consulta.setDate(6, Date.valueOf(dataHoje));
@@ -112,10 +82,9 @@ public class ClienteDAO{
                 else{
                     consulta.setObject(6, null);
                 }
-                consulta.setObject(7, idTreino);
+                consulta.setObject(7, cliente.getTreino().getId());
                 consulta.execute();
                 resultado = true;
-                this.idEndereco = null;
 
             } catch (SQLException ex) {
                 System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
@@ -124,8 +93,8 @@ public class ClienteDAO{
             return resultado;
     }
     
-    public boolean insertEnderecoClienteSql(String cep, String rua, String bairro, String numero){
-        boolean resultado = false;
+    public String insertEnderecoClienteSql(Cliente cliente){
+        String idEndereco = null;
         
         Connection conexao = this.banco.getConexao();
         String sql = "INSERT INTO enderecoCliente(cep, rua, bairro, numero) VALUES(?, ?, ?, ?)";
@@ -133,41 +102,37 @@ public class ClienteDAO{
         
         try {
             consulta = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            consulta.setString(1, cep);
-            consulta.setString(2, rua);
-            consulta.setString(3, bairro);
-            consulta.setString(4, numero);
+            consulta.setObject(1, cliente.getCep());
+            consulta.setObject(2, cliente.getRua());
+            consulta.setObject(3, cliente.getBairro());
+            consulta.setObject(4, cliente.getNumero());
             consulta.execute();
             ResultSet key = consulta.getGeneratedKeys();
             if (key.next()) { // Mova o cursor para a primeira linha do ResultSet
-                this.idEndereco = key.getString(1);
-                resultado = true;
+                idEndereco = key.getString(1);
             } 
             else {
                 System.out.println("Nenhuma chave gerada após a execução da consulta.");
-                resultado = false;
+                
             }
         } catch (SQLException ex) {
             System.out.println("Erro ao cadastrar cliente: " + ex.getMessage());
-            resultado = false;
+            
         }
-        
-        return resultado;
+        return idEndereco;
     }
     
-    public boolean updateClienteSql(Cliente cliente){
+    public boolean updateIdEnderecoNoCliente(int idCliente, int idEndereco){
         Connection conexao = this.banco.getConexao();
-        String sql = "UPDATE enderecoCliente SET cep = ?, rua = ?, bairro = ?, numero = ? WHERE idEnderecoCliente= (SELECT idEndereco FROM cliente WHERE idCliente = ?)";
+        String sql = "UPDATE cliente SET idEndereco = ? WHERE idCliente = ?";
         PreparedStatement consulta;
         boolean atualizado = false;
         
-        try {
+        try { 
             consulta = conexao.prepareStatement(sql);
-            consulta.setString(1, cliente.getCep());
-            consulta.setString(2, cliente.getRua());
-            consulta.setString(3, cliente.getBairro());
-            consulta.setString(4, cliente.getNumero());
-            consulta.setObject(5, String.valueOf(cliente.getId()));
+            consulta.setInt(1, idEndereco);
+            consulta.setInt(2, idCliente);
+            
             
             int linhasAtualizadas = consulta.executeUpdate();
             if(linhasAtualizadas > 0) atualizado = true;
@@ -176,6 +141,53 @@ public class ClienteDAO{
             System.out.println("Não foi possivel fazer a atualização dos dados" + ex.getMessage());
         }
         return atualizado;
+    }
+    
+    public boolean updateEnderecoClienteSql(Cliente cliente, int idEndereco){
+        Connection conexao = this.banco.getConexao();
+        String sql = "UPDATE enderecoCliente SET cep = ?, rua = ?, bairro = ?, numero = ? WHERE idEnderecoCliente = ?";
+        PreparedStatement consulta;
+        boolean atualizado = false;
+        
+        try { 
+            consulta = conexao.prepareStatement(sql);
+            consulta.setString(1, cliente.getCep());
+            consulta.setString(2, cliente.getRua());
+            consulta.setString(3, cliente.getBairro());
+            consulta.setString(4, cliente.getNumero());
+            consulta.setInt(5, idEndereco);
+            
+            int linhasAtualizadas = consulta.executeUpdate();
+            if(linhasAtualizadas > 0) atualizado = true;
+        } catch (SQLException ex) {
+            atualizado = false;
+            System.out.println("Não foi possivel fazer a atualização dos dados" + ex.getMessage());
+        }
+        return atualizado;
+    }
+   
+    
+    public String selectIdEnderecoCliente(int idCliente){
+        Connection conexao = this.banco.getConexao();
+        PreparedStatement consulta = null;
+        String idEnderecoCliente = null;
+        String sql = "SELECT idEndereco FROM cliente WHERE idCliente = ?";
+        ResultSet resultados;
+        
+        try {
+            consulta = conexao.prepareStatement(sql);
+            consulta.setInt(1, idCliente);
+            resultados = consulta.executeQuery();
+        
+             Cliente objeto;
+            while(resultados.next()){
+                idEnderecoCliente = resultados.getString("idEnderecoCliente");
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        return idEnderecoCliente;
     }
     
     public boolean updateClienteIdPlano(Cliente cliente){
@@ -188,8 +200,13 @@ public class ClienteDAO{
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setObject(1, cliente.getPlano().getId());
-            if(cliente.getPlano().getNome() != null){
+            if(cliente.getPlano() != null){
+                consulta.setInt(1, cliente.getPlano().getId());
+            }
+            else{
+                consulta.setObject(1, null);
+            }
+            if(cliente.getPlano() != null){
                 consulta.setDate(2, Date.valueOf(dataHoje));
             }
             else{
@@ -215,9 +232,13 @@ public class ClienteDAO{
         
         try {
             consulta = conexao.prepareStatement(sql);
-            consulta.setObject(1, String.valueOf(cliente.getTreino().getId()));
+            if(cliente.getTreino() != null){
+                consulta.setInt(1, cliente.getTreino().getId());
+            }
+            else{
+                consulta.setObject(1, null);
+            }
             consulta.setInt(2, cliente.getId());
- 
             
             int linhasAtualizadas = consulta.executeUpdate();
             if(linhasAtualizadas > 0) atualizado = true;
@@ -291,7 +312,7 @@ public class ClienteDAO{
         return lista;
     }
     
-public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLException {
+    public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLException {
     Connection conexao = this.banco.getConexao();
     PreparedStatement consulta = null;
     ResultSet resultados = null;
@@ -299,7 +320,7 @@ public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLExcep
     Plano plano = new Plano();
     Treino treino = new Treino();
     
-    String sql = "SELECT c.idCliente, c.nome, c.dataNascimento, e.rua, e.cep, e.bairro, e.numero, p.idPlano, p.nome, t.idTreino, t.nome FROM cliente AS c " +
+    String sql = "SELECT c.idCliente, c.nome, c.dataNascimento, c.dataInicioPlano, e.rua, e.cep, e.bairro, e.numero, p.idPlano, p.nome, t.idTreino, t.nome FROM cliente AS c " +
                  "LEFT JOIN enderecoCliente AS e ON e.idEnderecoCliente = c.idendereco " +
                  "LEFT JOIN plano AS p ON p.idPlano = c.idPlano " +
                  "LEFT JOIN treino AS t ON t.idTreino = c.idTreino " +
@@ -314,6 +335,9 @@ public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLExcep
             cliente.setId(resultados.getInt("c.idCliente"));
             cliente.setNome(resultados.getString("c.nome"));
             cliente.setCpf(cpf);
+            if(resultados.getString("c.dataInicioPlano") != null){
+                cliente.setDataInicioPlano(resultados.getDate("c.dataInicioPlano").toLocalDate());
+            }
             cliente.setDataNascimento(resultados.getDate("c.dataNascimento"));
             cliente.setCep(resultados.getString("e.cep"));
             cliente.setRua(resultados.getString("e.rua"));

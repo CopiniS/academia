@@ -134,10 +134,10 @@ public class PlanoDAO {
         
             Plano objeto;
             while(resultados.next()){
-                int idPlano = Integer.parseInt(resultados.getString("idPlano"));
+                int idPlano = resultados.getInt("idPlano");
                 String nomePlano = resultados.getString("nome");
-                float valorPlano = Float.parseFloat(resultados.getString("valor"));
-                int tempoAtivacaoPlano = Integer.parseInt(resultados.getString("tempoAtivacao"));
+                float valorPlano = resultados.getFloat("valor");
+                int tempoAtivacaoPlano = resultados.getInt("tempoAtivacao");
                 
                 objeto = new Plano();
                 objeto.setNome(nomePlano);

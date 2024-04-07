@@ -5,6 +5,9 @@
 package views;
 
 import controller.Main;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -215,11 +218,19 @@ public class TelaTreino extends javax.swing.JPanel {
     }//GEN-LAST:event_lb_txtAddMouseClicked
 
     private void lb_txtAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAlterarMouseClicked
-        Main.controllerManager.getTreinoController().btAlterarTreino();        // TODO add your handling code here:
+        try {
+            Main.controllerManager.getTreinoController().btAlterarTreino();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaTreino.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_lb_txtAlterarMouseClicked
 
     private void lb_botaoAlterarTreinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAlterarTreinoMouseClicked
-        Main.controllerManager.getTreinoController().btAlterarTreino();       // TODO add your handling code here:
+        try {
+            Main.controllerManager.getTreinoController().btAlterarTreino();       // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaTreino.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_lb_botaoAlterarTreinoMouseClicked
 
 

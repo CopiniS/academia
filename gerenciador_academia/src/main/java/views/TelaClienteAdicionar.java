@@ -5,10 +5,14 @@
 package views;
 
 import controller.Main;
+import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import models.Cliente;
 import models.Plano;
 import models.Treino;
 
@@ -19,6 +23,7 @@ import models.Treino;
 public class TelaClienteAdicionar extends javax.swing.JPanel {
     List<Treino> listaTreinos;
     List<Plano> listaPlanos;
+    Cliente cliente;
     /**
      * Creates new form TelaClienteAdicionar
      */
@@ -27,6 +32,7 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         listaTreinos = Main.controllerManager.getApplicationModel().getTreinoDAO().selectTreinos();
         listaPlanos = Main.controllerManager.getApplicationModel().getPlanoDAO().selectPlanoSql();
         inicializaComboboxes();
+        cliente = new Cliente();
     }
     
     public void inicializaComboboxes(){
@@ -38,6 +44,49 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         for(Treino t : listaTreinos){
             cb_treino.addItem(t.getNome());
         }
+    }
+    
+    public void preencheCliente() throws ParseException{
+        Plano p = new Plano();
+        Treino t = new Treino();
+      
+        if(cb_tipoPlano.getSelectedItem() != null){
+            p = Main.controllerManager.getClienteAdicionarController().retornaPlanoSelecionado(listaPlanos, cb_tipoPlano.getSelectedItem().toString());
+        }
+        if(cb_treino.getSelectedItem() != null){
+            t = Main.controllerManager.getClienteAdicionarController().retornaTreinoSelecionado(listaTreinos, cb_treino.getSelectedItem().toString());
+        }
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataSql = null;
+        try {
+            java.util.Date dataUtil = formato.parse(ftf_dataNasc.getText());
+            dataSql = new Date(dataUtil.getTime()); 
+        } catch (ParseException e) {
+            System.out.println("Erro ao analisar a data: " + e.getMessage());
+        }
+        
+        cliente.setNome(tf_Nome.getText());
+        cliente.setCpf(ftf_cpf.getText());
+        cliente.setDataNascimento(dataSql);
+        cliente.setCep(tf_cep.getText());
+        cliente.setRua(tf_rua.getText());
+        cliente.setBairro(tf_bairro.getText());
+        cliente.setNumero(tf_numero.getText());
+        cliente.setPlano(p);
+        cliente.setTreino(t);
+    }
+    
+    public void resetaCampos(){
+        tf_Nome.setText("");
+        ftf_cpf.setText("");
+        ftf_dataNasc.setText("");
+        tf_bairro.setText("");
+        tf_rua.setText("");
+        tf_cep.setText("");
+        tf_numero.setText("");
+        cb_tipoPlano.setSelectedItem(null);
+        cb_treino.setSelectedItem(null);
     }
 
     /**
@@ -259,6 +308,11 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
         lb_txtAddCliente.setBounds(970, 600, 260, 30);
 
         lb_botaoAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bt-azul.png"))); // NOI18N
+        lb_botaoAddCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_botaoAddClienteMouseClicked(evt);
+            }
+        });
         add(lb_botaoAddCliente);
         lb_botaoAddCliente.setBounds(970, 580, 260, 70);
 
@@ -343,21 +397,35 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
     }//GEN-LAST:event_tf_bairroActionPerformed
 
     private void lb_txtAddClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddClienteMouseClicked
-        String idPlano = null;
-        String idTreino= null;
-        if(cb_tipoPlano.getSelectedItem() != null){
-            idPlano = Main.controllerManager.getClienteAdicionarController().retornaIdPlanoSelecionado(listaPlanos, cb_tipoPlano.getSelectedItem().toString());
+        if(!Main.controllerManager.getClienteAdicionarController().validacaoCamposObrigatorios(tf_Nome.getText(), ftf_cpf.getText(), ftf_dataNasc.getText())){
+            if(Main.controllerManager.getClienteAdicionarController().validarCPF(ftf_cpf.getText())){
+                if(!Main.controllerManager.getClienteAdicionarController().verificaCPFrepetido(ftf_cpf.getText())){
+                    try {
+                        preencheCliente();
+                        if(Main.controllerManager.getClienteAdicionarController().btAddCliente(cliente)){
+                            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+                            resetaCampos();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente, tente novamente mais tarde");
+                            
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(TelaClienteAdicionar.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "CPF já cadastrado");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "este CPF não é valido");
+            }
         }
-        if(cb_treino.getSelectedItem() != null){
-            idTreino = Main.controllerManager.getClienteAdicionarController().retornaIdTreinoSelecionado(listaTreinos, cb_treino.getSelectedItem().toString());
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios");
         }
         
-        try {
-            Main.controllerManager.getClienteAdicionarController().btAddCliente(tf_Nome.getText(), ftf_cpf.getText(),
-                    ftf_dataNasc.getText(), tf_cep.getText(), tf_rua.getText(), tf_bairro.getText(), tf_numero.getText(),idPlano, idTreino);
-        } catch (ParseException ex) {
-            Logger.getLogger(TelaClienteAdicionar.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_lb_txtAddClienteMouseClicked
 
     private void lb_instrutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_instrutorMouseClicked
@@ -383,6 +451,30 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
     private void lb_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_clienteMouseClicked
         Main.controllerManager.btAcessarTelaCliente();        // TODO add your handling code here:
     }//GEN-LAST:event_lb_clienteMouseClicked
+
+    private void lb_botaoAddClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddClienteMouseClicked
+        if(!Main.controllerManager.getClienteAdicionarController().validacaoCamposObrigatorios(tf_Nome.getText(), ftf_cpf.getText(), ftf_dataNasc.getText())){
+            if(Main.controllerManager.getClienteAdicionarController().validarCPF(ftf_cpf.getText())){
+                if(!Main.controllerManager.getClienteAdicionarController().verificaCPFrepetido(ftf_cpf.getText())){
+                    try {
+                        preencheCliente();
+                        Main.controllerManager.getClienteAdicionarController().btAddCliente(cliente);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(TelaClienteAdicionar.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "CPF já cadastrado");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "este CPF não é valido");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios");
+        }
+    }//GEN-LAST:event_lb_botaoAddClienteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
