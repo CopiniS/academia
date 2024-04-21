@@ -9,7 +9,7 @@
 O sistema foi desenvolvido para um gestor de academia ter melhor controle de todas as suas frentes presentes no local (exercícios, treinos, modalidades e planos) e realizar a captação de dados de alunos e instrutores.
  
 ## Lista de Funcionalidades
-*Navegação fácil e intuitiva, com mensagens de Sucesso e de erros bem definidas, para melhor entendimento do usuário;
+*Navegação fácil e intuitiva, com mensagens de sucesso e de erros bem definidas, para melhor entendimento do usuário;
 
 *Menu principal, separado em 6 opções: Clientes, Instrutores, Modalidades, Planos, Treinos e Exercícios. Todos com suas próprias telas de cadastro e alteração de dados;
 
