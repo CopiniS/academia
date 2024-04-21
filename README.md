@@ -1,27 +1,27 @@
 # Gerenciador de academia
 
 ## Como instalar
-*importar o banco de dados no MySql Workbench
+* importar o banco de dados no MySql Workbench
 
-*Abrir o executável .jar na pasta target
+* Abrir o executável .jar na pasta target
 
 ## Objetivo do projeto
 O sistema foi desenvolvido para um gestor de academia ter melhor controle de todas as suas frentes presentes no local (exercícios, treinos, modalidades e planos) e realizar a captação de dados de alunos e instrutores.
  
 ## Lista de Funcionalidades
-*Navegação fácil e intuitiva, com mensagens de sucesso e de erros bem definidas, para melhor entendimento do usuário;
+* Navegação fácil e intuitiva, com mensagens de sucesso e de erros bem definidas, para melhor entendimento do usuário;
 
-*Menu principal, separado em 6 opções: Clientes, Instrutores, Modalidades, Planos, Treinos e Exercícios. Todos com suas próprias telas de cadastro e alteração de dados;
+* Menu principal, separado em 6 opções: Clientes, Instrutores, Modalidades, Planos, Treinos e Exercícios. Todos com suas próprias telas de cadastro e alteração de dados;
 
-*A possibilidade de cadastrar até 8 modalidades para a academia;
+* A possibilidade de cadastrar até 8 modalidades para a academia;
 
-*Cadastro de planos com a chance de adicionar diferentes combinações de modalidades previamente cadastradas;
+* Cadastro de planos com a chance de adicionar diferentes combinações de modalidades previamente cadastradas;
 
-*Exercícios divididos em 5 musculaturas: Peito, Costas, Braço, Perna e ombro. Podendo cadastrar até 20 exercícios para cada musculatura;
+* Exercícios divididos em 5 musculaturas: Peito, Costas, Braço, Perna e ombro. Podendo cadastrar até 20 exercícios para cada musculatura;
 
-*Possibilidade de montar treinos com esses exercício, separados pelos dias da semana;
+* Possibilidade de montar treinos com esses exercício, separados pelos dias da semana;
 
-*Vinculação dos treinos prevaimente cadastrados, com os cliente desejados e ainda podendo gerar um pdf do treino adicionado.
+* Vinculação dos treinos previamente cadastrados, com os clientes e ainda podendo gerar um pdf do treino adicionado.
 
 
 
