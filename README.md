@@ -15,7 +15,7 @@ O sistema foi desenvolvido para um gestor de academia ter melhor controle de tod
 
 *A possibilidade de cadastrar até 8 modalidades para a academia;
 
-*Cadastro de planos usando diferentes combinações de modalidades previamente cadastradas;
+*Cadastro de planos com a chance de adicionar diferentes combinações de modalidades previamente cadastradas;
 
 *Exercícios divididos em 5 musculaturas: Peito, Costas, Braço, Perna e ombro. Podendo cadastrar até 20 exercícios para cada musculatura;
 
