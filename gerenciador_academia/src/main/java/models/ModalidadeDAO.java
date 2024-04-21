@@ -9,59 +9,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que cuida da conexão da classe modalidade ao banco de dados
+ * @author tiovi
+ */
 public class ModalidadeDAO {
     Banco banco = new Banco();
     
-    public void alteraModalidade(Modalidade modalidade, String novoNome, String novosHorarios){
-        if(updateModalidadeSql(modalidade.getId(), novoNome, novosHorarios)){
-            System.out.println("Dados atualizados com sucesso");
-        }
-    }
-    
-    public void mostraModalidades(){
-        List<Modalidade> lista = selectModalidadeSql();
-        for(Modalidade modalidade : lista){
-            System.out.println(modalidade.toString());
-        }
-    }
-    
-    public void deletaModalidade(Modalidade modalidade){
-        if(deleteModalidadeSql(modalidade.getId())){
-            System.out.println("Modalidade excluida com sucesso");
-        }
-        else{
-            System.out.println("A Modalidade requisitada, não foi encontrada no banco de dados");
-        }
-    }
-    
-    public void adicionaInstrutor(Modalidade modalidade, Instrutor instrutor){
-        if(insertInstrutorModalidadeSql(modalidade.getId(), instrutor.getId())){
-            System.out.println("Instrutor adicionado com sucesso");
-        }
-    }
-    
-    public void alteraInstrutor(Modalidade modalidade, Instrutor instrutor){
-        if(updateInstrutorModalidadeSql(modalidade.getId(), instrutor.getId())){
-            System.out.println("Instrutor alterado com sucesso");
-        }
-        else{
-            System.out.println("Os dados não foram atualizados");
-        }
-    }
-    
-    public void deletaInstrutor(Modalidade modalidade){
-        if(deleteInstrutorModalidadeSql(modalidade.getId())){
-            System.out.println("Instrutor removido com sucesso");
-        }
-        else{
-            System.out.println("Ocorreu algum erro na remoção do instrutor");
-        }
-    }
-    
-    
+
     //--------------------------------------------------------------------------------------------------------------------//
     
-    
+     /**
+     * insere modalidade no banco de dados
+     * @param modalidade lista modalidade
+     * @return retorna booleano, true se a modalidade foi inserida
+     */
     public boolean insertModalidadeSql(Modalidade modalidade){
         boolean resultado = false;
         
@@ -83,6 +45,13 @@ public class ModalidadeDAO {
         return resultado;
     }
     
+    /**
+     * atualiza o bando de dados da modalidade
+     * @param idModalidade modalidade selecionada
+     * @param nome nome modalidade
+     * @param horarios horario modalidade
+     * @return retorna booleano, true se a modalidade foi alterada/atualizada
+     */
     public boolean updateModalidadeSql(int idModalidade, String nome, String horarios){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE modalidade SET nome= ?, horarios = ? WHERE idModalidade = ?";
@@ -104,6 +73,10 @@ public class ModalidadeDAO {
         return atualizado; 
     }
     
+    /**
+     * lista todas as modalidades do banco de dados
+     * @return retorna a lista de todas as modalidades presentes no banco de dados
+     */
     public List selectModalidadeSql(){
         Connection conexao = this.banco.getConexao();
         List<Modalidade> lista = new ArrayList();
@@ -130,6 +103,11 @@ public class ModalidadeDAO {
         return lista;
     }
     
+    /**
+     * deleta a modalidade selecionada
+     * @param idModalidade modalidade selecionada
+     * @return retorna booleano, true se a modalidade foi deletada
+     */
     public boolean deleteModalidadeSql(int idModalidade){
         Connection conexao = this.banco.getConexao();
         String sql = "DELETE FROM modalidade WHERE idModalidade = ?";
@@ -150,6 +128,13 @@ public class ModalidadeDAO {
         return excluido;
     }
     
+    
+    /**
+     * Adiciona o instrutor a modalidade no banco de dados
+     * @param idModalidade modalidade selecionada
+     * @param idInstrutor instrutor selecionadao
+     * @return retorna booleano, true se o instrutor foi adicionado a modalidade
+     */
     public boolean insertInstrutorModalidadeSql(int idModalidade, int idInstrutor){
         boolean resultado = false;
         
@@ -173,6 +158,13 @@ public class ModalidadeDAO {
         return resultado;
     }
     
+    
+    /**
+     * atualiza o isntrutor e a modalidade no banco de dados
+     * @param idModalidade modalidade selecionada
+     * @param idInstrutor instrutor selecionado
+     * @return retorna booleano, true se o instrutor e a modalidade foram atualizados
+     */
     public boolean updateInstrutorModalidadeSql(int idModalidade, int idInstrutor){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE modalidade_has_instrutor SET idInstrutor= ? WHERE idModalidade= ?";
@@ -195,6 +187,12 @@ public class ModalidadeDAO {
         return atualizado;
     }
     
+    
+     /**
+     * 
+     * @param idModalidade modalidade selecionada
+     * @return retorna booleano, true se a modalidade foi deletada
+     */
     public boolean deleteInstrutorModalidadeSql(int idModalidade){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE modalidade_has_instrutor SET idInstrutor= null WHERE idModalidade= ?";

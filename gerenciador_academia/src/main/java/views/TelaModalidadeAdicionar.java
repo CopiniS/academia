@@ -200,22 +200,32 @@ public class TelaModalidadeAdicionar extends javax.swing.JPanel {
     }//GEN-LAST:event_lb_treinoMouseClicked
 
     private void lb_txtAddModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddModalidadeMouseClicked
-        if(Main.controllerManager.getModalidadeAdicionarController().validaCampo(tf_Nome.getText())){
-            this.modalidade.setNome(tf_Nome.getText());
-            Main.controllerManager.getModalidadeAdicionarController().btAddModalidade(modalidade);
+        if(Main.controllerManager.getModalidadeAdicionarController().verificaSeListaTem8()){
+            if(Main.controllerManager.getModalidadeAdicionarController().validaCampo(tf_Nome.getText())){
+                this.modalidade.setNome(tf_Nome.getText());
+                Main.controllerManager.getModalidadeAdicionarController().btAddModalidade(modalidade);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Preencha o campo nome da modalidade");
+            }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Preencha o campo nome da modalidade");
+            JOptionPane.showMessageDialog(null, "Você ja tem o limite máximo de modalidades para sua assinatura. Para adicionar mais, remova alguma");
         }
     }//GEN-LAST:event_lb_txtAddModalidadeMouseClicked
 
     private void lb_botaoAddModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddModalidadeMouseClicked
-        if(Main.controllerManager.getModalidadeAdicionarController().validaCampo(tf_Nome.getText())){
-            this.modalidade.setNome(tf_Nome.getText());
-            Main.controllerManager.getModalidadeAdicionarController().btAddModalidade(modalidade);
+        if(Main.controllerManager.getModalidadeAdicionarController().verificaSeListaTem8()){
+            if(Main.controllerManager.getModalidadeAdicionarController().validaCampo(tf_Nome.getText())){
+                this.modalidade.setNome(tf_Nome.getText());
+                Main.controllerManager.getModalidadeAdicionarController().btAddModalidade(modalidade);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Preencha o campo nome da modalidade");
+            }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Preencha o campo nome da modalidade");
+            JOptionPane.showMessageDialog(null, "Você ja tem o limite máximo de modalidades para sua assinatura. Para adicionar mais, remova alguma");
         }
     }//GEN-LAST:event_lb_botaoAddModalidadeMouseClicked
 

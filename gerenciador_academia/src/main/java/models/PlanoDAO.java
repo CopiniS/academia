@@ -12,10 +12,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que cuida da conexão da classe plano ao banco de dados
+ * @author tiovi
+ */
 public class PlanoDAO {
     Banco banco = new Banco();
 
-
+    /**
+     * mostra a lista com todos os planos
+     */
     public void verPlanos(){
         List<Plano> lista = selectPlanoSql();
         for(Plano plano : lista){
@@ -25,7 +31,11 @@ public class PlanoDAO {
     //-------------------------------------------------------------------------------------------------------------------------//
     //SQL
     
-    
+    /**
+     * insere o plano à lista de planos
+     * @param plano lista com todos os planos
+     * @return retorna o id do plano inserido
+     */
     public int insertPlanoSql(Plano plano){
         int idPlano = -1;
         
@@ -54,6 +64,12 @@ public class PlanoDAO {
         return idPlano;
     }
     
+    /**
+     * insere plano na modalidade ao banco de dados
+     * @param idPlano plano selecionado
+     * @param listaModalidadesSelecionadas lista das modalidades
+     * @return retorna booleano, true se o plano for inserido na modalidade
+     */
     public boolean insertPlanoHasModalidade(int idPlano, List<Modalidade> listaModalidadesSelecionadas){
         boolean resultado = false;
         Connection conexao = this.banco.getConexao();
@@ -76,6 +92,12 @@ public class PlanoDAO {
         return resultado;
     }
     
+    /**
+     * deleta o plano selecionado da modalidade
+     * @param idPlano plano selecionado
+     * @param listaModalidadesAntigas lista das modalidades
+     * @return retorna booleano, true se o plano foi deletado da modalidade
+     */
     public boolean deletePlanohasModalidade(int idPlano, List<Modalidade> listaModalidadesAntigas){
         boolean excluido = false;
         Connection conexao = this.banco.getConexao();
@@ -101,6 +123,11 @@ public class PlanoDAO {
         return excluido;             
     }
     
+    /**
+     * atualiza todas as informacoes do plano
+     * @param plano 
+     * @return retorna booleano, true se o plano foi atualizado
+     */
     public boolean updatePlanoSql(Plano plano){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE plano SET valor = ?, tempoAtivacao = ? WHERE idPlano= ?";
@@ -122,6 +149,10 @@ public class PlanoDAO {
         return atualizado; 
     }
     
+    /**
+     * retorna lista com todos os planos presente no banco de dados
+     * @return retorna a lista dos planos
+     */
     public List selectPlanoSql(){
         Connection conexao = this.banco.getConexao();
         List<Plano> lista = new ArrayList();
@@ -153,6 +184,11 @@ public class PlanoDAO {
         return lista;
     };
     
+    /**
+     * deleta o plano selecionado do banco de dados
+     * @param idPlano plano selecionado
+     * @return retorna booleano, true se o plano foi deletado do banco de dados
+     */
     public boolean deletePlanoSql(int idPlano){
         Connection conexao = this.banco.getConexao();
         String sql = "DELETE FROM plano WHERE idPlano = ?";
@@ -173,6 +209,12 @@ public class PlanoDAO {
         return excluido;         
     }
     
+    /**
+     * atualiza o plano ao cliente selecionado
+     * @param idPlano plano selecionado
+     * @param idCliente cliente selecionado
+     * @return retorna booleano, true se o plano foi adicionado ao cliente
+     */
     public boolean updateClienteIdPlano(int idPlano, int idCliente){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idPlano = ?, dataInicioPlano = ? WHERE idCliente = ?";
@@ -197,6 +239,12 @@ public class PlanoDAO {
         return atualizado;       
     }
     
+    /**
+    * deleta o plano ao cliente selecionado
+    * @param idPlano plano selecionado
+    * @param idCliente cliente selecionado
+    * @return retorna booleano, true se o plano foi deletado ao cliente
+    */
     public boolean updateDeleteClienteIdPlano(int idPlano, int idCliente){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idPlano = ?, dataInicioPlano = ? WHERE idCliente = ?";
@@ -219,6 +267,12 @@ public class PlanoDAO {
         return atualizado;          
     }
     
+    /**
+     * retorna a lista de modalidade presente no plano selecionado
+     * @param idPlano plano selecionado
+     * @return retorna a lista com todas as modalidades presente no plano selecionado
+     * @throws SQLException 
+     */
     public List retornaListaDeModalidadesDoPlano(int idPlano) throws SQLException{
         Connection conexao = this.banco.getConexao();
         List<Modalidade> lista = new ArrayList<>();

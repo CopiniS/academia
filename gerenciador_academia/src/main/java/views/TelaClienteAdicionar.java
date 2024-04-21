@@ -397,7 +397,7 @@ public class TelaClienteAdicionar extends javax.swing.JPanel {
     }//GEN-LAST:event_tf_bairroActionPerformed
 
     private void lb_txtAddClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddClienteMouseClicked
-        if(!Main.controllerManager.getClienteAdicionarController().validacaoCamposObrigatorios(tf_Nome.getText(), ftf_cpf.getText(), ftf_dataNasc.getText())){
+        if(Main.controllerManager.getClienteAdicionarController().validacaoCamposObrigatorios(tf_Nome.getText(), ftf_cpf.getText(), ftf_dataNasc.getText())){
             if(Main.controllerManager.getClienteAdicionarController().validarCPF(ftf_cpf.getText())){
                 if(!Main.controllerManager.getClienteAdicionarController().verificaCPFrepetido(ftf_cpf.getText())){
                     try {

@@ -10,11 +10,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que cuida da conexão da classe instrutor ao banco de dados
+ * @author tiovi
+ */
 public class InstrutorDAO {
     Banco banco = new Banco();
     
-
-    
+/**
+ * mostra a lista com todos os instrutores e suas informações
+ */
     public void mostraInstrutores(){
         List<Instrutor> lista = selectInstrutor();
         for(Instrutor instrutor : lista){
@@ -22,6 +27,12 @@ public class InstrutorDAO {
         }
     }
     
+    /**
+     * insere um novo instrutor ao sistema
+     * @param nome nome do instrutor
+     * @param cpf cpf do instrutor
+     * @return int, contendo o id do instrutor
+     */
     public int insertInstrutor(String nome, String cpf){
         
         int idInstrutor = -1;
@@ -50,6 +61,10 @@ public class InstrutorDAO {
         return idInstrutor;
     }
     
+    /**
+     * Retorna a lista completa de instrutores
+     * @return retorna a lista de todos os instrutores contido no banco de dados com todas as informações
+     */
     public List selectInstrutor(){
         Connection conexao = this.banco.getConexao();
         List<Instrutor> lista = new ArrayList();
@@ -78,6 +93,12 @@ public class InstrutorDAO {
         return lista;
     }
  
+    /**
+     * atualiza a modalidade do instrutor selecionado
+     * @param idInstrutor id do instrutor selecionado
+     * @param idModalidade id da modalidade
+     * @return retorna um booleano, true se a modalidade for atualizada
+     */
     public boolean updateInstrutorIdModalidade(int idInstrutor, int idModalidade){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE modalidade_has_instrutor SET idModalidade = ? WHERE idInstrutor= ?";
@@ -100,6 +121,11 @@ public class InstrutorDAO {
         return atualizado;
     }
     
+    /**
+     * deleta o instrutor selecionado do banco de dados
+     * @param idInstrutor id do instrutor selecionado
+     * @return retorna um booleano, true se o instrutor for delatado
+     */
     public boolean deleteInstrutorSql(int idInstrutor){
         Connection conexao = this.banco.getConexao();
         String sql = "DELETE FROM instrutor WHERE idInstrutor = ?";
@@ -120,6 +146,10 @@ public class InstrutorDAO {
         return excluido;
     }
     
+    /**
+     * Retorna a lista dos CPFs dos intrutores ao ComboBox
+     * @return retorna a lista com todos os cpfs dos instrutores contidos no sitema
+     */
     public List retonaListaDeCPFS(){
         Connection conexao = this.banco.getConexao();
         List lista = new ArrayList();
@@ -142,6 +172,12 @@ public class InstrutorDAO {
         return lista;
     }
     
+    /**
+     * Adiciona o instrutor a modalidade selecionada
+     * @param idInstrutor instrutor selecionado
+     * @param listaModalidadesSelecionadas modalidade selecionada
+     * @return retorna booleano, true se o instrutor foi inserido na modalidade
+     */
     public boolean insertInstrutorHasModalidade(int idInstrutor, List<Modalidade> listaModalidadesSelecionadas){
         boolean resultado = false;
         Connection conexao = this.banco.getConexao();
@@ -164,6 +200,12 @@ public class InstrutorDAO {
         return resultado;
     }
     
+    /**
+     * Deleta o instrutor selecionado das modalidades
+     * @param idInstrutor instrutor selecionado
+     * @param listaModalidadesAntigas modalidades que o instrutor está
+     * @return retorna booleano, true se o instrutor foi excluido da modalidade
+     */
     public boolean deleteInstrutorHasModalidade(int idInstrutor, List<Modalidade> listaModalidadesAntigas){
         boolean excluido = false;
         Connection conexao = this.banco.getConexao();
@@ -189,6 +231,12 @@ public class InstrutorDAO {
         return excluido;     
     }
     
+    /**
+     * Retorna a lista de modalidades contida no instrutor
+     * @param idInstrutor instrutor selecionado
+     * @return retorna a lista de modalidades do instrutor
+     * @throws SQLException 
+     */
     public List retornaListaDeModalidadesDoInstrutor(int idInstrutor) throws SQLException{
         Connection conexao = this.banco.getConexao();
         List<Modalidade> lista = new ArrayList<>();
@@ -218,7 +266,6 @@ public class InstrutorDAO {
         catch (SQLException ex) {
             System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
         }
-        
         return lista;
     }
 }

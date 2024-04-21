@@ -1,6 +1,9 @@
 
 package models;
-
+/**
+ * Classe que gerencia os models
+ * @author gabri
+ */
 public class ApplicationModel {
     private Cliente cliente;
     private ClienteDAO clienteDAO;
@@ -22,6 +25,9 @@ public class ApplicationModel {
         startDAOModels();
     }
     
+    /**
+     * Inicializa as classes DAO do sistema
+     */
     public void startDAOModels(){
         clienteDAO = new ClienteDAO();
         exercicioDAO = new ExercicioDAO();

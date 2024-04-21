@@ -7,20 +7,33 @@ import models.Cliente;
 import views.TelaClienteAdicionar;
 import views.TelaClienteAlterar;
 
+/**
+ * Faz o controle entre as telas e back-end
+ * @author tiovi
+ */
 public class ClienteController {
   
+    /**
+     * muda da tela principal pra do adicionar cliente
+     */
     public void btAdicionarCliente(){
         Main.controllerManager.getApplicationView().setTelaClienteAdicionar(new TelaClienteAdicionar());
         Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaClienteAdicionar());
         Main.controllerManager.getApplicationView().getJanela().setLocationRelativeTo(null);
     }
     
+    /**
+     * muda da tela principal pra do alterar cliente
+     */
     public void btAlterarCliente(){
         Main.controllerManager.getApplicationView().setTelaClienteAlterar(new TelaClienteAlterar());
         Main.controllerManager.getApplicationView().mostraTela(Main.controllerManager.getApplicationView().getTelaClienteAlterar());
         Main.controllerManager.getApplicationView().getJanela().setLocationRelativeTo(null);
     }
     
+    /**
+     * mostra o sout de clientes
+     */
     public void btMostrarCliente(){
         List<Cliente> lista = Main.controllerManager.getApplicationModel().getClienteDAO().mostraClientes();
         String listaStr = "";

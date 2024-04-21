@@ -7,11 +7,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Classe que cuida da conexão do acesso ao sistema junto ao bandod e dados
+ * @author tiovi
+ */
 public class LoginDAO {
     Banco banco = new Banco();
     public LoginDAO() {
     }
     
+    /**
+     * Verifica se o usuario e senha estao contidos no banco de dados
+     * @param usuario usuario digitado
+     * @param senha senha digitada
+     * @return booleando, true se puder acessar o sistema
+     */
     public boolean SelectSenhaDoUsuarioSQL(String usuario, String senha){
         boolean senhaCorreta = false;
         

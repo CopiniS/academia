@@ -21,7 +21,10 @@ import java.util.List;
 public class ClienteDAO{
     Banco banco = new Banco();
     
-  
+    /**
+     * Faz um select no banco de dados
+     * @return lista de todos os cliente cadastrados no banco
+     */
     public List mostraClientes(){
         Connection conexao = this.banco.getConexao();
         List<Cliente> lista = new ArrayList();
@@ -264,6 +267,11 @@ public class ClienteDAO{
         return atualizado;
     }
     
+       /**
+     * Faz a atualização do idTreino do cliente
+     * @param cliente
+     * @return booleano confirmando se o treino do cliente foi atualizado
+     */   
     public boolean updateClienteIdTreino(Cliente cliente){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idTreino = ? WHERE idCliente = ?";
@@ -288,7 +296,12 @@ public class ClienteDAO{
         }
         return atualizado;
     }
-    
+        
+    /**
+     * Deleta o idTreino do cliente selecionado
+     * @param idCliente - id do Cliente selecionado
+     * @return booleano confirmando, true se o treino do cliente foi deletado
+     */
     public boolean deleteClienteIdTreino(int idCliente){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE Cliente SET idTreino = ? WHERE idCliente = ?";
@@ -310,6 +323,11 @@ public class ClienteDAO{
         return atualizado;
     }
     
+      /**
+     * Deleta o clietne selecionado do banco de dados
+     * @param idCliente - id do Cliente selecionado
+     * @return booleano confirmando, true se o cliente foi deletado do banco de dados
+     */
     public boolean deletaClienteSql(int idCliente){
         Connection conexao = this.banco.getConexao();
         String sql = "DELETE FROM cliente WHERE idCliente = ?";
@@ -329,7 +347,10 @@ public class ClienteDAO{
         }
         return excluido;
     }
-    
+       /**
+     * Retorna a lista completa de todos os CPFs dos clientes adicionados
+     * @return retorna a lista de todos os cpfs contidos no sistema
+     */
     public List retonaListaDeCPFS(){
         Connection conexao = this.banco.getConexao();
         List lista = new ArrayList();
@@ -351,7 +372,15 @@ public class ClienteDAO{
         }
         return lista;
     }
-    
+     
+    /**
+     * Busca através do CPF algum cliente, ou seja,
+     * faz a comparação do CPF selecionado com todos do Banco de Dados até encontrar o Cliente pertencente ao CPF.
+     * @param cpf - cpf selecionado na ComboBox
+     * @return retorna o cliente encontrado pelo cpf selecionado
+     * @throws ParseException
+     * @throws SQLException 
+     */
     public Cliente retornaClientePeloCpf(String cpf) throws ParseException, SQLException {
     Connection conexao = this.banco.getConexao();
     PreparedStatement consulta = null;

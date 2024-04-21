@@ -3,10 +3,7 @@ package models;
 
 import java.sql.Date;
 import java.time.LocalDate;
-/**
- * 
- * @author gabriel
- */
+
 public class Cliente {
     private int id;
     private String nome;

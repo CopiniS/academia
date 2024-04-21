@@ -210,26 +210,44 @@ public class TelaExercicioAdicionar extends javax.swing.JPanel {
     }//GEN-LAST:event_lb_treinoMouseClicked
 
     private void lb_txtAddExercicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_txtAddExercicioMouseClicked
-        if(Main.controllerManager.getExercicioAdicionarController().validaCampo(tf_Nome.getText())){
-            exercicio.setNome(tf_Nome.getText());
-            exercicio.setMusculaturaAfetada(cb_Musculo.getSelectedItem().toString());
-
-            Main.controllerManager.getExercicioAdicionarController().bt_addExercicio(exercicio);
+        if(Main.controllerManager.getExercicioAdicionarController().verificaSetemMaisDe20(cb_Musculo.getSelectedItem().toString())){
+            if(Main.controllerManager.getExercicioAdicionarController().validaCampo(tf_Nome.getText())){
+                if(Main.controllerManager.getExercicioAdicionarController().verificaSeNomerepetido(tf_Nome.getText())){
+                    exercicio.setNome(tf_Nome.getText());
+                    exercicio.setMusculaturaAfetada(cb_Musculo.getSelectedItem().toString());
+                    Main.controllerManager.getExercicioAdicionarController().bt_addExercicio(exercicio);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Exercicio ja cadastrado no sistema");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Preencha o campo nome");
+            }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Preencha o campo nome");
+            JOptionPane.showMessageDialog(null, "Você ja cadastrou o máximo permitido de exercicios para sua assinatura. PAra cadastrar mais, remova alguns");
         }
     }//GEN-LAST:event_lb_txtAddExercicioMouseClicked
 
     private void lb_botaoAddExercicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_botaoAddExercicioMouseClicked
-        if(Main.controllerManager.getExercicioAdicionarController().validaCampo(tf_Nome.getText())){
-            exercicio.setNome(tf_Nome.getText());
-            exercicio.setMusculaturaAfetada(cb_Musculo.getSelectedItem().toString());
-
-            Main.controllerManager.getExercicioAdicionarController().bt_addExercicio(exercicio);
+        if(Main.controllerManager.getExercicioAdicionarController().verificaSetemMaisDe20(cb_Musculo.getSelectedItem().toString())){
+            if(Main.controllerManager.getExercicioAdicionarController().validaCampo(tf_Nome.getText())){
+                if(Main.controllerManager.getExercicioAdicionarController().verificaSeNomerepetido(tf_Nome.getText())){
+                    exercicio.setNome(tf_Nome.getText());
+                    exercicio.setMusculaturaAfetada(cb_Musculo.getSelectedItem().toString());
+                    Main.controllerManager.getExercicioAdicionarController().bt_addExercicio(exercicio);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Exercicio ja cadastrado no sistema");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Preencha o campo nome");
+            }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Preencha o campo nome");
+            JOptionPane.showMessageDialog(null, "Você ja cadastrou o máximo permitido de exercicios para sua assinatura. PAra cadastrar mais, remova alguns");
         }
     }//GEN-LAST:event_lb_botaoAddExercicioMouseClicked
 

@@ -5,6 +5,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Classe que faz conecção com o banco de dados
+ * @author gabri
+ */
 public class Banco {
     private String banco;
     private String url;
@@ -13,6 +17,9 @@ public class Banco {
     private String senha;
     private String nome;
 
+    /**
+     * configurações do banco de dados
+     */
     public Banco() {
         this.banco = "mysql";
         this.porta = "3306";
@@ -21,6 +28,10 @@ public class Banco {
         this.nome = "academiadb";
     }
     
+    /**
+     * Abre a conecção com o banco
+     * @return retorna a connection
+     */
     public Connection getConexao(){
         Connection conexao = null;
         try {

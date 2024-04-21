@@ -12,20 +12,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Classe que cuida da conexão da classe treino ao banco de dados
+ * @author tiovi
+ */
 public class TreinoDAO {
     Banco banco = new Banco();
 
 
     
         
-    
+    /**
+     * mostra a lista de treino com todas as informacoes, mas sem exercicio
+     */
     public void mostraListaTreinos(){
         List<Treino> lista = selectTreinos();
         for(Treino treino : lista){
             System.out.println(treino.toString());
         }        
     }
-    
+    /**
+     * mostra a lista de treino com todas as informacoes, mas com exercicio
+     */
     public void mostraTreinoCompleto(Treino treino){
         List<Treino> lista = selectTreinoComExercicios(treino.getId());
         for(Treino t : lista){
@@ -36,7 +44,12 @@ public class TreinoDAO {
 //--------------------------------------------------------------------------------------------------------------------------------------//
     //SQL
     
-    
+    /**
+     * insere um treino ao banco de dados
+     * @param nome nome treino
+     * @param descricao descricao treino
+     * @return retorna id do treino ao banco de dados
+     */
     public int insertTreinoSql(String nome, String descricao){
         int idTreino = -1;
         boolean resultado = false;
@@ -64,7 +77,13 @@ public class TreinoDAO {
         
         return idTreino;
     }
-    
+    /**
+     * insere exercicios e dia da semana ao treino no banco de dados
+     * @param idTreino treino selecionado
+     * @param idExercicio exercicios selecionados
+     * @param diaSemana dia da semana selecionado
+     * @return retorna booelano, true se data e exercicios foram adicionados ao treino
+     */
     public boolean insertTreinoHasExercicioSql(int idTreino, int idExercicio, String diaSemana){
         boolean resultado = false;
         Connection conexao = this.banco.getConexao();
@@ -85,7 +104,12 @@ public class TreinoDAO {
         }
         return resultado;
     }
-    
+    /**
+     * atualiza as informacoes do treino selecionado
+     * @param idTreino treino selecioando
+     * @param descricao nova descricao
+     * @return retorna booelano, true se treino foi atualizado
+     */
     public boolean updateTreinoSql(int idTreino, String descricao){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE treino SET descricao = ? WHERE idTreino = ?";
@@ -106,6 +130,15 @@ public class TreinoDAO {
         return atualizado; 
     }
     
+    
+    /**
+     * atualiza o dia da semana e exercicios do treino selecionado
+     * @param idTreino treino selecionado
+     * @param idExercicioNovo exercicios novos selecionados
+     * @param idExercicioRetirado exercicios retirados
+     * @param diaSemana dia da semana selecionado
+     * @return retorna booelano, true o exercicio foi atualizado no treino
+     */
     public boolean updateTreinoHasExercicioSql(int idTreino, int idExercicioNovo, int idExercicioRetirado, String diaSemana){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE treino_has_exercicio SET idExercicio = ? WHERE idTreino = ? AND diaSemana = ? AND idExercicio = ?";
@@ -128,6 +161,12 @@ public class TreinoDAO {
         return atualizado; 
     }
     
+    
+    /**
+     * deleta treino selecionado do banco de dados
+     * @param idTreino treino selecionado
+     * @return retorna booelano, true se treino foi deletado
+     */
     public boolean deleteTreinoSql(int idTreino){
         Connection conexao = this.banco.getConexao();
         String sql = "DELETE FROM treino WHERE idTreino = ?";
@@ -148,6 +187,10 @@ public class TreinoDAO {
         return excluido;
     }
     
+    /**
+     * Retorna a lista com todos os treinos do banco de dados
+     * @return retorna uma lista com todos os treinos
+     */
     public List selectTreinos(){
         Connection conexao = this.banco.getConexao();
         List<Treino> lista = new ArrayList();
@@ -176,6 +219,11 @@ public class TreinoDAO {
         return lista;
     }
     
+    /**
+     * retorna lista com todos os treinos com exercicios
+     * @param idTreino treino selecionado
+     * @return retorna o treino selecionado com os exercicios
+     */
     public List selectTreinoComExercicios(int idTreino){
                 Connection conexao = this.banco.getConexao();
         List<Treino> lista = new ArrayList();
@@ -210,6 +258,12 @@ public class TreinoDAO {
         return lista;
     }
     
+    
+    /**
+     * seleciona os exercicios que estao no treino no banco de dados
+     * @param idTreino treino selecionado
+     * @return retorna a lista de exercicios que esta no treino selecionado
+     */
     public List<Exercicio> selectTreinoHasExercicioSql(int idTreino){
         Connection conexao = this.banco.getConexao();
         List<Exercicio> lista = new ArrayList();
@@ -242,6 +296,58 @@ public class TreinoDAO {
         return lista;        
     }
     
+    
+    /**
+     * 
+     * @param idTreino treino selecionado
+     * @return retorna booelano, true se o exercicio foi deletado do treino
+     */
+    public Map<String,List<Exercicio>> retornaMapExerciciosDias(int idTreino){
+        Connection conexao = this.banco.getConexao();
+        Map<String,List<Exercicio>> map = new HashMap<>();
+        
+        map.put("Segunda", new ArrayList<>());
+        map.put("Terça", new ArrayList<>());
+        map.put("Quarta", new ArrayList<>());
+        map.put("Quinta", new ArrayList<>());
+        map.put("Sexta", new ArrayList<>());
+        map.put("Sabado", new ArrayList<>());
+        map.put("Domingo", new ArrayList<>());
+        PreparedStatement consulta = null;
+        
+        String sql = "SELECT t.idExercicio, e.nome, e.musculaturaAfetada, t.diaSemana FROM treino_has_exercicio as t JOIN exercicio as e ON t.idExercicio = e.idExercicio WHERE t.idTreino = ?";
+        ResultSet resultados;
+        
+        try {
+        consulta = conexao.prepareStatement(sql);
+        consulta.setInt(1, idTreino);
+        resultados = consulta.executeQuery();
+        
+            
+            while(resultados.next()){
+                Exercicio objeto = new Exercicio();
+                int idExercicio = resultados.getInt("t.idExercicio");
+                String nomeExercicio = resultados.getString("e.nome");
+                String musculatura = resultados.getString("e.musculaturaAfetada");
+                String dia = resultados.getString("diaSemana");
+                objeto.setId(idExercicio);
+                objeto.setNome(nomeExercicio);
+                objeto.setMusculaturaAfetada(musculatura);
+                
+                map.get(dia).add(objeto);
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println("Erro na consulta ao Banco de dados" + ex.getMessage());
+        }
+        return map;   
+    }
+    
+    /**
+     * Faz o delete na tabela treino_has_exercicio
+     * @param idTreino linhas com idTreino serão deletadas
+     * @return true se o delete ocorrer certo, senão false
+     */
     public boolean deleteTreinoHasExercicioSql(int idTreino){
         Connection conexao = this.banco.getConexao();
         String sql = "DELETE FROM treino_has_exercicio WHERE idTreino = ?";

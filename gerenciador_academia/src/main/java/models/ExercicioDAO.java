@@ -9,9 +9,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que cuida da conexão da classe exercicio ao banco de dados
+ * @author tiovi
+ */
 public class ExercicioDAO {
     Banco banco = new Banco();
  
+    /**
+     * Mostra a lista de todos os exercicios adicionados
+     */
     public void mostraExercicios()  {
         List<Exercicio> lista = selectExerciciosSql();
         for(Exercicio exercicio : lista){
@@ -21,6 +28,11 @@ public class ExercicioDAO {
     
     //------------------------------------------------- SQL ----------------------------------------------------------------------//
     
+    /**
+     * Insere nome e musculo aos exercicios no banco de dados
+     * @param exercicio - classe do exercicio com nome e musculo a ser adicionado
+     * @return retorna booleano, true se o exercicio foi inserido
+     */
     public boolean insertExercicioSql(Exercicio exercicio){
         boolean resultado = false;
         
@@ -43,6 +55,10 @@ public class ExercicioDAO {
         return resultado;
     }
     
+    /**
+     * Retorna a lista completa de exercicios
+     * @return retorna a lista de todos os exercicios contido no banco de dados com todas as informações
+     */
     public List selectExerciciosSql(){
         Connection conexao = this.banco.getConexao();
         List<Exercicio> lista = new ArrayList();
@@ -71,6 +87,13 @@ public class ExercicioDAO {
         return lista;
     }
     
+    /**
+     * atualiza/altera o exercicio selecionado
+     * @param idExercicio id do exercicio selecionado
+     * @param nome nome do exercicio
+     * @param musculaturaAfetada musculo do exercicio
+     * @return retorna booleano, true se o exercicio foi alterado
+     */
     public boolean updateExercicioSql(int idExercicio, String nome, String musculaturaAfetada){
         Connection conexao = this.banco.getConexao();
         String sql = "UPDATE exercicio SET nome = ?, musculaturaAfetada = ? WHERE idExercicio = ?";
@@ -92,6 +115,11 @@ public class ExercicioDAO {
         return atualizado; 
     }
     
+    /**
+     * deleta o exercicio selecionado do banco de dados
+     * @param idExercicio id do exercicio selecionado
+     * @return retorna booleano, true se o exercicio foi deletado
+     */
     public boolean delteExercicioSql(int idExercicio){
         Connection conexao = this.banco.getConexao();
         String sql = "DELETE FROM exercicio WHERE idExercicio = ?";

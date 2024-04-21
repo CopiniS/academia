@@ -9,11 +9,14 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.Cliente;
+import models.Exercicio;
 import models.Plano;
 import models.Treino;
 
@@ -397,6 +400,11 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
         bt_visuTreino.setBackground(new java.awt.Color(153, 255, 51));
         bt_visuTreino.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         bt_visuTreino.setText("VISUALIZAR TREINO");
+        bt_visuTreino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_visuTreinoMouseClicked(evt);
+            }
+        });
         bt_visuTreino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_visuTreinoActionPerformed(evt);
@@ -560,6 +568,27 @@ public class TelaClienteAlterar extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Erro na exclusao do cliente, tente novamente mais tarde");
            }
     }//GEN-LAST:event_lb_btDeletarMouseClicked
+
+    private void bt_visuTreinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_visuTreinoMouseClicked
+        try {
+            cliente = Main.controllerManager.getClienteAlterarController().retornaClientePeloCpf(cb_CPF.getSelectedItem().toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaClienteAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaClienteAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            Map<String, List<Exercicio>> map = new HashMap<>();
+            map = Main.controllerManager.getClienteAlterarController().chamaMapExercicio(cliente.getTreino().getId());
+            
+            if(cliente.getTreino() != null){
+                Main.controllerManager.getClienteAlterarController().geraTreinoPdf(cliente, map);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Nenhum treino cadastrado");
+            }
+            
+            
+    }//GEN-LAST:event_bt_visuTreinoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

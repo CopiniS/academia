@@ -11,6 +11,12 @@ import views.TelaModalidade;
 import views.TelaPlano;
 import views.TelaTreino;
 
+
+/**
+ * Faz o gerenciamento de todos os controllers na aplicação
+ * @author gabri
+ */
+
 public class ControllerManager {
     private ApplicationModel applicationModel;
     private ApplicationView applicationView;
@@ -62,42 +68,63 @@ public class ControllerManager {
 
     }
     
+    /**
+     * Inicia a primeira tela da aplicação. Tela de Login.
+     */
     public void start(){
         this.applicationView.setTelaLogin(new TelaLogin());
         this.applicationView.mostraTela(this.applicationView.getTelaLogin());      //Mostra a tela de cadastro.
         this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
+    /**
+     * Redireciona pra tela do cliente
+     */
     public void btAcessarTelaCliente(){
         this.applicationView.setTelaCliente(new TelaCliente());
         this.applicationView.mostraTela(this.applicationView.getTelaCliente());
         this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
+    /**
+     * redireciona pra tela do instrutor
+     */
     public void btAcessarTelaInstrutor(){
         this.applicationView.setTelaInstrutor(new TelaInstrutor());
         this.applicationView.mostraTela(this.applicationView.getTelaInstrutor());
         this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
+    /**
+     * redireciona pra tela do plano
+     */
     public void btAcessarTelaPlano(){
         this.applicationView.setTelaPlano(new TelaPlano());
         this.applicationView.mostraTela(this.applicationView.getTelaPlano());
         this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
+    /**
+     * redireciona pra tela da modalidade
+     */
     public void btAcessarTelaModalidade(){
         this.applicationView.setTelaModalidade(new TelaModalidade());
         this.applicationView.mostraTela(this.applicationView.getTelaModalidade());
         this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
+    /**
+     * redireciona pra tela do treino
+     */
     public void btAcessarTelaTreino(){
         this.applicationView.setTelaTreino(new TelaTreino());
         this.applicationView.mostraTela(this.applicationView.getTelaTreino());
         this.applicationView.getJanela().setLocationRelativeTo(null);
     }
     
+    /**
+     * redireciona pra tela do exercício
+     */
     public void btAcessartelaExercicio(){
         this.applicationView.setTelaExercicio(new TelaExercicio());
         this.applicationView.mostraTela(this.applicationView.getTelaExercicio());

@@ -17,8 +17,41 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13.3</version>
+        </dependency>
     </dependencies>
     <build>
+        <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.4.1</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                            <configuration>
+                                <createDependencyReducedPom>false</createDependencyReducedPom>
+                                <shadedArtifactAttached>true</shadedArtifactAttached>
+                                <shadedClassifierName>launcher</shadedClassifierName>
+                                <transformers>
+                                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                      <Main-Class>controller.Main</Main-Class>
+                                      <Build-Number>123</Build-Number>
+                                    </manifestEntries>
+                                  </transformer>
+                                </transformers>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>            
+        </plugins>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
