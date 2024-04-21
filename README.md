@@ -27,17 +27,17 @@ O sistema foi desenvolvido para um gestor de academia ter melhor controle de tod
 
 ## Lista de Funcionalidades Desejadas e não implementadas:
 * Criar um sistema voltado ao cliente;
-* 
+  
 * Criar um sistema voltado ao instrutor;
-* 
+  
 * Verificar informações do instrutor, CPF, formações e capacitações, onde o sistema alegaria se ele poderia ou não exercer aquilo;
-* 
+  
 * Vincular os dados de cliente a família (para o Plano Família);
-* 
+  
 * Fazer a implementação de uma gestão financeira para o sistema;
-* 
+  
 * Lista de atividade dos clientes;
-* 
+  
 * Implementar mais uma tela de listagem para cada opção do menu, implementada com filtros, e com opções de relatórios;
-* 
+  
 * Hovers nos botões.
